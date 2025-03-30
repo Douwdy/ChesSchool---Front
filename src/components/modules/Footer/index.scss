@@ -1,0 +1,65 @@
+@import '../../resources.scss';
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: $rich-black;
+    color: $lavender-blush;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+
+    &__content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+
+    &__links {
+        display: flex;
+        gap: 1rem;
+
+        a {
+            color: $lavender-blush;
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: $xanthous;
+            }
+        }
+    }
+
+    &__copyright {
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        color: $lavender-blush;
+        p{
+            margin: 0;
+        }
+    }
+}
+
+// Ensure the footer stays at the bottom of the page
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.main-content {
+    flex: 1; // Pushes the footer to the bottom
+}

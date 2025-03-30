@@ -1,0 +1,104 @@
+@import '../../resources.scss';
+
+.local-game {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; // Centre verticalement
+    text-align: center;
+    margin: 0 2rem 0 2rem;
+
+    .local-game-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem; // Espacement entre le contenu et l'échiquier
+    }
+
+    .local-game-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        flex: 1; // Prend tout l'espace disponible à gauche
+        text-align: left;
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: $rich-black;
+        }
+
+        .error-message {
+            color: white;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            background-color: $penn-red;
+            animation: wiggle 0.1s ease-in-out;
+        }
+
+        @keyframes wiggle {
+            0%{
+                transform: translateX(4px);
+            }
+
+            50%{
+                transform: translateX(-4px);
+            }
+
+            100%{
+                transform: translateX(0px);
+            }
+        }
+
+        button {
+            background-color: $xanthous;
+            color: $rich-black;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: darken($xanthous, 10%);
+            }
+        }
+    }
+
+    .chessboard-container {
+        flex: 1; // Prend tout l'espace disponible à droite
+        display: flex;
+        justify-content: center; // Centre horizontalement
+        align-items: center; // Centre verticalement
+        margin: 2rem auto;
+    }
+
+    .chessboard {
+        max-width: 400px; // Limite la largeur maximale de l'échiquier
+        max-height: 400px; // Limite la hauteur maximale de l'échiquier
+        width: 100%; // S'adapte à la largeur de l'écran
+        height: auto; // Maintient les proportions
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); // Ombre portée
+        border-radius: 10px; // Coins arrondis
+    }
+
+    button {
+        margin-top: 1rem;
+        background-color: $xanthous;
+        color: $rich-black;
+        border: none;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: darken($xanthous, 10%);
+        }
+    }
+}

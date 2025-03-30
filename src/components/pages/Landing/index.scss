@@ -1,0 +1,63 @@
+@import '../../resources.scss';
+
+.landing-page {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    text-align: center;
+    padding: 2rem;
+
+    .landing-header {
+        background-color: $lavender-blush; // Couleur de fond douce
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        
+        h1 {
+            font-size: 2.5rem;
+            color: $rich-black; // Couleur principale pour le texte
+            font-family: "BioRhyme", serif;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: $rich-black; // Texte secondaire en noir riche
+            margin: 1rem 0;
+        }
+
+        .cta-button {
+            background-color: $xanthous; // Couleur d'accentuation pour le bouton
+            color: $rich-black; // Texte du bouto
+            text-decoration: none;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: darken($xanthous, 10%); // Assombrir la couleur au survol
+            }
+        }
+    }
+
+    .features {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-around;
+
+        .feature {
+            max-width: 300px;
+
+            h2 {
+                font-size: 1.5rem;
+                color: $penn-red; // Couleur rouge pour les titres des fonctionnalités
+                font-family: "BioRhyme", serif;
+            }
+
+            p {
+                font-size: 1rem;
+                color: $rich-black; // Texte secondaire en noir riche
+            }
+        }
+    }
+}

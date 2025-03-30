@@ -1,0 +1,121 @@
+@import '../../resources.scss';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: linear-gradient(180deg, $rich-black, #ffffff00); // Linear gradient
+    color: $lavender-blush;
+    position: relative; // Nécessaire pour positionner le menu en absolu par rapport au header
+
+    &__logo {
+        display: flex;
+        align-items: center;
+
+        .header__logo-svg {
+            fill: $lavender-blush; // Couleur du logo
+            width: 30px;
+            height: auto;
+            margin-right: 1rem;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            padding: 0;
+            font-weight: bold;
+            color: $lavender-blush;
+            text-transform: uppercase;
+        }
+    }
+
+    &__burger {
+        display: none; // Masqué par défaut (visible uniquement sur mobile)
+        flex-direction: column;
+        justify-content: space-between;
+        width: 2rem;
+        height: 1.5rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+
+        &-line {
+            width: 100%;
+            height: 0.2rem;
+            background-color: $lavender-blush;
+        }
+    }
+
+    &__nav {
+        display: flex; // Toujours visible en mode bureau
+        flex-direction: row;
+        align-items: center;
+
+        &--open {
+            display: flex; // Afficher le menu lorsqu'il est ouvert en mode mobile
+        }
+
+        &__menu {
+            display: flex;
+            flex-direction: row; // Menu horizontal en mode bureau
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            &__item {
+                margin: 0 1rem;
+
+                &__link {
+                    display: inline-block;
+                    padding: 0.5rem 1rem;
+                    font-size: 1rem;
+                    font-weight: bold;
+                    color: $lavender-blush;
+                    text-decoration: none;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        background-color: $xanthous;
+                        color: $rich-black;
+                        border-radius: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Responsive design
+@media (max-width: 1192px) {
+    .header {
+        flex-direction: row; // Assurez-vous que le header reste en ligne
+        justify-content: space-between; // Espace entre le logo et le burger menu
+        align-items: center; // Aligner verticalement les éléments
+        background-color: $rich-black;
+        &__burger {
+            display: flex; // Afficher le bouton burger sur mobile
+        }
+
+        &__nav {
+            display: none; // Masquer le menu par défaut en mode mobile
+            position: absolute; // Position absolue pour ne pas déplacer le contenu
+            top: 100%; // Juste en dessous du header
+            left: 0;
+            width: 100%;
+            background-color: $rich-black;
+            z-index: 10; // Assurez-vous que le menu est au-dessus du contenu
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem 0;
+
+            &--open {
+                display: flex; // Afficher le menu lorsqu'il est ouvert
+            }
+
+            &__menu {
+                flex-direction: column; // Menu vertical en mode mobile
+            }
+        }
+    }
+}

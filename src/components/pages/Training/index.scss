@@ -1,0 +1,221 @@
+@import '../../resources.scss';
+
+.training {
+    text-align: center; // Centrer le contenu horizontalement
+    margin: 0 2rem 2rem 2rem; // Marges pour le conteneur principal
+
+    .training-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem; // Espacement entre le contenu et l'échiquier
+        margin-top: 2rem;
+    }
+
+    .training-content {
+        flex: 1; // Prend tout l'espace disponible à gauche
+        text-align: left;
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: $rich-black;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: $rich-black;
+            margin-bottom: 1rem;
+        }
+
+        button {
+            background-color: $xanthous;
+            color: $rich-black;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: #ffbb36;
+            }
+        }
+
+        .error-message {
+            color: white;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            background-color: $penn-red;
+            animation: wiggle 0.1s ease-in-out;
+        }
+
+        .success-message {
+            color: white;
+            margin-bottom: 1rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            background-color: green;
+            animation: wiggleUp 0.1s ease-in-out;
+        }
+
+        @keyframes wiggle {
+            0%{
+                transform: translateX(4px);
+            }
+
+            50%{
+                transform: translateX(-4px);
+            }
+
+            100%{
+                transform: translateX(0px);
+            }
+        }
+
+        @keyframes wiggleUp {
+            0% {
+                transform: translateY(4px);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .instruction {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: $penn-red;
+            margin-top: 1rem;
+        }
+    }
+
+    button {
+        margin-bottom: 1rem;
+        background-color: #f0ad4e;
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #ec971f;
+        }
+    }
+
+    .problem {
+        display: flex;
+        flex-direction: column;
+        align-items: center; // Centrer le contenu horizontalement
+        justify-content: center; // Centrer le contenu verticalement
+        margin-top: 2rem;
+        padding: 1rem;
+        border: 1px solid $lavender-blush;
+        border-radius: 5px;
+        background-color: $lavender-blush;
+
+        h2 {
+            margin-bottom: 1rem;
+            color: $rich-black;
+        }
+
+        p {
+            font-family: 'Zen Kaku Gothic New', sans-serif;
+        }
+
+        .chessboard-container {
+            display: flex;
+            justify-content: center; // Centrer l'échiquier horizontalement
+            margin-top: 1rem;
+            flex: 1; // Prend tout l'espace disponible à droite
+            align-items: center;
+        }
+
+        .chessboard {
+            margin: 1rem auto;
+            max-width: 400px; // Limite la largeur maximale de l'échiquier
+            max-height: 400px; // Limite la hauteur maximale de l'échiquier
+            width: 100%; // S'adapte à la largeur de l'écran
+            height: auto; // Maintient les proportions
+        }
+
+    }
+
+    .instruction {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: $penn-red; // Utiliser une couleur d'accentuation
+        margin-top: 1rem;
+    }
+
+    .chessboard-container {
+        flex: 1; // Prend tout l'espace disponible à droite
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 1192px) {
+    .training {
+        margin: 1rem; // Réduire les marges pour les petits écrans
+        text-align: center; // Centrer le texte globalement
+
+        .training-container {
+            flex-direction: column; // Empiler les éléments verticalement
+            gap: 1rem; // Réduire l'espacement entre les éléments
+            align-items: center; // Centrer les éléments horizontalement
+        }
+
+        .training-content {
+            text-align: center; // Centrer le texte pour les petits écrans
+            align-items: center; // Centrer le contenu horizontalement
+            display: flex;
+            flex-direction: column;
+
+            h1 {
+                font-size: 1.5rem; // Réduire la taille de la police
+            }
+
+            p {
+                font-size: 1rem; // Réduire la taille de la police
+            }
+
+            button {
+                font-size: 0.9rem; // Réduire la taille du bouton
+                padding: 0.6rem 1rem; // Ajuster le padding
+            }
+        }
+
+        .problem {
+            padding: 0.8rem; // Réduire le padding
+            margin-top: 1rem;
+            text-align: center; // Centrer le texte dans la section problème
+            align-items: center; // Centrer les éléments horizontalement
+            display: flex;
+            flex-direction: column;
+
+            h2 {
+                font-size: 1.2rem; // Réduire la taille de la police
+            }
+
+            .chessboard {
+                max-width: 300px; // Réduire la taille maximale de l'échiquier
+                max-height: 300px;
+                margin: 0 auto; // Centrer l'échiquier
+            }
+        }
+    }
+}

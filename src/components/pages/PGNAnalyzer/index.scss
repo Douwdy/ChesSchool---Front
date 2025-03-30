@@ -1,0 +1,127 @@
+@import '../../resources.scss'; // Import des couleurs et des polices
+
+.pgn-analyzer {
+    font-family: inherit; // Utilise la police globale du site
+    padding: 20px;
+    background-color: $lavender-blush; // Couleur de fond douce
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center; // Centrer le contenu horizontalement
+    margin: 0 2rem 2rem 2rem; // Marges pour le conteneur principal
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: $rich-black; // Titre en noir riche
+    }
+
+    .pgn-container {
+        display: flex;
+        justify-content: space-between; /* Espacement entre les colonnes */
+        align-items: flex-start; /* Aligner les colonnes en haut */
+        gap: 2rem; /* Espacement entre les colonnes */
+        margin-top: 2rem;
+
+        .pgn-input {
+            flex: 1; /* Prend tout l'espace disponible à gauche */
+            text-align: left;
+
+            textarea {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid $rich-black; // Bordure noire
+                border-radius: 5px;
+                font-size: 1rem;
+                resize: vertical;
+                margin-bottom: 1rem;
+                background-color: $lavender-blush; // Fond doux
+                color: $rich-black; // Texte noir riche
+                transition: border-color 0.3s;
+
+                &:focus {
+                    border-color: $xanthous; // Bordure jaune au focus
+                    outline: none;
+                }
+            }
+
+            button {
+                background-color: $xanthous;
+                color: $rich-black;
+                border: none;
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                    background-color: #ffbb36;
+                }
+            }
+        }
+
+        .pgn-results {
+            flex: 1; /* Prend tout l'espace disponible à droite */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centre horizontalement */
+            justify-content: flex-start; /* Aligne les résultats en haut */
+            text-align: left;
+            background-color: $lavender-blush; // Fond doux
+            padding: 1rem;
+            border-radius: 5px;
+            border: 1px solid $lavender-blush;
+
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: $rich-black; // Titre en noir riche
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                width: 100%;
+                max-height: 300px; /* Hauteur fixe */
+                overflow-y: auto; /* Ajoute un défilement vertical si nécessaire */
+
+                li {
+                    padding: 10px;
+                    border: 1px solid $rich-black; // Bordure noire
+                    margin-bottom: 5px;
+                    border-radius: 5px;
+                    background-color: $lavender-blush; // Fond doux
+                    color: $rich-black; // Texte noir riche
+                    transition: background-color 0.3s;
+
+                    &:hover {
+                        background-color: $xanthous; // Fond jaune au survol
+                    }
+                }
+            }
+        }
+    }
+
+    // Media query pour les écrans de petite taille
+    @media (max-width: 768px) {
+        .pgn-container {
+            flex-direction: column; /* Passe en colonne */
+            align-items: center; /* Centre les éléments */
+            gap: 1rem; /* Réduit l'espacement entre les sections */
+
+            .pgn-input,
+            .pgn-results {
+                width: 100%; /* Prend toute la largeur */
+            }
+
+            .pgn-input {
+                text-align: center; // Centre le texte pour les petits écrans
+            }
+
+            .pgn-results {
+                text-align: center; // Centre les résultats pour les petits écrans
+            }
+        }
+    }
+}
