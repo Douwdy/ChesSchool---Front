@@ -23,8 +23,7 @@ const Training = () => {
             setIsProblemLoaded(false);
             setErrorMessage('');
             setSuccessMessage('');
-            const response = await fetch('https://chesschool-back-production.up.railway.app/problems');
-            console.log('Response:', response);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/problems`);
             if (!response.ok) {
                 throw new Error(`Erreur HTTP : ${response.status}`);
             }

@@ -1,105 +1,548 @@
+@import '../../resources.scss';
+
 .openings {
-    padding: 20px;
-
-    h1 {
-        font-size: 2rem;
-        margin-bottom: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: $lavender-blush;
+  color: $rich-black;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba($rich-black, 0.08);
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: $rich-black;
+    font-size: 2.4rem;
+    border-bottom: 3px solid $xanthous;
+    padding-bottom: 0.8rem;
+    position: relative;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 6px;
+      background-color: $xanthous;
+      border-radius: 3px;
     }
-
-    .openings-container {
-        display: flex;
-        justify-content: space-between; /* Espacement entre les colonnes */
-        align-items: flex-start; /* Aligner les colonnes en haut */
-        gap: 2rem; /* Espacement entre les colonnes */
-
-        .openings-list {
-            flex: 1.2; /* Occupe une proportion plus petite */
+  }
+  
+  .openings-container {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 2.5rem;
+    
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
+    
+    // Colonne de gauche - Liste des ouvertures
+    .openings-list {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba($rich-black, 0.1);
+      padding: 1.8rem;
+      position: relative;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        box-shadow: 0 8px 16px rgba($rich-black, 0.15);
+        transform: translateY(-3px);
+      }
+      
+      h2 {
+        color: $rich-black;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+        text-align: center;
+        border-bottom: 2px solid $xanthous;
+        padding-bottom: 0.7rem;
+        letter-spacing: 0.5px;
+      }
+      
+      select {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid darken($lavender-blush, 15%);
+        border-radius: 8px;
+        font-size: 1.05rem;
+        margin-bottom: 2rem;
+        background-color: white;
+        box-shadow: 0 2px 6px rgba($rich-black, 0.05);
+        transition: all 0.2s ease;
+        cursor: pointer;
+        
+        &:focus {
+          border-color: $xanthous;
+          outline: none;
+          box-shadow: 0 0 0 3px rgba($xanthous, 0.25);
+        }
+        
+        &:hover {
+          border-color: darken($xanthous, 10%);
+        }
+        
+        option {
+          padding: 10px;
+        }
+      }
+      
+      ul {
+        list-style: none;
+        padding: 0;
+        border: 1px solid darken($lavender-blush, 15%);
+        border-radius: 8px;
+        max-height: 500px;
+        overflow-y: auto;
+        box-shadow: inset 0 2px 6px rgba($rich-black, 0.05);
+        
+        &::-webkit-scrollbar {
+          width: 8px;
+        }
+        
+        &::-webkit-scrollbar-track {
+          background-color: rgba($lavender-blush, 0.4);
+          border-radius: 4px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+          background-color: rgba($xanthous, 0.5);
+          border-radius: 4px;
+          
+          &:hover {
+            background-color: rgba($xanthous, 0.7);
+          }
+        }
+        
+        li {
+          padding: 1rem 1.2rem;
+          border-bottom: 1px solid darken($lavender-blush, 10%);
+          cursor: pointer;
+          transition: all 0.25s ease;
+          font-family: "Zen Kaku Gothic New", sans-serif;
+          
+          &:last-child {
+            border-bottom: none;
+          }
+          
+          &:hover {
+            background-color: rgba($xanthous, 0.1);
+            transform: translateX(5px);
+          }
+          
+          &.selected {
+            background-color: $xanthous;
+            color: $rich-black;
+            font-weight: bold;
+            box-shadow: inset 0 0 0 2px rgba($rich-black, 0.1);
+          }
+          
+          .opening-name {
+            font-weight: 500;
+            font-size: 1.05rem;
+          }
+          
+          .opening-moves {
+            display: block;
+            font-size: 0.9rem;
+            color: darken($lavender-blush, 50%);
+            margin-top: 0.5rem;
+            line-height: 1.4;
+          }
+        }
+      }
+      
+      .opening-info {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background-color: rgba($lavender-blush, 0.4);
+        border-radius: 8px;
+        border-left: 4px solid $xanthous;
+        
+        h3 {
+          font-size: 1.2rem;
+          margin-bottom: 1rem;
+          color: $rich-black;
+          position: relative;
+          padding-bottom: 0.5rem;
+          border-bottom: 1px solid rgba($xanthous, 0.3);
+        }
+        
+        p {
+          margin-bottom: 1rem;
+          line-height: 1.6;
+          
+          &:last-child {
+            margin-bottom: 0;
+          }
+          
+          code {
+            background-color: rgba($xanthous, 0.2);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+          }
+          
+          strong {
+            color: darken($rich-black, 5%);
+          }
+        }
+      }
+      
+      .filters {
+        margin-top: 2rem;
+        padding-top: 1.8rem;
+        border-top: 1px solid darken($lavender-blush, 10%);
+        
+        h3 {
+          font-size: 1.15rem;
+          margin-bottom: 1rem;
+          color: $rich-black;
+        }
+        
+        .filter-options {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.7rem;
+          
+          button {
+            background-color: white;
+            border: 1px solid darken($lavender-blush, 15%);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            
+            &:hover {
+              background-color: rgba($xanthous, 0.15);
+              border-color: $xanthous;
+              transform: translateY(-2px);
+            }
+            
+            &.active {
+              background-color: $xanthous;
+              color: $rich-black;
+              border-color: $xanthous;
+              font-weight: bold;
+              box-shadow: 0 2px 4px rgba($rich-black, 0.15);
+            }
+          }
+        }
+      }
+    }
+    
+    // Colonne de droite - Échiquier et description
+    .openings-board {
+      display: flex;
+      flex-direction: column;
+      
+      .board-container {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba($rich-black, 0.1);
+        padding: 1.8rem;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          box-shadow: 0 8px 16px rgba($rich-black, 0.15);
+          transform: translateY(-3px);
+        }
+        
+        h2 {
+          color: $rich-black;
+          margin-bottom: 1.2rem;
+          font-size: 1.5rem;
+          text-align: center;
+          border-bottom: 2px solid $xanthous;
+          padding-bottom: 0.7rem;
+          letter-spacing: 0.5px;
+        }
+        
+        p {
+          text-align: center;
+          margin-bottom: 1.5rem;
+          font-size: 1.05rem;
+          color: darken($lavender-blush, 60%);
+          
+          code {
+            background-color: rgba($xanthous, 0.2);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+          }
+        }
+        
+        .chessboard-container {
+          max-width: 480px;
+          margin: 0 auto;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba($rich-black, 0.15);
+          overflow: hidden;
+        }
+        
+        .navigation-buttons {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 1rem;
+          margin-top: 2rem;
+          
+          button {
+            background-color: white;
+            border: 2px solid $xanthous;
+            color: $rich-black;
+            border-radius: 6px;
+            padding: 0.7rem 1.4rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            
+            &:hover:not(:disabled) {
+              background-color: $xanthous;
+              transform: translateY(-2px);
+              box-shadow: 0 3px 6px rgba($rich-black, 0.15);
+            }
+            
+            &:active:not(:disabled) {
+              transform: translateY(0);
+              box-shadow: 0 1px 3px rgba($rich-black, 0.1);
+            }
+            
+            &:disabled {
+              opacity: 0.5;
+              cursor: not-allowed;
+              border-color: darken($lavender-blush, 20%);
+            }
+          }
+          
+          span {
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            background-color: rgba($lavender-blush, 0.5);
+            min-width: 70px;
             text-align: center;
-
+          }
+        }
+      }
+      
+      .opening-info {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba($rich-black, 0.1);
+        padding: 1.8rem;
+        margin-top: 2rem;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          box-shadow: 0 8px 16px rgba($rich-black, 0.15);
+          transform: translateY(-3px);
+        }
+        
+        h2 {
+          color: $rich-black;
+          margin-bottom: 1.2rem;
+          font-size: 1.5rem;
+          text-align: center;
+          border-bottom: 2px solid $xanthous;
+          padding-bottom: 0.7rem;
+          letter-spacing: 0.5px;
+        }
+        
+        .opening-details {
+          h3 {
+            font-size: 1.3rem;
+            color: $rich-black;
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1rem;
+            
+            &:before {
+              content: '';
+              position: absolute;
+              left: 0;
+              top: 0;
+              height: 100%;
+              width: 4px;
+              background-color: $xanthous;
+              border-radius: 2px;
+            }
+          }
+          
+          .eco-code {
+            display: inline-block;
+            background-color: rgba($xanthous, 0.2);
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-right: 1rem;
+            letter-spacing: 0.5px;
+          }
+          
+          .opening-description {
+            margin: 1.2rem 0;
+            line-height: 1.7;
+            color: $rich-black;
+            font-size: 1.05rem;
+          }
+          
+          .opening-characteristics {
+            margin-top: 2rem;
+            background-color: rgba($lavender-blush, 0.3);
+            padding: 1.5rem;
+            border-radius: 8px;
+            
+            h4 {
+              font-size: 1.15rem;
+              color: $rich-black;
+              margin-bottom: 0.8rem;
+              border-left: 3px solid $xanthous;
+              padding-left: 0.8rem;
+            }
+            
             ul {
-                list-style: none;
-                padding: 0;
-
-                li {
-                    cursor: pointer;
-                    padding: 10px;
-                    border: 1px solid #ccc;
-                    margin-bottom: 5px;
-                    border-radius: 5px;
-                    transition: background-color 0.3s;
-
-                    &:hover {
-                        background-color: #f0f0f0;
-                    }
+              list-style: disc;
+              padding-left: 2rem;
+              margin-bottom: 1.2rem;
+              
+              li {
+                margin-bottom: 0.6rem;
+                line-height: 1.6;
+                position: relative;
+                
+                &:last-child {
+                  margin-bottom: 0;
                 }
-            }
-
-            h2 {
-                font-size: 1.5rem;
-                margin-bottom: 1rem;
-            }
-
-            select {
-                width: 100%;
-                max-width: 300px;
-                padding: 10px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                font-size: 1rem;
-                cursor: pointer;
-                transition: border-color 0.3s;
-
-                &:focus {
-                    border-color: #007bff;
-                    outline: none;
+                
+                &::marker {
+                  color: $xanthous;
                 }
+              }
             }
+          }
+          
+          .famous-games {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid darken($lavender-blush, 10%);
+            
+            h4 {
+              font-size: 1.15rem;
+              color: $rich-black;
+              margin-bottom: 1rem;
+              border-left: 3px solid $xanthous;
+              padding-left: 0.8rem;
+            }
+            
+            .game-link {
+              display: block;
+              padding: 1rem;
+              margin-bottom: 0.8rem;
+              background-color: rgba($lavender-blush, 0.5);
+              border-radius: 8px;
+              transition: all 0.25s ease;
+              
+              &:hover {
+                background-color: rgba($xanthous, 0.15);
+                transform: translateX(5px);
+                box-shadow: 0 2px 6px rgba($rich-black, 0.1);
+              }
+              
+              .players {
+                font-weight: bold;
+                font-size: 1.05rem;
+              }
+              
+              .event {
+                font-size: 0.95rem;
+                color: darken($lavender-blush, 55%);
+                margin-top: 0.4rem;
+              }
+            }
+          }
         }
-
-        .openings-board {
-            flex: 1.5; /* Occupe une proportion plus grande */
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Centre horizontalement */
-            justify-content: center; /* Centre verticalement */
-            text-align: center;
-            max-width: 70%; /* Limite la largeur à 70% de l'espace disponible */
-            width: 100%; /* S'adapte à la largeur disponible */
-
-            h2 {
-                margin-bottom: 10px;
-            }
-
-            p {
-                margin-bottom: 20px;
-            }
-
-            .chessboard-container {
-                display: flex;
-                justify-content: center; /* Centre l'échiquier horizontalement */
-                align-items: center; /* Centre l'échiquier verticalement */
-                margin-top: 1rem;
-            }
-
-            .chessboard {
-                max-width: 100%; /* S'adapte à la largeur définie dynamiquement */
-                height: auto; /* Maintient les proportions */
-            }
-        }
+      }
     }
-
-    // Media query pour les écrans de petite taille
-    @media (max-width: 768px) {
-        .openings-container {
-            flex-direction: column; /* Passe en colonne */
-            align-items: center; /* Centre les éléments */
-            gap: 1rem; /* Réduit l'espacement entre les sections */
-
-            .openings-list,
-            .openings-board {
-                width: 100%; /* Prend toute la largeur */
-                max-width: none; /* Supprime la limite de largeur */
-            }
-        }
+  }
+  
+  // Media query pour les écrans de petite taille
+  @media (max-width: 768px) {
+    padding: 1.2rem;
+    
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1.8rem;
     }
+    
+    .openings-container {
+      gap: 1.5rem;
+      
+      .openings-list,
+      .openings-board {
+        .board-container,
+        .opening-info {
+          padding: 1.2rem;
+          
+          &:hover {
+            transform: none;
+          }
+        }
+        
+        h2 {
+          font-size: 1.3rem;
+          margin-bottom: 1rem;
+        }
+      }
+      
+      .openings-list {
+        select {
+          padding: 0.8rem;
+          font-size: 1rem;
+          margin-bottom: 1.5rem;
+        }
+        
+        .opening-info {
+          padding: 1.2rem;
+        }
+      }
+      
+      .openings-board {
+        .navigation-buttons {
+          gap: 0.6rem;
+          margin-top: 1.5rem;
+          
+          button {
+            padding: 0.5rem 0.8rem;
+            font-size: 0.9rem;
+          }
+          
+          span {
+            font-size: 0.9rem;
+            padding: 0.4rem 0.6rem;
+            min-width: 60px;
+          }
+        }
+      }
+    }
+  }
+  
+  // Animations
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba($xanthous, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba($xanthous, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba($xanthous, 0);
+    }
+  }
 }
