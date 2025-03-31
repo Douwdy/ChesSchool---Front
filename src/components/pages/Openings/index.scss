@@ -51,7 +51,7 @@
       
       &:hover {
         box-shadow: 0 8px 16px rgba($rich-black, 0.15);
-        transform: translateY(-3px);
+        
       }
       
       h2 {
@@ -222,7 +222,7 @@
             &:hover {
               background-color: rgba($xanthous, 0.15);
               border-color: $xanthous;
-              transform: translateY(-2px);
+              
             }
             
             &.active {
@@ -251,7 +251,7 @@
         
         &:hover {
           box-shadow: 0 8px 16px rgba($rich-black, 0.15);
-          transform: translateY(-3px);
+          
         }
         
         h2 {
@@ -305,7 +305,7 @@
             
             &:hover:not(:disabled) {
               background-color: $xanthous;
-              transform: translateY(-2px);
+              
               box-shadow: 0 3px 6px rgba($rich-black, 0.15);
             }
             
@@ -340,11 +340,6 @@
         padding: 1.8rem;
         margin-top: 2rem;
         transition: all 0.3s ease;
-        
-        &:hover {
-          box-shadow: 0 8px 16px rgba($rich-black, 0.15);
-          transform: translateY(-3px);
-        }
         
         h2 {
           color: $rich-black;
