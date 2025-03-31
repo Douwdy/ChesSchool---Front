@@ -1,104 +1,375 @@
 @import '../../resources.scss';
 
 .local-game {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; // Centre verticalement
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: $lavender-blush;
+  color: $rich-black;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba($rich-black, 0.08);
+  
+  h1 {
     text-align: center;
-    margin: 0 2rem 0 2rem;
-
-    .local-game-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 2rem; // Espacement entre le contenu et l'échiquier
+    margin-bottom: 2.5rem;
+    color: $rich-black;
+    font-size: 2.4rem;
+    border-bottom: 3px solid $xanthous;
+    padding-bottom: 0.8rem;
+    position: relative;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 6px;
+      background-color: $xanthous;
+      border-radius: 3px;
     }
-
+  }
+  
+  .local-game-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2.5rem;
+    
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
+    
+    // Colonne gauche - Contrôles et informations
     .local-game-content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        flex: 1; // Prend tout l'espace disponible à gauche
-        text-align: left;
-
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: $rich-black;
-        }
-
-        .error-message {
-            color: white;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            background-color: $penn-red;
-            animation: wiggle 0.1s ease-in-out;
-        }
-
-        @keyframes wiggle {
-            0%{
-                transform: translateX(4px);
-            }
-
-            50%{
-                transform: translateX(-4px);
-            }
-
-            100%{
-                transform: translateX(0px);
-            }
-        }
-
-        button {
-            background-color: $xanthous;
-            color: $rich-black;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            font-size: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-
-            &:hover {
-                background-color: darken($xanthous, 10%);
-            }
-        }
-    }
-
-    .chessboard-container {
-        flex: 1; // Prend tout l'espace disponible à droite
-        display: flex;
-        justify-content: center; // Centre horizontalement
-        align-items: center; // Centre verticalement
-        margin: 2rem auto;
-    }
-
-    .chessboard {
-        max-width: 400px; // Limite la largeur maximale de l'échiquier
-        max-height: 400px; // Limite la hauteur maximale de l'échiquier
-        width: 100%; // S'adapte à la largeur de l'écran
-        height: auto; // Maintient les proportions
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); // Ombre portée
-        border-radius: 10px; // Coins arrondis
-    }
-
-    button {
-        margin-top: 1rem;
-        background-color: $xanthous;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba($rich-black, 0.1);
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      
+      h2 {
         color: $rich-black;
-        border: none;
-        padding: 0.5rem 1rem;
-        font-size: 1rem;
-        font-weight: bold;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-
-        &:hover {
+        margin-bottom: 1.5rem;
+        font-size: 1.6rem;
+        text-align: center;
+        border-bottom: 2px solid $xanthous;
+        padding-bottom: 0.7rem;
+        letter-spacing: 0.5px;
+      }
+      
+      p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        color: $rich-black;
+      }
+      
+      .game-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        margin-bottom: 1.5rem;
+        
+        button {
+          background-color: $xanthous;
+          color: $rich-black;
+          border: none;
+          padding: 0.9rem 1.5rem;
+          font-size: 1.05rem;
+          font-weight: bold;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 3px 6px rgba($rich-black, 0.1);
+          align-self: center;
+          
+          &:hover {
             background-color: darken($xanthous, 10%);
+            box-shadow: 0 4px 8px rgba($rich-black, 0.15);
+          }
+          
+          &:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 3px rgba($rich-black, 0.1);
+          }
+          
+          &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            background-color: darken($lavender-blush, 20%);
+          }
         }
+      }
+      
+      .error-message {
+        background-color: rgba($penn-red, 0.15);
+        color: $penn-red;
+        font-weight: 500;
+        padding: 1rem;
+        border-radius: 8px;
+        border-left: 4px solid $penn-red;
+        margin-bottom: 1.5rem;
+        animation: wiggle 0.3s ease-in-out;
+      }
+      
+      .game-status {
+        background-color: rgba($xanthous, 0.15);
+        border-radius: 8px;
+        padding: 1.2rem;
+        margin-bottom: 1.5rem;
+        
+        .status-header {
+          font-weight: 600;
+          font-size: 1.1rem;
+          margin-bottom: 1rem;
+          color: $rich-black;
+          text-align: center;
+        }
+        
+        .player-turn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.8rem;
+          margin-bottom: 1rem;
+          font-family: "Zen Kaku Gothic New", sans-serif;
+          font-weight: 400;
+          font-style: normal;
+          
+          .turn-indicator {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            
+            &.white {
+              background-color: white;
+              border: 1px solid darken($lavender-blush, 20%);
+            }
+            
+            &.black {
+              background-color: $rich-black;
+            }
+          }
+        }
+        
+        .game-info {
+          display: flex;
+          justify-content: space-around;
+          text-align: center;
+          
+          .info-item {
+            flex: 1;
+            font-family: "Zen Kaku Gothic New", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            
+            .label {
+              font-size: 0.9rem;
+              color: darken($lavender-blush, 50%);
+              margin-bottom: 0.3rem;
+            }
+            
+            .value {
+              font-size: 1.1rem;
+              font-weight: 500;
+              color: $rich-black;
+            }
+          }
+        }
+      }
+      
+      .game-history {
+        flex-grow: 1;
+        border: 1px solid darken($lavender-blush, 15%);
+        border-radius: 8px;
+        padding: 1rem;
+        background-color: rgba($lavender-blush, 0.3);
+        overflow-y: auto;
+        max-height: 250px;
+        
+        &::-webkit-scrollbar {
+          width: 8px;
+        }
+        
+        &::-webkit-scrollbar-track {
+          background-color: rgba($lavender-blush, 0.4);
+          border-radius: 4px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+          background-color: rgba($xanthous, 0.5);
+          border-radius: 4px;
+          
+          &:hover {
+            background-color: rgba($xanthous, 0.7);
+          }
+        }
+        
+        h3 {
+          font-size: 1.1rem;
+          margin-bottom: 0.8rem;
+          color: $rich-black;
+          text-align: center;
+        }
+        
+        .move-list {
+          display: grid;
+          grid-template-columns: auto 1fr 1fr;
+          gap: 0.5rem;
+          
+          .move-number {
+            font-weight: 600;
+            color: darken($lavender-blush, 50%);
+          }
+          
+          .move {
+            font-family: "Zen Kaku Gothic New", monospace;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+            
+            &:hover {
+              background-color: rgba($xanthous, 0.2);
+            }
+            
+            &.last-move {
+              background-color: rgba($xanthous, 0.4);
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      
+      @keyframes wiggle {
+        0% { transform: translateX(4px); }
+        25% { transform: translateX(-4px); }
+        50% { transform: translateX(2px); }
+        75% { transform: translateX(-2px); }
+        100% { transform: translateX(0); }
+      }
     }
+    
+    // Colonne droite - Échiquier
+    .chessboard-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba($rich-black, 0.1);
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      
+      .board-wrapper {
+        width: 100%;
+        max-width: 480px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba($rich-black, 0.15);
+        
+        & > div {
+          width: 100% !important;
+          height: auto !important;
+        }
+      }
+      
+      .board-controls {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        
+        button {
+          background-color: white;
+          border: 2px solid $xanthous;
+          color: $rich-black;
+          border-radius: 6px;
+          padding: 0.7rem 1.4rem;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.25s ease;
+          
+          &:hover {
+            background-color: $xanthous;
+            box-shadow: 0 3px 6px rgba($rich-black, 0.15);
+          }
+          
+          &:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 3px rgba($rich-black, 0.1);
+          }
+        }
+      }
+    }
+  }
+  
+  // Media query pour les écrans de petite taille
+  @media (max-width: 768px) {
+    padding: 1.2rem;
+    
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1.8rem;
+    }
+    
+    .local-game-container {
+      gap: 1.5rem;
+      
+      .local-game-content,
+      .chessboard-container {
+        padding: 1.2rem;
+        
+        h2 {
+          font-size: 1.3rem;
+          margin-bottom: 1rem;
+        }
+      }
+      
+      .local-game-content {
+        p {
+          font-size: 1rem;
+        }
+        
+        .game-controls button {
+          padding: 0.7rem 1.2rem;
+          font-size: 0.95rem;
+        }
+        
+        .game-status {
+          padding: 1rem;
+          
+          .status-header {
+            font-size: 1rem;
+          }
+          
+          .game-info {
+            flex-direction: column;
+            gap: 0.8rem;
+            
+            .info-item {
+              padding-bottom: 0.8rem;
+              border-bottom: 1px solid darken($lavender-blush, 10%);
+              
+              &:last-child {
+                padding-bottom: 0;
+                border-bottom: none;
+              }
+            }
+          }
+        }
+      }
+      
+      .chessboard-container {
+        .board-controls {
+          flex-wrap: wrap;
+          justify-content: center;
+          
+          button {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
 }
