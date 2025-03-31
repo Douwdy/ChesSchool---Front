@@ -4,7 +4,13 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  background-color: $lavender-blush;
+  background-image: 
+  linear-gradient(45deg, rgba($rich-black, 0.03) 25%, transparent 25%),
+  linear-gradient(-45deg, rgba($rich-black, 0.03) 25%, transparent 25%),
+  linear-gradient(45deg, transparent 75%, rgba($rich-black, 0.03) 75%),
+  linear-gradient(-45deg, transparent 75%, rgba($rich-black, 0.03) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
   color: $rich-black;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba($rich-black, 0.08);
