@@ -46,17 +46,24 @@ const PGNAnalyzer = () => {
             }
             
             const parsedGame = parsedGames[0];
+            console.log("Partie analysée:", parsedGame);
+            
+            // Convertir le tableau d'en-têtes en objet pour un accès plus facile
+            const headersObject = {};
+            parsedGame.headers.forEach(header => {
+                headersObject[header.name] = header.value;
+            });
             
             // Extraire les métadonnées
             const metadata = {
-                white: parsedGame.headers?.White || 'Joueur inconnu',
-                whiteElo: parsedGame.headers?.WhiteElo || '?',
-                black: parsedGame.headers?.Black || 'Joueur inconnu',
-                blackElo: parsedGame.headers?.BlackElo || '?',
-                date: parsedGame.headers?.Date || '?',
-                event: parsedGame.headers?.Event || 'Partie',
-                site: parsedGame.headers?.Site || '',
-                result: parsedGame.headers?.Result || '*'
+                white: headersObject.White || 'Joueur inconnu',
+                whiteElo: headersObject.WhiteElo || '?',
+                black: headersObject.Black || 'Joueur inconnu',
+                blackElo: headersObject.BlackElo || '?',
+                date: headersObject.Date || '?',
+                event: headersObject.Event || 'Partie',
+                site: headersObject.Site || '',
+                result: headersObject.Result || '*'
             };
             setGameMetadata(metadata);
             
@@ -401,9 +408,11 @@ const PGNAnalyzer = () => {
         });
     }
 
-    const evalPosition = evaluation !== null 
-        ? Math.max(0, Math.min(100, 50 - (evaluation / 10) * 5)) 
-        : 50;
+    const evalPosition = evaluation === null ? 50 : Math.min(Math.max(50 - evaluation / 0.3, 5), 95);
+
+    // Calculer les hauteurs pour les parties blanche et noire
+    const whiteHeight = `${evalPosition}%`;
+    const blackHeight = `${100 - evalPosition}%`;
 
     // Ajoutez une fonction pour calculer les statistiques de la partie
     const calculateGameStats = () => {
@@ -627,10 +636,8 @@ const PGNAnalyzer = () => {
                     <div className="evaluation-bar">
                         <h2>Évaluation</h2>
                         <div className="eval-container">
-                            <div 
-                                className="eval-marker" 
-                                style={{ top: `${evalPosition}%` }}
-                            ></div>
+                            <div className="white-eval" style={{ height: whiteHeight }}></div>
+                            <div className="black-eval" style={{ height: blackHeight }}></div>
                             <div 
                                 className="eval-value" 
                                 style={{ top: `${evalPosition}%` }}
