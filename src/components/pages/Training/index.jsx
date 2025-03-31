@@ -70,7 +70,6 @@ const Training = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            // Calculer la largeur dynamique du plateau, mais plafonnée à 480px
             const newWidth = Math.min(
                 Math.max(
                     window.innerWidth > 768 
@@ -99,10 +98,14 @@ const Training = () => {
             return false;
         }
 
-        const playedMove = `${sourceSquare}${targetSquare}`;
+        const isPromotion = expectedMove.length > 4;
+        const promotionPiece = isPromotion ? expectedMove[4] : undefined;
+        
+        const expectedSourceTarget = expectedMove.slice(0, 4);
+        const playedSourceTarget = `${sourceSquare}${targetSquare}`;
 
-        if (playedMove !== expectedMove) {
-            setErrorMessage(`Coup incorrect : ${playedMove}. Essayez encore !`);
+        if (playedSourceTarget !== expectedSourceTarget) {
+            setErrorMessage(`Coup incorrect : ${playedSourceTarget}. Essayez encore !`);
             setSuccessMessage('');
             return false;
         }
@@ -110,6 +113,7 @@ const Training = () => {
         const move = chess.move({
             from: sourceSquare,
             to: targetSquare,
+            promotion: promotionPiece
         });
 
         if (move === null) {
@@ -162,7 +166,6 @@ const Training = () => {
             <h1>Entraînement aux échecs</h1>
             
             <div className="training-container">
-                {/* Colonne gauche - Contenu et contrôles */}
                 <div className="training-content">
                     <h2>Problème tactique</h2>
                     <p>Améliorez vos compétences avec des problèmes d'échecs générés aléatoirement. Trouvez la meilleure suite de coups pour résoudre chaque position.</p>
@@ -201,7 +204,6 @@ const Training = () => {
                     )}
                 </div>
                 
-                {/* Colonne droite - Échiquier */}
                 <div className="chessboard-container">
                     {isProblemLoaded ? (
                         <>
