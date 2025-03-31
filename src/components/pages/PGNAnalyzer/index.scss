@@ -53,11 +53,6 @@
         padding: 1.8rem;
         transition: all 0.3s ease;
         
-        &:hover {
-          box-shadow: 0 8px 16px rgba($rich-black, 0.15);
-          transform: translateY(-3px);
-        }
-        
         h2 {
           color: $rich-black;
           margin-bottom: 1.2rem;
@@ -103,11 +98,6 @@
             background-color: darken($xanthous, 10%);
             box-shadow: 0 4px 8px rgba($rich-black, 0.15);
           }
-          
-          &:active {
-            transform: translateY(1px);
-            box-shadow: 0 1px 2px rgba($rich-black, 0.1);
-          }
         }
         
         .error-message {
@@ -127,11 +117,6 @@
         box-shadow: 0 4px 8px rgba($rich-black, 0.1);
         padding: 1.8rem;
         transition: all 0.3s ease;
-        
-        &:hover {
-          box-shadow: 0 8px 16px rgba($rich-black, 0.15);
-          transform: translateY(-3px);
-        }
         
         h2 {
           color: $rich-black;
@@ -194,11 +179,6 @@
       padding: 1.8rem;
       transition: all 0.3s ease;
       
-      &:hover {
-        box-shadow: 0 8px 16px rgba($rich-black, 0.15);
-        transform: translateY(-3px);
-      }
-      
       .board-container {
         width: 100%;
         max-width: 480px;
@@ -236,11 +216,6 @@
           &:hover:not(:disabled) {
             background-color: $xanthous;
             box-shadow: 0 3px 6px rgba($rich-black, 0.15);
-          }
-          
-          &:active:not(:disabled) {
-            transform: translateY(1px);
-            box-shadow: 0 1px 3px rgba($rich-black, 0.1);
           }
           
           &:disabled {
@@ -290,11 +265,6 @@
       box-shadow: 0 4px 8px rgba($rich-black, 0.1);
       padding: 1.8rem;
       transition: all 0.3s ease;
-      
-      &:hover {
-        box-shadow: 0 8px 16px rgba($rich-black, 0.15);
-        transform: translateY(-3px);
-      }
       
       h2 {
         color: $rich-black;
