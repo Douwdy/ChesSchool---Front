@@ -11,13 +11,15 @@ const Training = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [solutionIndex, setSolutionIndex] = useState(0);
-    const [boardWidth, setBoardWidth] = useState(window.innerWidth * 0.8);
+    const [boardWidth, setBoardWidth] = useState(400);
     const [boardOrientation, setBoardOrientation] = useState('white');
     const [isProblemLoaded, setIsProblemLoaded] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchProblem = async () => {
         if (isFetching) return;
         isFetching = true;
+        setIsLoading(true);
 
         try {
             setIsProblemLoaded(false);
@@ -51,9 +53,11 @@ const Training = () => {
                     setErrorMessage(`Erreur lors de l'exécution du premier coup : ${error.message}`);
                 }
                 setIsProblemLoaded(true);
+                setIsLoading(false);
             }, 100);
         } catch (error) {
             setErrorMessage(`Impossible de charger un problème : ${error.message}`);
+            setIsLoading(false);
         } finally {
             isFetching = false;
         }
@@ -66,7 +70,16 @@ const Training = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            const newWidth = Math.min(window.innerWidth * 0.8, window.innerHeight * 0.8);
+            // Calculer la largeur dynamique du plateau, mais plafonnée à 480px
+            const newWidth = Math.min(
+                Math.max(
+                    window.innerWidth > 768 
+                        ? (window.innerWidth * 0.4) 
+                        : (window.innerWidth * 0.8), 
+                    300
+                ), 
+                480
+            );
             setBoardWidth(newWidth);
         };
 
@@ -146,45 +159,67 @@ const Training = () => {
 
     return (
         <div className="training">
+            <h1>Entraînement aux échecs</h1>
+            
             <div className="training-container">
-                <div className="training-content" style={{ marginBottom: '20px' }}>
-                    <h1>Entrainement !</h1>
-                    <p>Améliorez vos compétences avec des problèmes d'échecs générés aléatoirement.</p>
-                    <button onClick={fetchProblem}>Charger un nouveau problème</button>
-                    {errorMessage && <p className="error-message">{errorMessage}</p>}
-                    {successMessage && <p className="success-message">{successMessage}</p>}
+                {/* Colonne gauche - Contenu et contrôles */}
+                <div className="training-content">
+                    <h2>Problème tactique</h2>
+                    <p>Améliorez vos compétences avec des problèmes d'échecs générés aléatoirement. Trouvez la meilleure suite de coups pour résoudre chaque position.</p>
+                    
+                    <button 
+                        onClick={fetchProblem}
+                        disabled={isLoading}
+                    >
+                        {isLoading ? 'Chargement...' : 'Nouveau problème'}
+                    </button>
+                    
+                    {errorMessage && <div className="error-message">{errorMessage}</div>}
+                    {successMessage && <div className="success-message">{successMessage}</div>}
+                    
                     {problem && (
                         <>
-                            <p className="instruction">
+                            <div className="instruction">
                                 {getInstructionFromThemes(problem.Rating)}
-                            </p>
-                            <p>Niveau : {problem.Rating} Elo</p>
-                            <p>{chess.turn() === 'w' ? 'Trait aux Blancs' : 'Trait aux Noirs'}</p>
+                            </div>
+                            
+                            <div className="problem-info">
+                                <div className="info-item">
+                                    <div className="label">Niveau</div>
+                                    <div className="value">{problem.Rating} Elo</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="label">Tour</div>
+                                    <div className="value">{chess.turn() === 'w' ? 'Blancs' : 'Noirs'}</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="label">Coups</div>
+                                    <div className="value">{Math.ceil(problem.Moves.split(' ').length / 2)}</div>
+                                </div>
+                            </div>
                         </>
                     )}
                 </div>
-                <div className="chessboard-container" style={{ display: 'flex', justifyContent: 'center' }}>
+                
+                {/* Colonne droite - Échiquier */}
+                <div className="chessboard-container">
                     {isProblemLoaded ? (
-                        <Chessboard
-                            position={chess.fen()}
-                            boardWidth={boardWidth}
-                            onPieceDrop={onPieceDrop}
-                            animationDuration={300}
-                            boardOrientation={boardOrientation}
-                        />
+                        <>
+                            <Chessboard
+                                position={chess.fen()}
+                                boardWidth={boardWidth}
+                                onPieceDrop={onPieceDrop}
+                                animationDuration={300}
+                                boardOrientation={boardOrientation}
+                            />
+                            <div className="turn-indicator">
+                                <div className={`indicator-dot ${chess.turn() === 'w' ? 'white' : 'black'}`}></div>
+                                {chess.turn() === 'w' ? 'Trait aux Blancs' : 'Trait aux Noirs'}
+                            </div>
+                        </>
                     ) : (
-                        <div
-                            style={{
-                                width: boardWidth,
-                                height: boardWidth,
-                                backgroundColor: '#f0f0f0',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                border: '1px solid #ccc',
-                            }}
-                        >
-                            <p>Chargement...</p>
+                        <div className="loading-board">
+                            <p>Chargement du problème...</p>
                         </div>
                     )}
                 </div>
