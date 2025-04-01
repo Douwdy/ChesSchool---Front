@@ -75,7 +75,7 @@ const LocalChessGame = () => {
                         : (window.innerWidth * 0.8), 
                     300
                 ), 
-                480
+                580
             );
             setBoardWidth(newWidth);
         };
@@ -191,8 +191,6 @@ const LocalChessGame = () => {
     
     return (
         <div className="local-game">
-            <h1>Jouer aux échecs</h1>
-            
             <div className="local-game-container">
                 {/* Colonne gauche - Contrôles et Informations */}
                 <div className="local-game-content">

@@ -1,9 +1,9 @@
 @import '../../resources.scss';
 
 .pgn-analyzer {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0rem 2rem 2rem 2rem;
+  padding: 2rem;
   background-image: 
   linear-gradient(45deg, rgba($rich-black, 0.03) 25%, transparent 25%),
   linear-gradient(-45deg, rgba($rich-black, 0.03) 25%, transparent 25%),
@@ -228,21 +228,87 @@
       padding: 1.8rem;
       transition: all 0.3s ease;
       
-      .board-container {
-        width: 100%;
-        max-width: 480px;
-        margin: 0 auto;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba($rich-black, 0.15);
-        
-        // Fix pour l'échiquier - s'assurer que les transformations n'affectent pas la position relative
+      // Nouveau conteneur pour l'échiquier et la barre d'évaluation côte à côte
+      .board-with-eval {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
         position: relative;
-        z-index: 1;
         
-        // Empêcher les effets de transform de propager aux enfants
-        & > div {
-          transform: none !important;
+        // Style de la barre d'évaluation déplacée
+        .evaluation-bar {
+          width: 40px;
+          height: 400px;
+          margin-right: 10px;
+          background: white;
+          border-radius: 6px;
+          position: relative;
+          
+          .eval-container {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            border-radius: 6px;
+            border: 1px solid darken($lavender-blush, 15%);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba($rich-black, 0.1);
+            
+            .white-eval, .black-eval {
+              position: absolute;
+              width: 100%;
+              transition: height 0.3s ease;
+            }
+            
+            .white-eval {
+              top: 0;
+              background-color: white;
+              border-bottom: 1px solid #ccc;
+            }
+            
+            .black-eval {
+              bottom: 0;
+              background-color: #333;
+            }
+            
+            .eval-value {
+              position: absolute;
+              left: 45px;
+              font-weight: bold;
+              transform: translateY(-50%);
+              background: rgba(white, 0.9);
+              padding: 4px 8px;
+              border-radius: 6px;
+              font-size: 0.9rem;
+              box-shadow: 0 2px 4px rgba($rich-black, 0.15);
+              border: 1px solid rgba($xanthous, 0.3);
+              transition: all 0.2s ease;
+              white-space: nowrap;
+              z-index: 10;
+              
+              &:hover {
+                background: white;
+              }
+            }
+          }
+        }
+      
+        .board-container {
+          width: 100%;
+          max-width: 440px;
+          margin: 0 auto;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 4px 12px rgba($rich-black, 0.15);
+          
+          // Fix pour l'échiquier - s'assurer que les transformations n'affectent pas la position relative
+          position: relative;
+          z-index: 1;
+          
+          // Empêcher les effets de transform de propager aux enfants
+          & > div {
+            transform: none !important;
+          }
         }
       }
       

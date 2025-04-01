@@ -193,7 +193,7 @@
         padding: 1rem;
         background-color: rgba($lavender-blush, 0.3);
         overflow-y: auto;
-        max-height: 250px;
+        max-height: 150px;
         
         &::-webkit-scrollbar {
           width: 8px;
@@ -269,7 +269,7 @@
       
       .board-wrapper {
         width: 100%;
-        max-width: 480px;
+        max-width: 580px;
         border-radius: 8px;
         overflow: hidden;
         box-shadow: 0 4px 12px rgba($rich-black, 0.15);

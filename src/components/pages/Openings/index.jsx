@@ -89,7 +89,6 @@ const Openings = () => {
 
     return (
         <div className="openings">
-            <h1>Apprentissage des ouvertures</h1>
             <div className="openings-container">
                 <div className="openings-list">
                     <h2>Sélectionnez une ouverture</h2>

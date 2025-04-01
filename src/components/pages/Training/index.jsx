@@ -163,8 +163,6 @@ const Training = () => {
 
     return (
         <div className="training">
-            <h1>Entraînement aux échecs</h1>
-            
             <div className="training-container">
                 <div className="training-content">
                     <h2>Problème tactique</h2>
