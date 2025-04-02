@@ -553,220 +553,229 @@ const PGNAnalyzer = () => {
 
     const gameStats = calculateGameStats();
 
-    return (
-        <div className="pgn-analyzer">
-            {(gameMetadata.white || gameMetadata.black) && (
-                <div className="game-metadata">
-                    <div className="players-info">
-                        <div className="player white">
-                            <div className="player-name">{gameMetadata.white}</div>
-                            {gameMetadata.whiteElo !== '?' && (
-                                <div className="player-elo">{gameMetadata.whiteElo}</div>
-                            )}
-                        </div>
-                        <div className="versus">vs</div>
-                        <div className="player black">
-                            <div className="player-name">{gameMetadata.black}</div>
-                            {gameMetadata.blackElo !== '?' && (
-                                <div className="player-elo">{gameMetadata.blackElo}</div>
-                            )}
-                        </div>
-                    </div>
-                    <div className="game-details">
-                        {gameMetadata.event !== '?' && (
-                            <div className="event">{gameMetadata.event}</div>
-                        )}
-                        {gameMetadata.date !== '?' && (
-                            <div className="date">{gameMetadata.date}</div>
-                        )}
-                        {gameMetadata.site && (
-                            <div className="site">{gameMetadata.site}</div>
-                        )}
-                        {gameMetadata.result !== '*' && (
-                            <div className="result">Résultat: {gameMetadata.result}</div>
-                        )}
-                    </div>
-                </div>
-            )}
-            <div className="pgn-container">
-                {/* Colonne gauche - Entrée PGN */}
-                <div className="left-column">
-                    <div className="pgn-input">
-                        <h2>PGN</h2>
-                        <textarea
-                            placeholder="Collez votre PGN ici..."
-                            value={pgn}
-                            onChange={(e) => setPgn(e.target.value)}
-                        />
-                        <button 
-                            onClick={handleAnalyze}
-                            disabled={isLoading || isAnalyzingGame}
-                        >
-                            {isLoading ? 'Chargement...' : 'Analyser'}
-                        </button>
-                        
-                        {/* Affichage amélioré de la progression d'analyse */}
-                        {isAnalyzingGame && (
-                            <div className="analysis-progress">
-                                <p>
-                                    <span className="analysis-spinner">⏳</span>
-                                    Analyse en cours... {Math.floor(analysisProgress)}%
-                                </p>
-                                <div className="progress-bar">
-                                    <div 
-                                        className="progress-fill" 
-                                        style={{ 
-                                            width: `${analysisProgress}%`,
-                                            transition: 'width 0.3s ease-in-out'
-                                        }}
-                                    ></div>
-                                </div>
+    const inBuild = true;
+    if (inBuild) {
+        return (
+            <div className="pgn-analyzer">
+                <h1>Analyseur PGN</h1>
+                <p>Cette fonctionnalité est en cours de développement.</p>
+            </div>
+        );
+    } else {
+        return (
+            <div className="pgn-analyzer">
+                {(gameMetadata.white || gameMetadata.black) && (
+                    <div className="game-metadata">
+                        <div className="players-info">
+                            <div className="player white">
+                                <div className="player-name">{gameMetadata.white}</div>
+                                {gameMetadata.whiteElo !== '?' && (
+                                    <div className="player-elo">{gameMetadata.whiteElo}</div>
+                                )}
                             </div>
-                        )}
-                        
-                        {error && <p className="error-message">{error}</p>}
-                    </div>
-                </div>
-                
-                {/* Colonne centrale - Échiquier avec barre d'évaluation à gauche et navigation */}
-                <div className="center-column">
-                    <div className="current-player">
-                        <div className={`player-indicator ${game.turn() === 'w' ? 'white-turn' : 'black-turn'}`}>
-                            <span className="piece-symbol">{game.turn() === 'w' ? '♔' : '♚'}</span>
-                            <span className="player-name">
-                                {game.turn() === 'w' ? gameMetadata.white : gameMetadata.black} à jouer
-                            </span>
-                        </div>
-                        <div className="move-number">
-                            Coup {Math.floor(currentMoveIndex / 2) + 1}
-                            {game.turn() === 'w' ? '' : '...'}
-                        </div>
-                    </div>
-                    <div className="board-with-eval">
-                        <div className="evaluation-bar">
-                            <div className="eval-container">
-                                <div className="white-eval" style={{ height: whiteHeight }}></div>
-                                <div className="black-eval" style={{ height: blackHeight }}></div>
-                                <div 
-                                    className="eval-value" 
-                                    style={{ top: `${evalPosition}%` }}
-                                >
-                                    {evaluation !== null ? (evaluation > 0 ? '+' : '') + evaluation / 100 : '0.0'}
-                                </div>
+                            <div className="versus">vs</div>
+                            <div className="player black">
+                                <div className="player-name">{gameMetadata.black}</div>
+                                {gameMetadata.blackElo !== '?' && (
+                                    <div className="player-elo">{gameMetadata.blackElo}</div>
+                                )}
                             </div>
                         </div>
-                        <div className="board-container">
-                            <Chessboard position={game.fen()} />
+                        <div className="game-details">
+                            {gameMetadata.event !== '?' && (
+                                <div className="event">{gameMetadata.event}</div>
+                            )}
+                            {gameMetadata.date !== '?' && (
+                                <div className="date">{gameMetadata.date}</div>
+                            )}
+                            {gameMetadata.site && (
+                                <div className="site">{gameMetadata.site}</div>
+                            )}
+                            {gameMetadata.result !== '*' && (
+                                <div className="result">Résultat: {gameMetadata.result}</div>
+                            )}
                         </div>
                     </div>
-                    
-                    <div className="navigation-buttons">
-                        <button
-                            onClick={() => goToMove(Math.max(0, currentMoveIndex - 1))}
-                            disabled={currentMoveIndex === 0 || isLoading}
-                        >
-                            ← Précédent
-                        </button>
-                        <button
-                            onClick={() => goToMove(Math.min(moves.length, currentMoveIndex + 1))}
-                            disabled={currentMoveIndex === moves.length || isLoading}
-                        >
-                            Suivant →
-                        </button>
-                    </div>
-                </div>
-                
-                {/* Colonne droite avec système d'onglets */}
-                <div className="right-column">
-                    <div className="tabs-container">
-                        <div className="tabs-nav">
+                )}
+                <div className="pgn-container">
+                    {/* Colonne gauche - Entrée PGN */}
+                    <div className="left-column">
+                        <div className="pgn-input">
+                            <h2>PGN</h2>
+                            <textarea
+                                placeholder="Collez votre PGN ici..."
+                                value={pgn}
+                                onChange={(e) => setPgn(e.target.value)}
+                            />
                             <button 
-                                className={activeTab === 'moves' ? 'active' : ''} 
-                                onClick={() => setActiveTab('moves')}
+                                onClick={handleAnalyze}
+                                disabled={isLoading || isAnalyzingGame}
                             >
-                                Coups
+                                {isLoading ? 'Chargement...' : 'Analyser'}
                             </button>
-                            <button 
-                                className={activeTab === 'stats' ? 'active' : ''} 
-                                onClick={() => setActiveTab('stats')}
-                                disabled={!gameStats}
-                            >
-                                Statistiques
-                            </button>
-                            <button 
-                                className={activeTab === 'legend' ? 'active' : ''} 
-                                onClick={() => setActiveTab('legend')}
-                            >
-                                Légende
-                            </button>
-                        </div>
-                        
-                        <div className="tabs-content">
-                            {/* Onglet Liste des coups */}
-                            {activeTab === 'moves' && (
-                                <div className="tab-pane">
-                                    <div className="moves-list" ref={movesListRef}>
-                                        <ul>
-                                            {organizedMoves.map((moveGroup, groupIndex) => (
-                                                <React.Fragment key={groupIndex}>
-                                                    <li className="move-number">{moveGroup.number}.</li>
-                                                    <li 
-                                                        className={`white-move ${currentMoveIndex === groupIndex * 2 ? 'current' : ''} ${
-                                                            movesWithQuality[groupIndex * 2]?.quality?.class || ''
-                                                        }`}
-                                                        onClick={() => goToMove(groupIndex * 2)}
-                                                    >
-                                                        {moveGroup.white.san} 
-                                                        <span className={`move-quality ${movesWithQuality[groupIndex * 2]?.quality?.class || ''}`}>
-                                                            {movesWithQuality[groupIndex * 2]?.quality?.label || ''}
-                                                        </span>
-                                                    </li>
-                                                    <li 
-                                                        className={`black-move ${moveGroup.black && currentMoveIndex === groupIndex * 2 + 1 ? 'current' : ''} ${
-                                                            moveGroup.black ? (movesWithQuality[groupIndex * 2 + 1]?.quality?.class || '') : ''
-                                                        }`}
-                                                        onClick={() => moveGroup.black && goToMove(groupIndex * 2 + 1)}
-                                                    >
-                                                        {moveGroup.black ? moveGroup.black.san : ''}
-                                                        {moveGroup.black && (
-                                                            <span className="move-quality">
-                                                                {movesWithQuality[groupIndex * 2 + 1]?.quality?.label || ''}
-                                                            </span>
-                                                        )}
-                                                    </li>
-                                                </React.Fragment>
-                                            ))}
-                                        </ul>
+                            
+                            {/* Affichage amélioré de la progression d'analyse */}
+                            {isAnalyzingGame && (
+                                <div className="analysis-progress">
+                                    <p>
+                                        <span className="analysis-spinner">⏳</span>
+                                        Analyse en cours... {Math.floor(analysisProgress)}%
+                                    </p>
+                                    <div className="progress-bar">
+                                        <div 
+                                            className="progress-fill" 
+                                            style={{ 
+                                                width: `${analysisProgress}%`,
+                                                transition: 'width 0.3s ease-in-out'
+                                            }}
+                                        ></div>
                                     </div>
                                 </div>
                             )}
                             
-                            {/* Onglet Statistiques */}
-                            {activeTab === 'stats' && (
-                                <div className="tab-pane">
-                                    {gameStats ? (
-                                        <GameStats stats={gameStats} />
-                                    ) : (
-                                        <div className="no-stats">
-                                            Aucune statistique disponible. Analysez une partie d'abord.
-                                        </div>
-                                    )}
+                            {error && <p className="error-message">{error}</p>}
+                        </div>
+                    </div>
+                    
+                    {/* Colonne centrale - Échiquier avec barre d'évaluation à gauche et navigation */}
+                    <div className="center-column">
+                        <div className="current-player">
+                            <div className={`player-indicator ${game.turn() === 'w' ? 'white-turn' : 'black-turn'}`}>
+                                <span className="piece-symbol">{game.turn() === 'w' ? '♔' : '♚'}</span>
+                                <span className="player-name">
+                                    {game.turn() === 'w' ? gameMetadata.white : gameMetadata.black} à jouer
+                                </span>
+                            </div>
+                            <div className="move-number">
+                                Coup {Math.floor(currentMoveIndex / 2) + 1}
+                                {game.turn() === 'w' ? '' : '...'}
+                            </div>
+                        </div>
+                        <div className="board-with-eval">
+                            <div className="evaluation-bar">
+                                <div className="eval-container">
+                                    <div className="white-eval" style={{ height: whiteHeight }}></div>
+                                    <div className="black-eval" style={{ height: blackHeight }}></div>
+                                    <div 
+                                        className="eval-value" 
+                                        style={{ top: `${evalPosition}%` }}
+                                    >
+                                        {evaluation !== null ? (evaluation > 0 ? '+' : '') + evaluation / 100 : '0.0'}
+                                    </div>
                                 </div>
-                            )}
+                            </div>
+                            <div className="board-container">
+                                <Chessboard position={game.fen()} />
+                            </div>
+                        </div>
+                        
+                        <div className="navigation-buttons">
+                            <button
+                                onClick={() => goToMove(Math.max(0, currentMoveIndex - 1))}
+                                disabled={currentMoveIndex === 0 || isLoading}
+                            >
+                                ← Précédent
+                            </button>
+                            <button
+                                onClick={() => goToMove(Math.min(moves.length, currentMoveIndex + 1))}
+                                disabled={currentMoveIndex === moves.length || isLoading}
+                            >
+                                Suivant →
+                            </button>
+                        </div>
+                    </div>
+                    
+                    {/* Colonne droite avec système d'onglets */}
+                    <div className="right-column">
+                        <div className="tabs-container">
+                            <div className="tabs-nav">
+                                <button 
+                                    className={activeTab === 'moves' ? 'active' : ''} 
+                                    onClick={() => setActiveTab('moves')}
+                                >
+                                    Coups
+                                </button>
+                                <button 
+                                    className={activeTab === 'stats' ? 'active' : ''} 
+                                    onClick={() => setActiveTab('stats')}
+                                    disabled={!gameStats}
+                                >
+                                    Statistiques
+                                </button>
+                                <button 
+                                    className={activeTab === 'legend' ? 'active' : ''} 
+                                    onClick={() => setActiveTab('legend')}
+                                >
+                                    Légende
+                                </button>
+                            </div>
                             
-                            {/* Onglet Légende */}
-                            {activeTab === 'legend' && (
-                                <div className="tab-pane">
-                                    <QualityLegend />
-                                </div>
-                            )}
+                            <div className="tabs-content">
+                                {/* Onglet Liste des coups */}
+                                {activeTab === 'moves' && (
+                                    <div className="tab-pane">
+                                        <div className="moves-list" ref={movesListRef}>
+                                            <ul>
+                                                {organizedMoves.map((moveGroup, groupIndex) => (
+                                                    <React.Fragment key={groupIndex}>
+                                                        <li className="move-number">{moveGroup.number}.</li>
+                                                        <li 
+                                                            className={`white-move ${currentMoveIndex === groupIndex * 2 ? 'current' : ''} ${
+                                                                movesWithQuality[groupIndex * 2]?.quality?.class || ''
+                                                            }`}
+                                                            onClick={() => goToMove(groupIndex * 2)}
+                                                        >
+                                                            {moveGroup.white.san} 
+                                                            <span className={`move-quality ${movesWithQuality[groupIndex * 2]?.quality?.class || ''}`}>
+                                                                {movesWithQuality[groupIndex * 2]?.quality?.label || ''}
+                                                            </span>
+                                                        </li>
+                                                        <li 
+                                                            className={`black-move ${moveGroup.black && currentMoveIndex === groupIndex * 2 + 1 ? 'current' : ''} ${
+                                                                moveGroup.black ? (movesWithQuality[groupIndex * 2 + 1]?.quality?.class || '') : ''
+                                                            }`}
+                                                            onClick={() => moveGroup.black && goToMove(groupIndex * 2 + 1)}
+                                                        >
+                                                            {moveGroup.black ? moveGroup.black.san : ''}
+                                                            {moveGroup.black && (
+                                                                <span className="move-quality">
+                                                                    {movesWithQuality[groupIndex * 2 + 1]?.quality?.label || ''}
+                                                                </span>
+                                                            )}
+                                                        </li>
+                                                    </React.Fragment>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                )}
+                                
+                                {/* Onglet Statistiques */}
+                                {activeTab === 'stats' && (
+                                    <div className="tab-pane">
+                                        {gameStats ? (
+                                            <GameStats stats={gameStats} />
+                                        ) : (
+                                            <div className="no-stats">
+                                                Aucune statistique disponible. Analysez une partie d'abord.
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                                
+                                {/* Onglet Légende */}
+                                {activeTab === 'legend' && (
+                                    <div className="tab-pane">
+                                        <QualityLegend />
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
+                {/* Supprimer ces éléments car ils sont maintenant dans les onglets */}
             </div>
-            {/* Supprimer ces éléments car ils sont maintenant dans les onglets */}
-        </div>
-    );
-};
-
+        );
+    };
+}
 export default PGNAnalyzer;
