@@ -121,7 +121,7 @@ const PGNAnalyzer = () => {
             console.log("Envoi de la requête d'analyse avec le PGN:");
             console.log("PGN envoyé:", pgn);
             
-            const response = await fetch('http://localhost:5001/api/analyze-game', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/api/analyze-game`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ pgn }),
@@ -167,7 +167,7 @@ const PGNAnalyzer = () => {
     const analyzePosition = async (fen) => {
         try {
             // Ajout de l'URL complète
-            const response = await fetch('http://localhost:5001/api/analyze', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/api/analyze`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ fen }),
@@ -260,7 +260,7 @@ const PGNAnalyzer = () => {
         
         if (isAnalyzingGame) {
             // Établir une connexion SSE
-            eventSource = new EventSource('http://localhost:5001/api/analysis-status');
+            eventSource = new EventSource(`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/api/analysis-status`);
             
             eventSource.onmessage = (event) => {
                 try {
