@@ -1,3 +1,62 @@
+# ChesSchool - Site d'échecs et d'analyse
 # https://www.robotstxt.org/robotstxt.html
+
 User-agent: *
-Disallow:
+Allow: /
+Allow: /local
+Allow: /analyze
+Allow: /training
+Allow: /openings
+Allow: /contact
+
+# Empêcher l'indexation des pages suivantes
+Disallow: /admin/
+Disallow: /api/
+Disallow: /user/settings
+Disallow: /dashboard
+Disallow: /backend/
+Disallow: /temp/
+Disallow: /*.json
+Disallow: /*.js
+Disallow: /*.css
+Disallow: /*/print$
+
+# Empêcher Google de charger des états de jeux spécifiques
+Disallow: /*?fen=*
+Disallow: /*&fen=*
+Disallow: /*?pgn=*
+Disallow: /*&pgn=*
+Disallow: /*?move=*
+Disallow: /*&move=*
+
+# Taux de crawl
+Crawl-delay: 10
+
+# Plan du site
+Sitemap: https://chessschool.com/sitemap.xml
+
+# Instructions spécifiques pour Google
+User-agent: Googlebot
+Allow: /
+Allow: /local
+Allow: /analyze
+Allow: /training
+Allow: /openings
+Allow: /contact
+Disallow: /api/
+
+# Instructions spécifiques pour Bing
+User-agent: Bingbot
+Allow: /
+Allow: /local
+Allow: /analyze
+Allow: /training
+Allow: /openings
+Allow: /contact
+Disallow: /api/
+
+# Empêcher les images d'être indexées par Google Images
+User-agent: Googlebot-Image
+Disallow: /assets/pieces/
+Allow: /assets/logo.png
+Allow: /assets/featured-images/

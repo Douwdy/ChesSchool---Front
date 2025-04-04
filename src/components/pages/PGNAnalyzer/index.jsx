@@ -188,6 +188,87 @@ const PGNAnalyzer = () => {
         }
     };
 
+    // Fonction pour convertir les évaluations de mate en valeurs numériques pour comparaison
+    const convertToNumeric = (evaluation) => {
+        if (evaluation === undefined || evaluation === null) return 0;
+        if (typeof evaluation !== 'string') return evaluation;
+        
+        if (evaluation.startsWith('#')) {
+            const moveNumber = parseInt(evaluation.replace(/[#-]/g, ''));
+            const baseValue = 20;
+            
+            if (evaluation.includes('-')) {
+                return -baseValue + (moveNumber * 0.1);
+            } else {
+                return baseValue - (moveNumber * 0.1);
+            }
+        }
+        
+        return parseFloat(evaluation);
+    };
+
+    // Fonction améliorée pour la classification des coups
+    const getMoveQuality = (prevEval, currentEval, bestMoveEval, isWhite) => {
+        // Convertir toutes les valeurs en numérique pour comparaison
+        const numericPrevEval = convertToNumeric(prevEval);
+        const numericCurrentEval = convertToNumeric(currentEval);
+        const numericBestEval = convertToNumeric(bestMoveEval || currentEval);
+        
+        // Calculer la différence entre le coup joué et le meilleur coup
+        // Pour les blancs, une valeur positive est bonne, pour les noirs c'est l'inverse
+        let lostValue;
+        
+        if (isWhite) {
+            // Pour les blancs: la différence entre la valeur du meilleur coup et celle du coup joué
+            lostValue = numericBestEval - numericCurrentEval;
+        } else {
+            // Pour les noirs: la différence entre la valeur du coup joué et celle du meilleur coup
+            // (car pour les noirs, une valeur négative est meilleure)
+            lostValue = numericCurrentEval - numericBestEval;
+        }
+        
+        // Ne retourner "brilliant" que si le coup est réellement excellent
+        if (lostValue <= 0) return { class: 'brilliant', label: '!!' };     // Le coup est meilleur ou égal au coup suggéré
+        if (lostValue <= 0.15) return { class: 'excellent', label: '!' };   // Presque aussi bon
+        if (lostValue <= 0.3) return { class: 'good', label: '' };          // Légèrement inférieur
+        if (lostValue <= 0.5) return { class: 'best', label: '' };          // Relativement bon
+        if (lostValue <= 0.9) return { class: 'neutral', label: '' };       // Coup correct
+        if (lostValue <= 1.5) return { class: 'inaccuracy', label: '⟳' };   // Imprécision
+        if (lostValue <= 3.0) return { class: 'mistake', label: '?' };      // Erreur
+        return { class: 'blunder', label: '??' };                           // Gaffe
+    };
+
+    // Fonction pour l'affichage de l'évaluation dans la barre d'évaluation
+    const getEvalPosition = (evaluation) => {
+        if (evaluation === null) return 50;
+        
+        if (typeof evaluation === 'string' && evaluation.includes('#')) {
+            if (!evaluation.includes('-')) {
+                return 10; // Mat en faveur des blancs
+            } else {
+                return 90; // Mat en faveur des noirs
+            }
+        }
+        
+        const normalizedEval = 50 - (evaluation * 5);
+        return Math.min(Math.max(normalizedEval, 5), 95);
+    };
+
+    // Fonction pour formater l'affichage de l'évaluation
+    const formatEvaluation = (evalValue) => {  // Renommer le paramètre 'eval' en 'evalValue'
+        if (evalValue === null) return '0.0';
+        
+        if (typeof evalValue === 'string') {
+            if (evalValue.startsWith('#')) {
+                return evalValue; // Affiche directement #5 ou #-3
+            }
+            return evalValue;
+        }
+        
+        const sign = evalValue > 0 ? '+' : '';
+        return `${sign}${evalValue.toFixed(2)}`;
+    };
+
     // Modification de goToMove pour utiliser les données d'analyse correctement
     const goToMove = async (index) => {
         const newGame = new Chess();
@@ -293,67 +374,6 @@ const PGNAnalyzer = () => {
         };
     }, [isAnalyzingGame]);
 
-    // Ajoutez cette fonction helper corrigée
-    const getMoveQuality = (prevEval, currentEval, isWhite) => {
-        // Gestion des valeurs de mat
-        if (typeof prevEval === 'string' || typeof currentEval === 'string') {
-            // Si l'une des évaluations est un mat, traitement spécial
-            return handleMateEvaluation(prevEval, currentEval, isWhite);
-        }
-
-        // Pour les coups blancs, une augmentation d'évaluation est bonne
-        // Pour les coups noirs, une diminution d'évaluation est bonne
-        const evalChange = isWhite ? currentEval - prevEval : prevEval - currentEval;
-        
-        // Classifier la qualité du coup en s'inspirant des seuils de chess.com
-        if (evalChange > 5) return { class: 'brilliant', label: '!!' };     // Brillant (gain exceptionnel)
-        if (evalChange > 2.5) return { class: 'good', label: '!' };         // Bon coup (gain très significatif)
-        if (evalChange > 1.2) return { class: 'excellent', label: '!' };    // Excellent (gain significatif)
-        if (evalChange > 0.5) return { class: 'best', label: '' };          // Meilleur coup (gain modéré)
-        if (evalChange >= -0.2) return { class: 'neutral', label: '' };     // Coup correct (neutre)
-        if (evalChange >= -0.6) return { class: 'inaccuracy', label: '⟳' }; // Imprécision (perte mineure)
-        if (evalChange >= -1.5) return { class: 'mistake', label: '?' };    // Erreur (perte significative)
-        return { class: 'blunder', label: '??' };                          // Gaffe (perte grave)
-    };
-
-    // Fonction auxiliaire pour traiter les évaluations de mat
-    const handleMateEvaluation = (prevEval, currentEval, isWhite) => {
-        // Convertir les valeurs de mat en nombres
-        const prevValue = convertMateToValue(prevEval);
-        const currentValue = convertMateToValue(currentEval);
-        
-        // Calculer le changement d'évaluation
-        const evalChange = isWhite ? currentValue - prevValue : prevValue - currentValue;
-        
-        // Utiliser les mêmes seuils que pour les évaluations normales
-        if (evalChange > 5) return { class: 'brilliant', label: '!!' };
-        if (evalChange > 3) return { class: 'good', label: '!' }; 
-        if (evalChange > 1) return { class: 'excellent', label: '!' };
-        if (evalChange > 0) return { class: 'best', label: '' };
-        if (evalChange >= -1) return { class: 'neutral', label: '' };
-        if (evalChange >= -3) return { class: 'inaccuracy', label: '⟳' };
-        if (evalChange >= -5) return { class: 'mistake', label: '?' };
-        return { class: 'blunder', label: '??' };
-    };
-
-    // Fonction pour convertir une valeur de mat en nombre pour comparaison
-    const convertMateToValue = (evaluation) => {
-        if (typeof evaluation !== 'string') return evaluation;
-        
-        // Mat en faveur des blancs (ex: "#5")
-        if (evaluation.startsWith('#') && !evaluation.startsWith('#-')) {
-            const moves = parseInt(evaluation.slice(1));
-            return 100 - moves; // Plus le mat est proche, plus la valeur est élevée
-        }
-        // Mat en faveur des noirs (ex: "#-3")
-        else if (evaluation.startsWith('#-')) {
-            const moves = Math.abs(parseInt(evaluation.slice(2)));
-            return -100 + moves; // Plus le mat est proche, plus la valeur est basse
-        }
-        
-        return 0; // Valeur par défaut
-    };
-
     // Calculer la qualité des coups selon l'analyse
     const getMovesWithQuality = () => {
         const movesWithQuality = [];
@@ -365,16 +385,15 @@ const PGNAnalyzer = () => {
             }));
         }
         
-        // Évaluation initiale (position de départ)
         let lastEval = gameAnalysis[0]?.evaluation || 0;
         
-        // Pour chaque coup, déterminer la qualité
         for (let i = 0; i < moves.length; i++) {
             const currentEval = gameAnalysis[i + 1]?.evaluation;
+            const bestMoveEval = gameAnalysis[i + 1]?.bestMoves?.[0]?.evaluation || currentEval;
             const isWhite = i % 2 === 0;
             
             if (currentEval !== undefined) {
-                const quality = getMoveQuality(lastEval, currentEval, isWhite);
+                const quality = getMoveQuality(lastEval, currentEval, bestMoveEval, isWhite);
                 movesWithQuality.push({
                     ...moves[i],
                     quality
@@ -403,11 +422,9 @@ const PGNAnalyzer = () => {
         });
     }
 
-    const evalPosition = evaluation === null ? 50 : Math.min(Math.max(50 - evaluation / 0.3, 5), 95);
-
-    // Calculer les hauteurs pour les parties blanche et noire
-    const whiteHeight = `${evalPosition}%`;
-    const blackHeight = `${100 - evalPosition}%`;
+    const evalPos = getEvalPosition(evaluation);
+    const whiteHeight = `${evalPos}%`;
+    const blackHeight = `${100 - evalPos}%`;
 
     // Ajoutez une fonction pour calculer les statistiques de la partie
     const calculateGameStats = () => {
@@ -415,60 +432,45 @@ const PGNAnalyzer = () => {
             return null;
         }
         
-        // Initialiser les compteurs avec toutes les catégories
         const stats = {
             white: { 
-                brilliant: 0, 
-                good: 0, 
-                excellent: 0, 
-                best: 0, 
-                neutral: 0, 
-                inaccuracy: 0, 
-                mistake: 0, 
-                blunder: 0 
+                brilliant: 0, good: 0, excellent: 0, best: 0, 
+                neutral: 0, inaccuracy: 0, mistake: 0, blunder: 0 
             },
             black: { 
-                brilliant: 0, 
-                good: 0, 
-                excellent: 0, 
-                best: 0, 
-                neutral: 0, 
-                inaccuracy: 0, 
-                mistake: 0, 
-                blunder: 0 
+                brilliant: 0, good: 0, excellent: 0, best: 0, 
+                neutral: 0, inaccuracy: 0, mistake: 0, blunder: 0 
             },
             averageEvaluation: 0
         };
         
-        // Évaluation initiale
         let lastEval = gameAnalysis[0]?.evaluation || 0;
         let evalSum = 0;
+        let validEvalCount = 0;
         
-        // Parcourir tous les coups
         for (let i = 0; i < moves.length; i++) {
             const currentEval = gameAnalysis[i + 1]?.evaluation;
+            const bestMoveEval = gameAnalysis[i + 1]?.bestMoves?.[0]?.evaluation || currentEval;
             const isWhite = i % 2 === 0;
             const player = isWhite ? 'white' : 'black';
             
             if (currentEval !== undefined) {
-                // Obtenir la qualité avec notre fonction améliorée
-                const quality = getMoveQuality(lastEval, currentEval, isWhite);
+                const quality = getMoveQuality(lastEval, currentEval, bestMoveEval, isWhite);
                 
-                // Incrémenter le compteur approprié
                 if (stats[player][quality.class] !== undefined) {
                     stats[player][quality.class]++;
                 }
                 
-                // Mettre à jour pour le prochain coup
                 lastEval = currentEval;
-                evalSum += typeof currentEval === 'number' ? Math.abs(currentEval) : 0;
+                
+                if (typeof currentEval === 'number') {
+                    evalSum += Math.abs(currentEval);
+                    validEvalCount++;
+                }
             }
         }
         
-        // Calculer l'évaluation moyenne
-        const validEvaluations = gameAnalysis.filter(a => typeof a.evaluation === 'number').length;
-        stats.averageEvaluation = validEvaluations > 0 ? evalSum / validEvaluations : 0;
-        
+        stats.averageEvaluation = validEvalCount > 0 ? evalSum / validEvalCount : 0;
         return stats;
     };
 
@@ -517,35 +519,35 @@ const PGNAnalyzer = () => {
             <div className="legend-items">
                 <div className="legend-item">
                     <span className="color-box brilliant"></span>
-                    <span className="label">Coup brillant (!!) - Coup exceptionnel qui change radicalement l'évaluation (&gt;3 points)</span>
-                </div>
-                <div className="legend-item">
-                    <span className="color-box good"></span>
-                    <span className="label">Bon coup (!) - Coup fort qui améliore significativement la position (&gt;1.5 points)</span>
+                    <span className="label">Coup brillant (!!) - Coup équivalent ou meilleur que celui suggéré par le moteur (≤0.05)</span>
                 </div>
                 <div className="legend-item">
                     <span className="color-box excellent"></span>
-                    <span className="label">Excellent coup - Coup solide qui améliore la position (&gt;0.5 points)</span>
+                    <span className="label">Excellent coup (!) - Presque aussi bon que le meilleur coup (≤0.15)</span>
+                </div>
+                <div className="legend-item">
+                    <span className="color-box good"></span>
+                    <span className="label">Bon coup - Coup légèrement sous-optimal (≤0.3)</span>
                 </div>
                 <div className="legend-item">
                     <span className="color-box best"></span>
-                    <span className="label">Meilleur coup - Coup optimal ou très bon (&gt;0.2 points)</span>
+                    <span className="label">Meilleur coup - Coup correct mais des alternatives existent (≤0.5)</span>
                 </div>
                 <div className="legend-item">
                     <span className="color-box neutral"></span>
-                    <span className="label">Coup correct - Sans gain ni perte significative</span>
+                    <span className="label">Coup correct - Coup acceptable (≤0.9)</span>
                 </div>
                 <div className="legend-item">
                     <span className="color-box inaccuracy"></span>
-                    <span className="label">Imprécision (⟳) - Coup qui n'est pas optimal (-0.3 points)</span>
+                    <span className="label">Imprécision (⟳) - Perte de valeur modérée (≤1.5)</span>
                 </div>
                 <div className="legend-item">
                     <span className="color-box mistake"></span>
-                    <span className="label">Erreur (?) - Coup qui détériore la position (-0.9 points)</span>
+                    <span className="label">Erreur (?) - Perte significative de valeur (≤3.0)</span>
                 </div>
                 <div className="legend-item">
                     <span className="color-box blunder"></span>
-                    <span className="label">Gaffe (??) - Grave erreur qui perd un avantage significatif (-2 points ou plus)</span>
+                    <span className="label">Gaffe (??) - Grave erreur (&gt;3.0)</span>
                 </div>
             </div>
         </div>
@@ -553,7 +555,7 @@ const PGNAnalyzer = () => {
 
     const gameStats = calculateGameStats();
 
-    const inBuild = true;
+    const inBuild = false;
     if (inBuild) {
         return (
             <div className="pgn-analyzer">
@@ -658,9 +660,9 @@ const PGNAnalyzer = () => {
                                     <div className="black-eval" style={{ height: blackHeight }}></div>
                                     <div 
                                         className="eval-value" 
-                                        style={{ top: `${evalPosition}%` }}
+                                        style={{ top: `${evalPos}%` }}
                                     >
-                                        {evaluation !== null ? (evaluation > 0 ? '+' : '') + evaluation / 100 : '0.0'}
+                                        {formatEvaluation(evaluation)}
                                     </div>
                                 </div>
                             </div>

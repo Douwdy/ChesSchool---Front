@@ -8,6 +8,8 @@ import Training from './components/pages/Training';
 import Openings from './components/pages/Openings';
 import LocalChessGame from './components/pages/Local';
 
+import Contact from './components/pages/Contact';
+
 function App() {
     return (
         <Router>
@@ -19,6 +21,7 @@ function App() {
                     <Route path="/training" element={<Training />} />
                     <Route path="/openings" element={<Openings />} />
                     <Route path="/local" element={<LocalChessGame />} />
+                    <Route path="/contact" element={<Contact />} />
                 </Routes>
             </div>
             <Footer />

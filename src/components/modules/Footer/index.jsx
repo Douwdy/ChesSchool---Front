@@ -6,9 +6,7 @@ const Footer = () => {
         <footer className="footer">
             <div className="footer__content">
                 <div className="footer__links">
-                    <a href="/about">À propos</a>
                     <a href="/contact">Contact</a>
-                    <a href="/privacy">Politique de confidentialité</a>
                 </div>
                 <div className="footer__copyright">
                     <p>&copy; {new Date().getFullYear()} ChesSchool. Tous droits réservés.</p>
