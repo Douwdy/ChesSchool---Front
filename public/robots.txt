@@ -33,7 +33,7 @@ Disallow: /*&move=*
 Crawl-delay: 10
 
 # Plan du site
-Sitemap: https://chessschool.com/sitemap.xml
+Sitemap: https://chess.slashend.fr/sitemap.xml
 
 # Instructions spécifiques pour Google
 User-agent: Googlebot
