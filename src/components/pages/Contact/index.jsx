@@ -42,7 +42,7 @@ const Contact = () => {
               <FontAwesomeIcon icon={faGithub} className="contact-icon" />
               <div>
                 <h3>GitHub</h3>
-                <p><a href="https://github.com/slashend" target="_blank" rel="noopener noreferrer">github.com/slashend</a></p>
+                <p><a href="https://github.com/Douwdy" target="_blank" rel="noopener noreferrer">github.com/Douwdy</a></p>
               </div>
             </div>
           </div>
