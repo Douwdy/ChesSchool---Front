@@ -1,14 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/modules/Header';
-import Footer from './components/modules/Footer';
 import Home from './components/pages/Landing';
 import PGNAnalyzer from './components/pages/PGNAnalyzer';
 import Training from './components/pages/Training';
 import Openings from './components/pages/Openings';
 import LocalChessGame from './components/pages/Local';
-
-import Contact from './components/pages/Contact';
 
 function App() {
     return (
@@ -21,10 +18,8 @@ function App() {
                     <Route path="/training" element={<Training />} />
                     <Route path="/openings" element={<Openings />} />
                     <Route path="/local" element={<LocalChessGame />} />
-                    <Route path="/contact" element={<Contact />} />
                 </Routes>
             </div>
-            <Footer />
         </Router>
     );
 }
