@@ -42,7 +42,6 @@ Allow: /local
 Allow: /analyze
 Allow: /training
 Allow: /openings
-Allow: /contact
 Disallow: /api/
 
 # Instructions spécifiques pour Bing
