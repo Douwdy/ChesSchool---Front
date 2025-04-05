@@ -13,13 +13,12 @@ const Openings = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            // Calculer la largeur dynamique entre 300px et 500px
             const newWidth = Math.min(Math.max(window.innerWidth * 0.8, 300), 500);
             setBoardWidth(newWidth);
         };
 
         window.addEventListener('resize', handleResize);
-        handleResize(); // Calcul initial
+        handleResize();
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
@@ -50,7 +49,7 @@ const Openings = () => {
             });
         });
         
-        setChess(new Chess()); // Board initial
+        setChess(new Chess());
         setMoveHistory(history);
         setCurrentMoveIndex(0);
     };
@@ -59,7 +58,6 @@ const Openings = () => {
         setCurrentMoveIndex(index);
         const newChess = new Chess();
         
-        // Rejouer tous les coups jusqu'à l'index sélectionné
         for (let i = 1; i <= index; i++) {
             newChess.move(moveHistory[i].move);
         }

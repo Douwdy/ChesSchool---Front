@@ -15,7 +15,6 @@ import './index.scss';
 const Landing = () => {
     return (
         <div className="landing-page">
-            {/* Section héroïque */}
             <section className="hero-section">
                 <div className="hero-content">
                     <h1>Chess School</h1>
@@ -34,7 +33,6 @@ const Landing = () => {
                 </div>
             </section>
 
-            {/* Section des fonctionnalités */}
             <section className="features-section">
                 <h2 className="section-title">Nos fonctionnalités</h2>
                 <div className="features-grid">
@@ -71,7 +69,7 @@ const Landing = () => {
                             Importez vos parties au format PGN et analysez-les en profondeur. Identifiez vos erreurs
                             et découvrez les meilleures alternatives à chaque position.
                         </p>
-                        <Link to="/pgn-analyzer" className="feature-link">Analyser une partie →</Link>
+                        <Link to="/analyze" className="feature-link">Analyser une partie →</Link>
                     </div>
 
                     <div className="feature-card">
@@ -88,7 +86,6 @@ const Landing = () => {
                 </div>
             </section>
 
-            {/* Section d'appel à l'action */}
             <section className="get-started-section">
                 <div className="section-content">
                     <h2>Prêt à devenir un meilleur <span>joueur d'échecs</span> ?</h2>

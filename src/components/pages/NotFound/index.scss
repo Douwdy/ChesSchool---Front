@@ -1,0 +1,156 @@
+@import '../../resources.scss';
+
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 75vh; // Hauteur fixe à 100vh au lieu de min-height
+  padding: 1rem; // Réduit le padding
+  text-align: center;
+  background-color: $lavender-blush;
+  overflow: hidden; // Empêche le défilement
+  position: relative; // Pour le positionnement absolu des enfants
+  
+  h1 {
+    font-size: 8rem; // Taille réduite
+    margin: 0;
+    font-weight: 700;
+    color: $penn-red;
+    text-shadow: 4px 4px 0 rgba($xanthous, 0.3);
+    position: relative;
+    line-height: 0.9; // Réduit l'espace vertical
+    
+    &::before, &::after {
+      content: "";
+      position: absolute;
+      width: 40px; // Taille réduite
+      height: 40px; // Taille réduite
+      background-color: $xanthous;
+      border-radius: 50%;
+      z-index: -1;
+      opacity: 0.7;
+      animation: float 3s infinite alternate ease-in-out;
+    }
+    
+    &::before {
+      top: 15px;
+      left: -20px;
+      animation-delay: 0.5s;
+    }
+    
+    &::after {
+      bottom: 5px;
+      right: -15px;
+    }
+  }
+  
+  h2 {
+    font-size: 2rem; // Taille réduite
+    margin: 0.5rem 0; // Marge réduite
+    color: $rich-black;
+    font-weight: 600;
+  }
+  
+  p {
+    font-size: 1rem; // Taille réduite
+    margin: 0.5rem 0 1rem; // Marge réduite
+    max-width: 500px;
+    color: $rich-black;
+  }
+  
+  .chess-piece {
+    font-size: 5rem; // Taille réduite
+    margin: 0.5rem 0; // Marge réduite
+    transform: rotate(15deg);
+    display: inline-block;
+    color: $penn-red;
+    animation: wobble 2s infinite alternate ease-in-out;
+    position: absolute; // Position absolue
+    top: 20%; 
+    right: 10%;
+  }
+  
+  .home-link {
+    padding: 0.6rem 1.4rem; // Padding réduit
+    background-color: $penn-red;
+    color: $lavender-blush;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 1rem; // Taille réduite
+    box-shadow: 0 4px 8px rgba($rich-black, 0.2);
+    position: relative;
+    overflow: hidden;
+    margin-top: 0.5rem; // Marge réduite
+    
+    &:hover {
+      background-color: darken($penn-red, 10%);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba($rich-black, 0.25);
+      
+      &::after {
+        transform: translateX(300%);
+      }
+    }
+    
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba($lavender-blush, 0.3),
+        transparent
+      );
+      transition: transform 0.6s;
+    }
+  }
+  
+  .chessboard {
+    position: absolute; // Position absolue
+    width: 150px; // Taille réduite
+    height: 150px; // Taille réduite
+    bottom: 5%; // Position en bas
+    left: 10%; // Position à gauche
+    transform: perspective(500px) rotateX(30deg);
+    background: repeating-conic-gradient(
+      $rich-black 0% 25%,
+      $lavender-blush 0% 50%
+    );
+    background-size: 25% 25%;
+    box-shadow: 0 10px 30px rgba($rich-black, 0.2);
+    animation: pulse 4s infinite alternate;
+    border: 3px solid $xanthous;
+  }
+  
+  // Structure plus compacte et disposée côte à côte
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 60%;
+    z-index: 1;
+  }
+}
+
+@keyframes wobble {
+  0% { transform: rotate(15deg); }
+  100% { transform: rotate(-15deg); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); } // Amplitude réduite
+}
+
+@keyframes pulse {
+  0% { transform: perspective(500px) rotateX(30deg) scale(1); }
+  100% { transform: perspective(500px) rotateX(30deg) scale(1.05); }
+}

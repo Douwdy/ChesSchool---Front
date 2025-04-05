@@ -14,7 +14,6 @@
     margin-bottom: 3.5rem;
     overflow: hidden;
     
-    // Remplacer l'arrière-plan SVG par un motif CSS
     &::before {
       content: '';
       position: absolute;
@@ -235,7 +234,6 @@
     position: relative;
     overflow: hidden;
     
-    // Remplacer l'image SVG par un dégradé et une pseudo-forme
     &::before {
       content: '';
       position: absolute;
