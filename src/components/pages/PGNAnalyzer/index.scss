@@ -1,4 +1,5 @@
-@import '../../resources.scss';
+@use 'sass:color';
+@use '../../resources' as *;
 
 // Variables for repeated values
 $border-radius-standard: 8px;
@@ -101,7 +102,7 @@ $transition-standard: all 0.25s ease;
       .pgn-input {
         textarea {
           width: 90%;
-          border: 1px solid darken($lavender-blush, 15%);
+            border: 1px solid color.adjust($lavender-blush, $lightness: -15%);
           border-radius: $border-radius-standard;
           padding: $padding-small;
           font-family: "Zen Kaku Gothic New", monospace;
@@ -131,14 +132,14 @@ $transition-standard: all 0.25s ease;
           box-shadow: 0 2px 4px rgba($rich-black, 0.1);
           
           &:hover {
-            background-color: darken($xanthous, 10%);
+            background-color: color.adjust($xanthous, $lightness: -10%);
             box-shadow: 0 4px 8px rgba($rich-black, 0.15);
           }
           
           &:disabled {
             opacity: 0.7;
             cursor: not-allowed;
-            background-color: darken($lavender-blush, 10%);
+            background-color: color.adjust($lavender-blush, $lightness: -10%);
           }
         }
         
@@ -153,19 +154,19 @@ $transition-standard: all 0.25s ease;
           p {
             margin-bottom: 0.6rem;
             font-size: 0.9rem;
-            color: darken($rich-black, 15%);
+            color: color.adjust($rich-black, $lightness: -15%);
           }
           
           .progress-bar {
             height: 8px;
-            background-color: darken($lavender-blush, 5%);
+            background-color: color.adjust($lavender-blush, $lightness: -5%);
             border-radius: $border-radius-small;
             overflow: hidden;
             box-shadow: inset 0 1px 3px rgba($rich-black, 0.1);
             
             .progress-fill {
               height: 100%;
-              background: linear-gradient(90deg, darken($xanthous, 10%), $xanthous);
+              background: linear-gradient(90deg, color.adjust($xanthous, $lightness: -10%), $xanthous);
               transition: width 0.3s ease;
               border-radius: $border-radius-small;
               box-shadow: 0 0 8px rgba($xanthous, 0.3);
@@ -192,7 +193,7 @@ $transition-standard: all 0.25s ease;
           position: relative;
           margin: 0 auto;
           border-radius: 6px;
-          border: 1px solid darken($lavender-blush, 15%);
+            border: 1px solid color.adjust($lavender-blush, $lightness: -15%);
           overflow: hidden;
           box-shadow: 0 2px 8px rgba($rich-black, 0.1);
           
@@ -261,7 +262,7 @@ $transition-standard: all 0.25s ease;
           .no-alternatives {
             padding: 1rem;
             text-align: center;
-            color: darken($lavender-blush, 30%);
+            color: color.adjust($lavender-blush, $lightness: -30%);
             font-style: italic;
           }
         }
@@ -381,7 +382,7 @@ $transition-standard: all 0.25s ease;
             width: 100%;
             position: relative;
             border-radius: 6px;
-            border: 1px solid darken($lavender-blush, 15%);
+            border: 1px solid color.adjust($lavender-blush, $lightness: -15%);
             overflow: hidden;
             box-shadow: 0 2px 8px rgba($rich-black, 0.1);
             
@@ -458,7 +459,7 @@ $transition-standard: all 0.25s ease;
           &:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-            border-color: darken($lavender-blush, 20%);
+            border-color: color.adjust($lavender-blush, $lightness: -20%);
           }
         }
       }
@@ -512,7 +513,7 @@ $transition-standard: all 0.25s ease;
       .moves-list {
         height: 600px;
         overflow-y: auto;
-        border: 1px solid darken($lavender-blush, 10%);
+        border: 1px solid color.adjust($lavender-blush, $lightness: -10%);
         border-radius: $border-radius-standard;
         background-color: white;
         box-shadow: inset 0 1px 4px rgba($rich-black, 0.05);
@@ -677,7 +678,7 @@ $transition-standard: all 0.25s ease;
       
       .alternatives-panel {
         background-color: white;
-        border: 1px solid darken($lavender-blush, 10%);
+        border: 1px solid color.adjust($lavender-blush, $lightness: -10%);
         border-radius: $border-radius-standard;
         margin-bottom: 0;
         padding: 0;

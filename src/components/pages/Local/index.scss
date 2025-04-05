@@ -1,4 +1,5 @@
-@import '../../resources.scss';
+@use '../../resources' as *;
+@use "sass:color";
 
 .local-game {
   max-width: 1200px;
@@ -91,7 +92,7 @@
           align-self: center;
           
           &:hover {
-            background-color: darken($xanthous, 10%);
+            background-color: color.adjust($xanthous, $lightness: -10%);
             box-shadow: 0 4px 8px rgba($rich-black, 0.15);
           }
           
@@ -103,7 +104,7 @@
           &:disabled {
             opacity: 0.6;
             cursor: not-allowed;
-            background-color: darken($lavender-blush, 20%);
+            background-color: color.adjust($lavender-blush, $lightness: -20%);
           }
         }
       }
@@ -150,7 +151,7 @@
             
             &.white {
               background-color: white;
-              border: 1px solid darken($lavender-blush, 20%);
+              border: 1px solid color.adjust($lavender-blush, $lightness: -20%);
             }
             
             &.black {
@@ -172,7 +173,7 @@
             
             .label {
               font-size: 0.9rem;
-              color: darken($lavender-blush, 50%);
+              color: color.adjust($lavender-blush, $lightness: -50%);
               margin-bottom: 0.3rem;
             }
             
@@ -187,7 +188,7 @@
       
       .game-history {
         flex-grow: 1;
-        border: 1px solid darken($lavender-blush, 15%);
+        border: 1px solid color.adjust($lavender-blush, $lightness: -15%);
         border-radius: 8px;
         padding: 1rem;
         background-color: rgba($lavender-blush, 0.3);
@@ -226,7 +227,7 @@
           
           .move-number {
             font-weight: 600;
-            color: darken($lavender-blush, 50%);
+            color: color.adjust($lavender-blush, $lightness: -50%);
           }
           
           .move {
@@ -351,7 +352,7 @@
             
             .info-item {
               padding-bottom: 0.8rem;
-              border-bottom: 1px solid darken($lavender-blush, 10%);
+              border-bottom: 1px solid color.adjust($lavender-blush, $lightness: -10%);
               
               &:last-child {
                 padding-bottom: 0;

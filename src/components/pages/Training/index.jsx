@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { Chess } from 'chess.js';
+import { useTranslation } from 'react-i18next';
 import './index.scss';
 
 let isFetching = false;
 
 const Training = () => {
+    const { t } = useTranslation();
     const [problem, setProblem] = useState(null);
     const [chess, setChess] = useState(new Chess());
     const [errorMessage, setErrorMessage] = useState('');
@@ -94,7 +96,7 @@ const Training = () => {
         const expectedMove = solutionMoves[solutionIndex];
 
         if (solutionIndex % 2 !== 1) {
-            setErrorMessage('Ce n\'est pas à vous de jouer.');
+            setErrorMessage(t('training.messages.notYourTurn'));
             return false;
         }
 
@@ -105,7 +107,7 @@ const Training = () => {
         const playedSourceTarget = `${sourceSquare}${targetSquare}`;
 
         if (playedSourceTarget !== expectedSourceTarget) {
-            setErrorMessage(`Coup incorrect : ${playedSourceTarget}. Essayez encore !`);
+            setErrorMessage(t('training.messages.wrongMove', { move: playedSourceTarget }));
             setSuccessMessage('');
             return false;
         }
@@ -117,7 +119,7 @@ const Training = () => {
         });
 
         if (move === null) {
-            setErrorMessage(`Coup invalide : de ${sourceSquare} à ${targetSquare}`);
+            setErrorMessage(t('training.messages.invalidMove', { from: sourceSquare, to: targetSquare }));
             setSuccessMessage('');
             return false;
         }
@@ -127,10 +129,10 @@ const Training = () => {
 
         if (nextIndex >= solutionMoves.length) {
             setErrorMessage('');
-            setSuccessMessage('Bravo ! Vous avez résolu le problème.');
+            setSuccessMessage(t('training.messages.success'));
         } else {
             setErrorMessage('');
-            setSuccessMessage('Coup correct. Continuez !');
+            setSuccessMessage(t('training.messages.correctMove'));
 
             if (nextIndex % 2 === 0) {
                 playNextMove(solutionMoves[nextIndex], chess);
@@ -156,23 +158,23 @@ const Training = () => {
     };
 
     const getInstructionFromThemes = (rating) => {
-        if (rating < 1200) return "Problème facile. Trouvez le meilleur coup.";
-        if (rating < 1800) return "Problème intermédiaire. Analysez attentivement.";
-        return "Problème difficile. Soyez précis dans vos calculs.";
+        if (rating < 1200) return t('training.difficulty.easy');
+        if (rating < 1800) return t('training.difficulty.medium');
+        return t('training.difficulty.hard');
     };
 
     return (
         <div className="training">
             <div className="training-container">
                 <div className="training-content">
-                    <h2>Problème tactique</h2>
-                    <p>Améliorez vos compétences avec des problèmes d'échecs générés aléatoirement. Trouvez la meilleure suite de coups pour résoudre chaque position.</p>
+                    <h2>{t('training.title')}</h2>
+                    <p>{t('training.description')}</p>
                     
                     <button 
                         onClick={fetchProblem}
                         disabled={isLoading}
                     >
-                        {isLoading ? 'Chargement...' : 'Nouveau problème'}
+                        {isLoading ? t('training.loading') : t('training.newProblem')}
                     </button>
                     
                     {errorMessage && <div className="error-message">{errorMessage}</div>}
@@ -186,15 +188,15 @@ const Training = () => {
                             
                             <div className="problem-info">
                                 <div className="info-item">
-                                    <div className="label">Niveau</div>
+                                    <div className="label">{t('training.info.level')}</div>
                                     <div className="value">{problem.Rating} Elo</div>
                                 </div>
                                 <div className="info-item">
-                                    <div className="label">Tour</div>
-                                    <div className="value">{chess.turn() === 'w' ? 'Blancs' : 'Noirs'}</div>
+                                    <div className="label">{t('training.info.turn')}</div>
+                                    <div className="value">{chess.turn() === 'w' ? t('training.status.white') : t('training.status.black')}</div>
                                 </div>
                                 <div className="info-item">
-                                    <div className="label">Coups</div>
+                                    <div className="label">{t('training.info.moves')}</div>
                                     <div className="value">{Math.ceil(problem.Moves.split(' ').length / 2)}</div>
                                 </div>
                             </div>
@@ -214,12 +216,12 @@ const Training = () => {
                             />
                             <div className="turn-indicator">
                                 <div className={`indicator-dot ${chess.turn() === 'w' ? 'white' : 'black'}`}></div>
-                                {chess.turn() === 'w' ? 'Trait aux Blancs' : 'Trait aux Noirs'}
+                                {chess.turn() === 'w' ? t('training.turnIndicator.white') : t('training.turnIndicator.black')}
                             </div>
                         </>
                     ) : (
                         <div className="loading-board">
-                            <p>Chargement du problème...</p>
+                            <p>{t('training.loadingProblem')}</p>
                         </div>
                     )}
                 </div>

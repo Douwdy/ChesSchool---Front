@@ -1,4 +1,5 @@
-@import '../../resources.scss';
+@use '../../resources' as *;
+@use 'sass:color';
 
 .not-found-container {
   display: flex;
@@ -86,7 +87,7 @@
     margin-top: 0.5rem; // Marge réduite
     
     &:hover {
-      background-color: darken($penn-red, 10%);
+      background-color: color.adjust($penn-red, $lightness: -10%);
       transform: translateY(-3px);
       box-shadow: 0 6px 12px rgba($rich-black, 0.25);
       

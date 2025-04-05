@@ -7,6 +7,7 @@ import Training from './components/pages/Training';
 import Openings from './components/pages/Openings';
 import LocalChessGame from './components/pages/Local';
 import NotFound from './components/pages/NotFound';
+import './i18n';
 
 function App() {
     return (
@@ -19,7 +20,6 @@ function App() {
                     <Route path="/training" element={<Training />} />
                     <Route path="/openings" element={<Openings />} />
                     <Route path="/local" element={<LocalChessGame />} />
-                    {/* Redirection pour toutes les routes non définies */}
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </div>

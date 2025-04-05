@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Chess } from "chess.js";
 import { Chessboard } from "react-chessboard";
+import { useTranslation } from "react-i18next";
 import './index.scss';
 
 const STORAGE_KEY = 'chess_local_game_state';
 
 const LocalChessGame = () => {
+    const { t } = useTranslation();
+    
     const initializeGameFromStorage = () => {
         try {
             const savedState = localStorage.getItem(STORAGE_KEY);
@@ -107,7 +110,7 @@ const LocalChessGame = () => {
             });
 
             if (move === null) {
-                setErrorMessage(`Coup invalide : de ${sourceSquare} à ${targetSquare}`);
+                setErrorMessage(t('localGame.messages.invalidMove', { from: sourceSquare, to: targetSquare }));
                 return false;
             }
 
@@ -116,19 +119,21 @@ const LocalChessGame = () => {
             updateMoveHistoryAndCapturedPieces(move);
             
             if (gameCopy.isCheckmate()) {
-                setErrorMessage(`Échec et mat ! ${gameCopy.turn() === 'w' ? 'Les noirs' : 'Les blancs'} gagnent.`);
+                const winner = gameCopy.turn() === 'w' ? t('localGame.messages.blackWins') : t('localGame.messages.whiteWins');
+                setErrorMessage(t('localGame.messages.checkmate', { winner }));
             } else if (gameCopy.isDraw()) {
                 if (gameCopy.isStalemate()) {
-                    setErrorMessage('Pat ! La partie est nulle.');
+                    setErrorMessage(t('localGame.messages.stalemate'));
                 } else if (gameCopy.isThreefoldRepetition()) {
-                    setErrorMessage('Nulle par triple répétition.');
+                    setErrorMessage(t('localGame.messages.threefold'));
                 } else if (gameCopy.isInsufficientMaterial()) {
-                    setErrorMessage('Nulle par insuffisance de matériel.');
+                    setErrorMessage(t('localGame.messages.insufficient'));
                 } else {
-                    setErrorMessage('Partie nulle.');
+                    setErrorMessage(t('localGame.messages.draw'));
                 }
             } else if (gameCopy.isCheck()) {
-                setErrorMessage(`Échec au ${gameCopy.turn() === 'w' ? 'roi blanc' : 'roi noir'} !`);
+                const king = gameCopy.turn() === 'w' ? t('localGame.messages.whiteKing') : t('localGame.messages.blackKing');
+                setErrorMessage(t('localGame.messages.check', { king }));
             } else {
                 setErrorMessage('');
             }
@@ -152,7 +157,7 @@ const LocalChessGame = () => {
             localStorage.removeItem(STORAGE_KEY);
         } catch (error) {
             console.error("Erreur lors de la réinitialisation:", error);
-            setErrorMessage(`Erreur lors de la réinitialisation: ${error.message}`);
+            setErrorMessage(t('localGame.messages.resetError') + " " + error.message);
         }
     };
     
@@ -174,41 +179,41 @@ const LocalChessGame = () => {
         <div className="local-game">
             <div className="local-game-container">
                 <div className="local-game-content">
-                    <h2>Partie locale</h2>
-                    <p>Jouez aux échecs sur le même appareil. Les blancs commencent, puis les joueurs alternent. Déplacez les pièces en les faisant glisser vers la case désirée.</p>
+                    <h2>{t('localGame.title')}</h2>
+                    <p>{t('localGame.description')}</p>
                     
                     <div className="game-controls">
-                        <button onClick={resetGame}>Nouvelle partie</button>
-                        <button onClick={flipBoard}>Retourner l'échiquier</button>
+                        <button onClick={resetGame}>{t('localGame.controls.newGame')}</button>
+                        <button onClick={flipBoard}>{t('localGame.controls.flipBoard')}</button>
                     </div>
                     
                     {errorMessage && <div className="error-message">{errorMessage}</div>}
                     
                     <div className="game-status">
-                        <div className="status-header">État de la partie</div>
+                        <div className="status-header">{t('localGame.status.header')}</div>
                         <div className="player-turn">
                             <div className={`turn-indicator ${game.turn() === 'w' ? 'white' : 'black'}`}></div>
-                            Trait aux {game.turn() === 'w' ? 'blancs' : 'noirs'}
+                            {t('localGame.status.turn')} {game.turn() === 'w' ? t('localGame.status.white') : t('localGame.status.black')}
                         </div>
                         
                         <div className="game-info">
                             <div className="info-item">
-                                <div className="label">Coups joués</div>
+                                <div className="label">{t('localGame.status.movesPlayed')}</div>
                                 <div className="value">{moveHistory.length}</div>
                             </div>
                             <div className="info-item">
-                                <div className="label">Pièces capturées (blanches)</div>
+                                <div className="label">{t('localGame.status.capturedPieces')} ({t('localGame.status.whites')})</div>
                                 <div className="value">{capturedPieces.white.length || 0}</div>
                             </div>
                             <div className="info-item">
-                                <div className="label">Pièces capturées (noires)</div>
+                                <div className="label">{t('localGame.status.capturedPieces')} ({t('localGame.status.blacks')})</div>
                                 <div className="value">{capturedPieces.black.length || 0}</div>
                             </div>
                         </div>
                     </div>
                     
                     <div className="game-history">
-                        <h3>Historique des coups</h3>
+                        <h3>{t('localGame.history.title')}</h3>
                         {formattedHistory.length > 0 ? (
                             <div className="move-list">
                                 {formattedHistory.map((move, index) => (
@@ -224,7 +229,7 @@ const LocalChessGame = () => {
                                 ))}
                             </div>
                         ) : (
-                            <p>Aucun coup joué.</p>
+                            <p>{t('localGame.history.noMoves')}</p>
                         )}
                     </div>
                 </div>

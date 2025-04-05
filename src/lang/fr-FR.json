@@ -1,0 +1,194 @@
+{
+    "header": {
+      "home": "Accueil",
+      "playChess": "Jouer aux échecs",
+      "gameAnalysis": "Analyse de partie",
+      "training": "Entraînement",
+      "openings": "Ouvertures"
+    },
+    "footer": {
+      "contact": "Contact",
+      "copyright": "Tous droits réservés."
+    },
+    "landing": {
+      "hero": {
+        "title": "Chess School",
+        "description": "Apprenez, jouez et maîtrisez l'art des échecs. Une plateforme complète pour améliorer vos compétences, analyser vos parties et progresser à votre rythme."
+      },
+      "cta": {
+        "train": "S'entraîner maintenant",
+        "explore": "Explorer les ouvertures"
+      },
+      "features": {
+        "title": "Nos fonctionnalités",
+        "personalizedTraining": {
+          "title": "Entraînement personnalisé",
+          "description": "Améliorez vos compétences avec des exercices tactiques adaptés à votre niveau. Des problèmes variés pour progresser rapidement et efficacement.",
+          "cta": "Commencer l'entraînement →"
+        },
+        "localGames": {
+          "title": "Parties locales",
+          "description": "Jouez contre un ami sur le même appareil. Parfait pour pratiquer, enseigner ou simplement profiter d'une partie d'échecs à tout moment.",
+          "cta": "Jouer maintenant →"
+        },
+        "gameAnalysis": {
+          "title": "Analyse de parties",
+          "description": "Importez vos parties au format PGN et analysez-les en profondeur. Identifiez vos erreurs et découvrez les meilleures alternatives à chaque position.",
+          "cta": "Analyser une partie →"
+        },
+        "openings": {
+          "title": "Bibliothèque d'ouvertures",
+          "description": "Explorez notre large collection d'ouvertures d'échecs. Apprenez les principes, les variantes et les stratégies associées à chaque ouverture.",
+          "cta": "Explorer les ouvertures →"
+        }
+      },
+      "getStarted": {
+        "title": "Prêt à devenir un meilleur joueur d'échecs ?",
+        "description": "Rejoignez notre communauté de joueurs passionnés et commencez votre parcours vers la maîtrise des échecs. Tous les outils dont vous avez besoin sont à portée de main.",
+        "cta": "Commencer maintenant"
+      }
+    },
+    "localGame": {
+      "title": "Partie locale",
+      "description": "Jouez aux échecs sur le même appareil. Les blancs commencent, puis les joueurs alternent. Déplacez les pièces en les faisant glisser vers la case désirée.",
+      "controls": {
+        "newGame": "Nouvelle partie",
+        "flipBoard": "Retourner l'échiquier"
+      },
+      "status": {
+        "header": "État de la partie",
+        "turn": "Trait aux",
+        "white": "blancs",
+        "black": "noirs",
+        "movesPlayed": "Coups joués",
+        "capturedPieces": "Pièces capturées",
+        "whites": "blanches",
+        "blacks": "noires"
+      },
+      "history": {
+        "title": "Historique des coups",
+        "noMoves": "Aucun coup joué."
+      },
+      "messages": {
+        "invalidMove": "Coup invalide : de {from} à {to}",
+        "checkmate": "Échec et mat ! {winner} gagnent.",
+        "stalemate": "Pat ! La partie est nulle.",
+        "threefold": "Nulle par triple répétition.",
+        "insufficient": "Nulle par insuffisance de matériel.",
+        "draw": "Partie nulle.",
+        "check": "Échec au {king} !",
+        "whiteWins": "Les blancs",
+        "blackWins": "Les noirs",
+        "whiteKing": "roi blanc",
+        "blackKing": "roi noir",
+        "resetError": "Erreur lors de la réinitialisation:"
+      }
+    },
+    "notFound": {
+      "title": "404",
+      "subtitle": "Échec et mat !",
+      "description": "Oups ! Cette page a disparu comme un pion promu en dame. Peut-être a-t-elle été capturée en passant ?",
+      "backHome": "Retour à la case départ"
+    },
+    "openings": {
+      "title": "Sélectionnez une ouverture",
+      "selectPlaceholder": "Choisissez une ouverture",
+      "about": "À propos de cette ouverture",
+      "aboutText": " est une ouverture d'échecs qui commence par les coups ",
+      "instructions": "Naviguer avec les boutons sous l'échiquier pour voir la séquence de l'ouverture.",
+      "welcome": {
+        "title": "Bienvenue dans l'explorateur d'ouvertures",
+        "description": "Sélectionnez une ouverture dans la liste pour voir ses coups."
+      },
+      "moves": "Coups :"
+    },
+    "pgnAnalyzer": {
+      "input": {
+        "title": "PGN",
+        "placeholder": "Collez votre PGN ici...",
+        "analyze": "Analyser",
+        "loading": "Chargement...",
+        "analyzing": "Analyse en cours..."
+      },
+      "alternatives": {
+        "title": "Alternatives",
+        "noAlternatives": "Sélectionnez un coup pour voir ses alternatives",
+        "notAvailable": "Pas d'alternatives disponibles pour ce coup",
+        "alternativeTo": "Alternatives au coup"
+      },
+      "player": {
+        "turn": "Tour de",
+        "move": "Coup"
+      },
+      "tabs": {
+        "moves": "Coups",
+        "stats": "Statistiques",
+        "legend": "Légende"
+      },
+      "navigation": {
+        "previous": "← Précédent",
+        "next": "Suivant →"
+      },
+      "stats": {
+        "noStats": "Aucune statistique disponible. Analysez une partie d'abord.",
+        "accuracy": "Précision",
+        "moveQuality": {
+          "excellent": "Excellents (!)",
+          "good": "Bons coups",
+          "inaccuracy": "Imprécisions (⟳)",
+          "mistake": "Erreurs (?)",
+          "blunder": "Gaffes (??)",
+          "total": "Total des coups"
+        },
+        "analysis": {
+          "whiteSuperiority": "Les Blancs ont joué avec une précision nettement supérieure.",
+          "blackSuperiority": "Les Noirs ont joué avec une précision nettement supérieure.",
+          "equal": "La partie a été jouée avec une précision similaire des deux côtés.",
+          "whiteBlunders": "Les Blancs ont commis plus de gaffes critiques ({count}).",
+          "blackBlunders": "Les Noirs ont commis plus de gaffes critiques ({count})."
+        }
+      },
+      "legend": {
+        "title": "Légende des coups",
+        "excellent": "Excellent coup (!) - Différence de 0-30 centipions",
+        "good": "Bon coup - Différence de 31-90 centipions",
+        "inaccuracy": "Imprécision (⟳) - Différence de 91-200 centipions",
+        "mistake": "Erreur (?) - Différence de 201-500 centipions",
+        "blunder": "Gaffe (??) - Différence de plus de 500 centipions"
+      },
+      "versus": "vs",
+      "result": "Résultat:"
+    },
+    "training": {
+      "title": "Problème tactique",
+      "description": "Améliorez vos compétences avec des problèmes d'échecs générés aléatoirement. Trouvez la meilleure suite de coups pour résoudre chaque position.",
+      "newProblem": "Nouveau problème",
+      "loading": "Chargement...",
+      "status": {
+        "white": "Blancs",
+        "black": "Noirs"
+      },
+      "info": {
+        "level": "Niveau",
+        "turn": "Tour",
+        "moves": "Coups"
+      },
+      "turnIndicator": {
+        "white": "Trait aux Blancs",
+        "black": "Trait aux Noirs"
+      },
+      "loadingProblem": "Chargement du problème...",
+      "messages": {
+        "notYourTurn": "Ce n'est pas à vous de jouer.",
+        "wrongMove": "Coup incorrect. Essayez encore !",
+        "invalidMove": "Coup invalide : de {from} à {to}",
+        "success": "Bravo ! Vous avez résolu le problème.",
+        "correctMove": "Coup correct. Continuez !"
+      },
+      "difficulty": {
+        "easy": "Problème facile. Trouvez le meilleur coup.",
+        "medium": "Problème intermédiaire. Analysez attentivement.",
+        "hard": "Problème difficile. Soyez précis dans vos calculs."
+      }
+    }
+  }

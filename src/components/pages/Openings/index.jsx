@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { Chess } from 'chess.js';
+import { useTranslation } from 'react-i18next';
 import './index.scss';
 import openings from './openings.json';
 
 const Openings = () => {
+    const { t } = useTranslation();
     const [selectedOpening, setSelectedOpening] = useState(null);
     const [chess, setChess] = useState(new Chess());
     const [boardWidth, setBoardWidth] = useState(400);
@@ -89,10 +91,10 @@ const Openings = () => {
         <div className="openings">
             <div className="openings-container">
                 <div className="openings-list">
-                    <h2>Sélectionnez une ouverture</h2>
+                    <h2>{t('openings.title')}</h2>
                     <select onChange={handleOpeningChange} defaultValue="">
                         <option value="" disabled>
-                            Choisissez une ouverture
+                            {t('openings.selectPlaceholder')}
                         </option>
                         {openings.map((opening, index) => (
                             <option key={index} value={opening.name}>
@@ -103,12 +105,12 @@ const Openings = () => {
                     
                     {selectedOpening && (
                         <div className="opening-info">
-                            <h3>À propos de cette ouverture</h3>
+                            <h3>{t('openings.about')}</h3>
                             <p>
-                                <strong>{selectedOpening.name}</strong> est une ouverture d'échecs qui commence par les coups <code>{selectedOpening.moves}</code>.
+                                <strong>{selectedOpening.name}</strong> {t('openings.aboutText')} <code>{selectedOpening.moves}</code>.
                             </p>
                             <p>
-                                Naviguer avec les boutons sous l'échiquier pour voir la séquence de l'ouverture.
+                                {t('openings.instructions')}
                             </p>
                         </div>
                     )}
@@ -117,7 +119,7 @@ const Openings = () => {
                     {selectedOpening ? (
                         <div className="board-container">
                             <h2>{selectedOpening.name}</h2>
-                            <p>Coups : {selectedOpening.moves}</p>
+                            <p>{t('openings.moves')} {selectedOpening.moves}</p>
                             <div
                                 className="chessboard-container"
                                 style={{ width: `${boardWidth}px`, height: `${boardWidth}px` }}
@@ -147,8 +149,8 @@ const Openings = () => {
                         </div>
                     ) : (
                         <div className="board-container">
-                            <h2>Bienvenue dans l'explorateur d'ouvertures</h2>
-                            <p>Sélectionnez une ouverture dans la liste pour voir ses coups.</p>
+                            <h2>{t('openings.welcome.title')}</h2>
+                            <p>{t('openings.welcome.description')}</p>
                             <div
                                 className="chessboard-container"
                                 style={{ width: `${boardWidth}px`, height: `${boardWidth}px` }}

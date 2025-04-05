@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Chess } from 'chess.js';
 import { Chessboard } from 'react-chessboard';
 import { parse } from 'pgn-parser';
+import { useTranslation } from 'react-i18next';
 import './index.scss';
 
 // Déplacez ces fonctions utilitaires à l'extérieur du composant principal
@@ -58,7 +59,7 @@ const calculateAccuracy = (playerStats) => {
 };
 
 // Nouvelle version plus compacte du graphique d'évaluation
-const CompactEvaluationChart = ({ gameAnalysis, moves, onSelectMove }) => {
+const CompactEvaluationChart = ({ gameAnalysis, moves, onSelectMove, t }) => {
   if (!gameAnalysis || gameAnalysis.length === 0) return null;
   
   // Préparer les données pour le graphique
@@ -93,7 +94,7 @@ const CompactEvaluationChart = ({ gameAnalysis, moves, onSelectMove }) => {
             key={idx}
             className="chart-bar"
             onClick={() => onSelectMove && onSelectMove(data.moveIndex)}
-            title={`${data.isWhite ? 'Blancs' : 'Noirs'}: ${data.san} (${formatEvaluation(data.evalValue)})`}
+            title={`${data.isWhite ? t('pgnAnalyzer.status.white') : t('pgnAnalyzer.status.black')}: ${data.san} (${formatEvaluation(data.evalValue)})`}
           >
             <div 
               className="bar-fill"
@@ -118,7 +119,7 @@ const CompactEvaluationChart = ({ gameAnalysis, moves, onSelectMove }) => {
 };
 
 // Nouveau composant compact pour les statistiques de jeu
-const CompactGameStats = ({ stats, gameMetadata }) => {
+const CompactGameStats = ({ stats, gameMetadata, t }) => {
   if (!stats) return null;
   
   // Calculer le total des coups pour chaque joueur
@@ -139,12 +140,12 @@ const CompactGameStats = ({ stats, gameMetadata }) => {
       {/* En-tête avec les précisions */}
       <div className="stats-header">
         <div className="player-column white">
-          <div className="player-name">{gameMetadata.white || 'Blancs'}</div>
+          <div className="player-name">{gameMetadata.white || t('pgnAnalyzer.status.white')}</div>
           <div className="player-accuracy">{whiteAccuracy}%</div>
         </div>
-        <div className="stat-label">Précision</div>
+        <div className="stat-label">{t('pgnAnalyzer.stats.accuracy')}</div>
         <div className="player-column black">
-        <div className="player-name">{gameMetadata.black || 'Noirs'}</div>
+        <div className="player-name">{gameMetadata.black || t('pgnAnalyzer.status.black')}</div>
           <div className="player-accuracy">{blackAccuracy}%</div>
         </div>
       </div>
@@ -154,32 +155,32 @@ const CompactGameStats = ({ stats, gameMetadata }) => {
         <tbody>
           <tr className="excellent-row">
             <td className="white-count">{stats.white.excellent}</td>
-            <td className="quality-name">Excellents (!)</td>
+            <td className="quality-name">{t('pgnAnalyzer.stats.moveQuality.excellent')}</td>
             <td className="black-count">{stats.black.excellent}</td>
           </tr>
           <tr className="good-row">
             <td className="white-count">{stats.white.good}</td>
-            <td className="quality-name">Bons coups</td>
+            <td className="quality-name">{t('pgnAnalyzer.stats.moveQuality.good')}</td>
             <td className="black-count">{stats.black.good}</td>
           </tr>
           <tr className="inaccuracy-row">
             <td className="white-count">{stats.white.inaccuracy}</td>
-            <td className="quality-name">Imprécisions (⟳)</td>
+            <td className="quality-name">{t('pgnAnalyzer.stats.moveQuality.inaccuracy')}</td>
             <td className="black-count">{stats.black.inaccuracy}</td>
           </tr>
           <tr className="mistake-row">
             <td className="white-count">{stats.white.mistake}</td>
-            <td className="quality-name">Erreurs (?)</td>
+            <td className="quality-name">{t('pgnAnalyzer.stats.moveQuality.mistake')}</td>
             <td className="black-count">{stats.black.mistake}</td>
           </tr>
           <tr className="blunder-row">
             <td className="white-count">{stats.white.blunder}</td>
-            <td className="quality-name">Gaffes (??)</td>
+            <td className="quality-name">{t('pgnAnalyzer.stats.moveQuality.blunder')}</td>
             <td className="black-count">{stats.black.blunder}</td>
           </tr>
           <tr className="total-row">
             <td className="white-count">{whiteTotalMoves}</td>
-            <td className="quality-name">Total des coups</td>
+            <td className="quality-name">{t('pgnAnalyzer.stats.moveQuality.total')}</td>
             <td className="black-count">{blackTotalMoves}</td>
           </tr>
         </tbody>
@@ -188,20 +189,20 @@ const CompactGameStats = ({ stats, gameMetadata }) => {
       {/* Analyse simplifiée */}
       <div className="game-analysis-summary">
         {whiteAccuracy > blackAccuracy + 10 && (
-          <p>Les Blancs ont joué avec une précision nettement supérieure.</p>
+          <p>{t('pgnAnalyzer.stats.analysis.whiteSuperiority')}</p>
         )}
         {blackAccuracy > whiteAccuracy + 10 && (
-          <p>Les Noirs ont joué avec une précision nettement supérieure.</p>
+          <p>{t('pgnAnalyzer.stats.analysis.blackSuperiority')}</p>
         )}
         {Math.abs(whiteAccuracy - blackAccuracy) <= 10 && (
-          <p>La partie a été jouée avec une précision similaire des deux côtés.</p>
+          <p>{t('pgnAnalyzer.stats.analysis.equal')}</p>
         )}
         
         {stats.white.blunder > 0 && stats.white.blunder > stats.black.blunder && (
-          <p>Les Blancs ont commis plus de gaffes critiques ({stats.white.blunder}).</p>
+          <p>{t('pgnAnalyzer.stats.analysis.whiteBlunders', { count: stats.white.blunder })}</p>
         )}
         {stats.black.blunder > 0 && stats.black.blunder > stats.white.blunder && (
-          <p>Les Noirs ont commis plus de gaffes critiques ({stats.black.blunder}).</p>
+          <p>{t('pgnAnalyzer.stats.analysis.blackBlunders', { count: stats.black.blunder })}</p>
         )}
       </div>
     </div>
@@ -209,13 +210,13 @@ const CompactGameStats = ({ stats, gameMetadata }) => {
 };
 
 // Nouveau composant pour l'affichage des alternatives dans la zone gauche
-const AlternativesCard = ({ currentMoveIndex, movesWithQuality, gameAnalysis }) => {
+const AlternativesCard = ({ currentMoveIndex, movesWithQuality, gameAnalysis, t }) => {
   // Si aucun coup sélectionné ou pas d'analyse disponible
   if (currentMoveIndex <= 0 || !gameAnalysis || gameAnalysis.length === 0) {
     return (
       <div className="alternatives-card empty">
-        <h3>Alternatives</h3>
-        <p className="no-alternatives">Sélectionnez un coup pour voir ses alternatives</p>
+        <h3>{t('pgnAnalyzer.alternatives.title')}</h3>
+        <p className="no-alternatives">{t('pgnAnalyzer.alternatives.noAlternatives')}</p>
       </div>
     );
   }
@@ -228,8 +229,8 @@ const AlternativesCard = ({ currentMoveIndex, movesWithQuality, gameAnalysis }) 
   if (!moveAnalysis || !moveAnalysis.bestMoves || moveAnalysis.bestMoves.length === 0) {
     return (
       <div className="alternatives-card empty">
-        <h3>Alternatives</h3>
-        <p className="no-alternatives">Pas d'alternatives disponibles pour ce coup</p>
+        <h3>{t('pgnAnalyzer.alternatives.title')}</h3>
+        <p className="no-alternatives">{t('pgnAnalyzer.alternatives.notAvailable')}</p>
       </div>
     );
   }
@@ -243,7 +244,7 @@ const AlternativesCard = ({ currentMoveIndex, movesWithQuality, gameAnalysis }) 
   return (
     <div className="alternatives-card">
       <h3>
-        Alternatives au coup {moveNumber}{!isWhite ? '...' : '.'} 
+        {t('pgnAnalyzer.alternatives.alternativeTo')} {moveNumber}{!isWhite ? '...' : '.'} 
         <span className="played-move">{moveWithQuality?.san || ''}</span>
       </h3>
       
@@ -262,6 +263,7 @@ const AlternativesCard = ({ currentMoveIndex, movesWithQuality, gameAnalysis }) 
 };
 
 const PGNAnalyzer = () => {
+    const { t } = useTranslation();
     const [pgn, setPgn] = useState('');
     const [game, setGame] = useState(new Chess());
     const [moves, setMoves] = useState([]);
@@ -314,12 +316,12 @@ const PGNAnalyzer = () => {
             
             // Extraire les métadonnées
             const metadata = {
-                white: headersObject.White || 'Joueur inconnu',
+                white: headersObject.White || t('pgnAnalyzer.status.white'),
                 whiteElo: headersObject.WhiteElo || '?',
-                black: headersObject.Black || 'Joueur inconnu',
+                black: headersObject.Black || t('pgnAnalyzer.status.black'),
                 blackElo: headersObject.BlackElo || '?',
                 date: headersObject.Date || '?',
-                event: headersObject.Event || 'Partie',
+                event: headersObject.Event || t('pgnAnalyzer.input.title'),
                 site: headersObject.Site || '',
                 result: headersObject.Result || '*'
             };
@@ -683,27 +685,27 @@ const PGNAnalyzer = () => {
     // Dans votre composant React
     const QualityLegend = () => (
         <div className="quality-legend">
-            <h3>Légende des coups</h3>
+            <h3>{t('pgnAnalyzer.legend.title')}</h3>
             <div className="legend-items">
                 <div className="legend-item">
                     <span className="color-box excellent"></span>
-                    <span className="label">Excellent coup (!) - Différence de 0-30 centipions</span>
+                    <span className="label">{t('pgnAnalyzer.legend.excellent')}</span>
                 </div>
                 <div className="legend-item">
                     <span className="color-box good"></span>
-                    <span className="label">Bon coup - Différence de 31-90 centipions</span>
+                    <span className="label">{t('pgnAnalyzer.legend.good')}</span>
                 </div>
                 <div className="legend-item">
                     <span className="color-box inaccuracy"></span>
-                    <span className="label">Imprécision (⟳) - Différence de 91-200 centipions</span>
+                    <span className="label">{t('pgnAnalyzer.legend.inaccuracy')}</span>
                 </div>
                 <div className="legend-item">
                     <span className="color-box mistake"></span>
-                    <span className="label">Erreur (?) - Différence de 201-500 centipions</span>
+                    <span className="label">{t('pgnAnalyzer.legend.mistake')}</span>
                 </div>
                 <div className="legend-item">
                     <span className="color-box blunder"></span>
-                    <span className="label">Gaffe (??) - Différence de plus de 500 centipions</span>
+                    <span className="label">{t('pgnAnalyzer.legend.blunder')}</span>
                 </div>
             </div>
         </div>
@@ -724,7 +726,7 @@ const PGNAnalyzer = () => {
                                     <div className="player-elo">{gameMetadata.whiteElo}</div>
                                 )}
                             </div>
-                            <div className="versus">vs</div>
+                            <div className="versus">{t('pgnAnalyzer.versus')}</div>
                             <div className="player black">
                                 <div className="player-name">{gameMetadata.black}</div>
                                 {gameMetadata.blackElo !== '?' && (
@@ -743,7 +745,7 @@ const PGNAnalyzer = () => {
                                 <div className="site">{gameMetadata.site}</div>
                             )}
                             {gameMetadata.result !== '*' && (
-                                <div className="result">Résultat: {gameMetadata.result}</div>
+                                <div className="result">{t('pgnAnalyzer.result')} {gameMetadata.result}</div>
                             )}
                         </div>
                     </div>
@@ -752,9 +754,9 @@ const PGNAnalyzer = () => {
                     {/* Colonne gauche - Entrée PGN */}
                     <div className="left-column">
                         <div className="pgn-input">
-                            <h2>PGN</h2>
+                            <h2>{t('pgnAnalyzer.input.title')}</h2>
                             <textarea
-                                placeholder="Collez votre PGN ici..."
+                                placeholder={t('pgnAnalyzer.input.placeholder')}
                                 value={pgn}
                                 onChange={(e) => setPgn(e.target.value)}
                             />
@@ -762,7 +764,7 @@ const PGNAnalyzer = () => {
                                 onClick={handleAnalyze}
                                 disabled={isLoading || isAnalyzingGame}
                             >
-                                {isLoading ? 'Chargement...' : 'Analyser'}
+                                {isLoading ? t('pgnAnalyzer.input.loading') : t('pgnAnalyzer.input.analyze')}
                             </button>
                             
                             {/* Affichage amélioré de la progression d'analyse */}
@@ -770,7 +772,7 @@ const PGNAnalyzer = () => {
                                 <div className="analysis-progress">
                                     <p>
                                         <span className="analysis-spinner">⏳</span>
-                                        Analyse en cours... {Math.floor(analysisProgress)}%
+                                        {t('pgnAnalyzer.input.analyzing')} {Math.floor(analysisProgress)}%
                                     </p>
                                     <div className="progress-bar">
                                         <div 
@@ -792,6 +794,7 @@ const PGNAnalyzer = () => {
                             currentMoveIndex={currentMoveIndex}
                             movesWithQuality={movesWithQuality}
                             gameAnalysis={gameAnalysis}
+                            t={t}
                         />
                     </div>
                     
@@ -801,11 +804,11 @@ const PGNAnalyzer = () => {
                             <div className={`player-indicator ${game.turn() === 'w' ? 'white-turn' : 'black-turn'}`}>
                                 <span className="piece-symbol">{game.turn() === 'w' ? '♔' : '♚'}</span>
                                 <span className="player-name">
-                                    Tour de {game.turn() === 'w' ? gameMetadata.white : gameMetadata.black}
+                                    {t('pgnAnalyzer.player.turn')} {game.turn() === 'w' ? gameMetadata.white : gameMetadata.black}
                                 </span>
                             </div>
                             <div className="move-number">
-                                Coup {Math.floor(currentMoveIndex / 2) + 1}
+                                {t('pgnAnalyzer.player.move')} {Math.floor(currentMoveIndex / 2) + 1}
                                 {game.turn() === 'w' ? '' : '...'}
                             </div>
                         </div>
@@ -832,13 +835,13 @@ const PGNAnalyzer = () => {
                                 onClick={() => goToMove(Math.max(0, currentMoveIndex - 1))}
                                 disabled={currentMoveIndex === 0 || isLoading}
                             >
-                                ← Précédent
+                                {t('pgnAnalyzer.navigation.previous')}
                             </button>
                             <button
                                 onClick={() => goToMove(Math.min(moves.length, currentMoveIndex + 1))}
                                 disabled={currentMoveIndex === moves.length || isLoading}
                             >
-                                Suivant →
+                                {t('pgnAnalyzer.navigation.next')}
                             </button>
                         </div>
                     </div>
@@ -851,20 +854,20 @@ const PGNAnalyzer = () => {
                                     className={activeTab === 'moves' ? 'active' : ''} 
                                     onClick={() => setActiveTab('moves')}
                                 >
-                                    Coups
+                                    {t('pgnAnalyzer.tabs.moves')}
                                 </button>
                                 <button 
                                     className={activeTab === 'stats' ? 'active' : ''} 
                                     onClick={() => setActiveTab('stats')}
                                     disabled={!gameStats}
                                 >
-                                    Statistiques
+                                    {t('pgnAnalyzer.tabs.stats')}
                                 </button>
                                 <button 
                                     className={activeTab === 'legend' ? 'active' : ''} 
                                     onClick={() => setActiveTab('legend')}
                                 >
-                                    Légende
+                                    {t('pgnAnalyzer.tabs.legend')}
                                 </button>
                             </div>
                             
@@ -973,12 +976,13 @@ const PGNAnalyzer = () => {
                                                     gameAnalysis={gameAnalysis} 
                                                     moves={moves} 
                                                     onSelectMove={goToMove}
+                                                    t={t}
                                                 />
-                                                <CompactGameStats stats={gameStats} gameMetadata={gameMetadata} />
+                                                <CompactGameStats stats={gameStats} gameMetadata={gameMetadata} t={t} />
                                             </div>
                                         ) : (
                                             <div className="no-stats">
-                                                Aucune statistique disponible. Analysez une partie d'abord.
+                                                {t('pgnAnalyzer.stats.noStats')}
                                             </div>
                                         )}
                                     </div>

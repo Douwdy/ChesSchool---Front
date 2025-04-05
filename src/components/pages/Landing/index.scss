@@ -1,4 +1,5 @@
-@import '../../resources.scss';
+@use 'sass:color';
+@use '../../resources' as *;
 
 .landing-page {
   font-family: "Zen Kaku Gothic New", sans-serif;
@@ -13,7 +14,7 @@
     box-shadow: 0 8px 20px rgba($rich-black, 0.08);
     margin-bottom: 3.5rem;
     overflow: hidden;
-    
+  
     &::before {
       content: '';
       position: absolute;
@@ -101,7 +102,7 @@
         }
         
         &:hover {
-          background-color: darken($xanthous, 8%);
+          background-color: color.adjust($xanthous, $lightness: -8%);
           box-shadow: 0 6px 12px rgba($rich-black, 0.15);
         }
         
@@ -202,7 +203,7 @@
         
         p {
           font-size: 1.05rem;
-          color: darken($lavender-blush, 50%);
+          color: color.adjust($lavender-blush, $lightness: -50%);
           line-height: 1.5;
           margin-bottom: 1rem;
         }
@@ -217,7 +218,7 @@
           transition: color 0.2s ease;
           
           &:hover {
-            color: darken($penn-red, 10%);
+            color: color.adjust($penn-red, $lightness: -10%);
             text-decoration: underline;
           }
         }
@@ -302,7 +303,7 @@
       align-items: center;
       
       &:hover {
-        background-color: darken($xanthous, 5%);
+        background-color: color.adjust($xanthous, $lightness: -5%);
         box-shadow: 0 6px 15px rgba(black, 0.4);
       }
       

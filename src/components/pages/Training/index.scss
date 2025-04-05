@@ -1,4 +1,5 @@
-@import '../../resources.scss';
+@use 'sass:color';
+@use '../../resources' as *;
 
 .training {
   max-width: 1200px;
@@ -90,7 +91,7 @@
         align-self: center;
         
         &:hover {
-          background-color: darken($xanthous, 10%);
+          background-color: color.adjust($xanthous, $lightness: -10%);
           box-shadow: 0 4px 8px rgba($rich-black, 0.15);
         }
         
@@ -102,7 +103,7 @@
         &:disabled {
           opacity: 0.6;
           cursor: not-allowed;
-          background-color: darken($lavender-blush, 20%);
+          background-color: color.adjust($lavender-blush, $lightness: -20%);
         }
       }
       
@@ -141,7 +142,7 @@
         font-weight: 400;
         font-style: normal;
         background-color: rgba($xanthous, 0.15);
-        color: darken($rich-black, 5%);
+        color: color.adjust($rich-black, $lightness: -5%);
         font-weight: 500;
         padding: 1rem;
         border-radius: 8px;
@@ -168,7 +169,7 @@
           
           .label {
             font-size: 0.9rem;
-            color: darken($lavender-blush, 50%);
+            color: color.adjust($lavender-blush, $lightness: -50%);
             margin-bottom: 0.3rem;
           }
           
@@ -179,7 +180,7 @@
           }
           
           &:not(:last-child) {
-            border-right: 1px solid darken($lavender-blush, 10%);
+            border-right: 1px solid color.adjust($lavender-blush, $lightness: -10%);
           }
         }
       }
@@ -215,7 +216,7 @@
         width: 100%;
         max-width: 480px;
         aspect-ratio: 1 / 1;
-        background: linear-gradient(45deg, darken($lavender-blush, 5%), darken($lavender-blush, 10%));
+        background: linear-gradient(45deg, color.adjust($lavender-blush, $lightness: -5%), color.adjust($lavender-blush, $lightness: -10%));
         border-radius: 8px;
         display: flex;
         align-items: center;
@@ -257,7 +258,7 @@
           
           &.white {
             background-color: white;
-            border: 1px solid darken($lavender-blush, 20%);
+            border: 1px solid color.adjust($lavender-blush, $lightness: -20%);
           }
           
           &.black {
@@ -311,7 +312,7 @@
           
           .info-item {
             border-right: none !important;
-            border-bottom: 1px solid darken($lavender-blush, 10%);
+            border-bottom: 1px solid color.adjust($lavender-blush, $lightness: -10%);
             padding-bottom: 0.8rem;
             
             
