@@ -1,0 +1,194 @@
+{
+    "header": {
+      "home": "ホーム",
+      "playChess": "チェスをプレイ",
+      "gameAnalysis": "ゲーム分析",
+      "training": "トレーニング",
+      "openings": "オープニング"
+    },
+    "footer": {
+      "contact": "お問い合わせ",
+      "copyright": "全著作権所有。"
+    },
+    "landing": {
+      "hero": {
+        "title": "ChesSchool",
+        "description": "チェスの技術を学び、プレイし、マスターしましょう。スキルを向上させ、ゲームを分析し、自分のペースで上達するための完全なプラットフォームです。"
+      },
+      "cta": {
+        "train": "今すぐトレーニング",
+        "explore": "オープニングを探索"
+      },
+      "features": {
+        "title": "機能紹介",
+        "personalizedTraining": {
+          "title": "パーソナライズされたトレーニング",
+          "description": "あなたのレベルに合わせた戦術的な練習問題でスキルを向上させましょう。迅速かつ効率的に上達するための様々な問題を用意しています。",
+          "cta": "トレーニングを始める →"
+        },
+        "localGames": {
+          "title": "ローカルゲーム",
+          "description": "同じデバイスで友達と対戦。練習、教育、または単に好きな時にチェスゲームを楽しむのに最適です。",
+          "cta": "今すぐプレイ →"
+        },
+        "gameAnalysis": {
+          "title": "ゲーム分析",
+          "description": "PGN形式であなたのゲームをインポートし、詳細に分析しましょう。ミスを特定し、各局面での最良の選択肢を発見できます。",
+          "cta": "ゲームを分析する →"
+        },
+        "openings": {
+          "title": "オープニングライブラリ",
+          "description": "チェスオープニングの豊富なコレクションを探索しましょう。各オープニングに関連する原則、変化形、戦略を学びます。",
+          "cta": "オープニングを探索 →"
+        }
+      },
+      "getStarted": {
+        "title": "より良いチェスプレイヤーになる準備はできましたか？",
+        "description": "熱心なプレイヤーのコミュニティに参加して、チェスマスターへの旅を始めましょう。必要なすべてのツールが手元にあります。",
+        "cta": "今すぐ始める"
+      }
+    },
+    "localGame": {
+      "title": "ローカルゲーム",
+      "description": "同じデバイスでチェスをプレイします。白が先手、その後プレイヤーが交互に指します。駒を希望のマスにドラッグして動かします。",
+      "controls": {
+        "newGame": "新しいゲーム",
+        "flipBoard": "ボードを反転"
+      },
+      "status": {
+        "header": "ゲームステータス",
+        "turn": "手番",
+        "white": "白",
+        "black": "黒",
+        "movesPlayed": "指し手数",
+        "capturedPieces": "取った駒",
+        "whites": "白の駒",
+        "blacks": "黒の駒"
+      },
+      "history": {
+        "title": "指し手履歴",
+        "noMoves": "まだ指し手はありません。"
+      },
+      "messages": {
+        "invalidMove": "無効な手です。",
+        "checkmate": "チェックメイト！",
+        "stalemate": "ステイルメイト！ゲームは引き分けです。",
+        "threefold": "同一局面三回による引き分け。",
+        "insufficient": "戦力不足による引き分け。",
+        "draw": "ゲームは引き分けです。",
+        "check": "チェック！",
+        "whiteWins": "白",
+        "blackWins": "黒",
+        "whiteKing": "白のキング",
+        "blackKing": "黒のキング",
+        "resetError": "リセット中にエラーが発生しました："
+      }
+    },
+    "notFound": {
+      "title": "404",
+      "subtitle": "チェックメイト！",
+      "description": "おっと！このページはクイーンに昇格したポーンのように消えてしまいました。もしかするとアンパッサンで捕獲されたのかも？",
+      "backHome": "ホームに戻る"
+    },
+    "openings": {
+      "title": "オープニングを選択",
+      "selectPlaceholder": "オープニングを選択",
+      "about": "このオープニングについて",
+      "aboutText": " は次の手順で始まるチェスオープニングです ",
+      "instructions": "チェスボード下のボタンでオープニングの手順を見ることができます。",
+      "welcome": {
+        "title": "オープニングエクスプローラーへようこそ",
+        "description": "リストからオープニングを選択して、その手順を確認してください。"
+      },
+      "moves": "手順："
+    },
+    "pgnAnalyzer": {
+      "input": {
+        "title": "PGN",
+        "placeholder": "ここにPGNを貼り付けてください...",
+        "analyze": "分析",
+        "loading": "読み込み中...",
+        "analyzing": "分析中..."
+      },
+      "alternatives": {
+        "title": "代替手",
+        "noAlternatives": "代替手を表示するには手を選択してください",
+        "notAvailable": "この手には利用可能な代替手がありません",
+        "alternativeTo": "の代替手"
+      },
+      "player": {
+        "turn": "手番",
+        "move": "手"
+      },
+      "tabs": {
+        "moves": "指し手",
+        "stats": "統計",
+        "legend": "凡例"
+      },
+      "navigation": {
+        "previous": "← 前へ",
+        "next": "次へ →"
+      },
+      "stats": {
+        "noStats": "統計データはありません。まずゲームを分析してください。",
+        "accuracy": "精度",
+        "moveQuality": {
+          "excellent": "優秀 (!)",
+          "good": "良い手",
+          "inaccuracy": "不正確 (⟳)",
+          "mistake": "ミス (?)",
+          "blunder": "大ミス (??)",
+          "total": "総指し手数"
+        },
+        "analysis": {
+          "whiteSuperiority": "白はかなり高い精度でプレイしました。",
+          "blackSuperiority": "黒はかなり高い精度でプレイしました。",
+          "equal": "両者は同様の精度でゲームを進めました。",
+          "whiteBlunders": "白はより多くの重大なミスを犯しました。",
+          "blackBlunders": "黒はより多くの重大なミスを犯しました。"
+        }
+      },
+      "legend": {
+        "title": "指し手の凡例",
+        "excellent": "優秀な手 (!) - 0-30センチポーンの差",
+        "good": "良い手 - 31-90センチポーンの差",
+        "inaccuracy": "不正確 (⟳) - 91-200センチポーンの差",
+        "mistake": "ミス (?) - 201-500センチポーンの差",
+        "blunder": "大ミス (??) - 500センチポーン以上の差"
+      },
+      "versus": "対",
+      "result": "結果："
+    },
+    "training": {
+      "title": "戦術問題",
+      "description": "ランダムに生成されたチェス問題でスキルを向上させましょう。各局面を解決するための最良の手順を見つけてください。",
+      "newProblem": "新しい問題",
+      "loading": "読み込み中...",
+      "status": {
+        "white": "白",
+        "black": "黒"
+      },
+      "info": {
+        "level": "レベル",
+        "turn": "ターン",
+        "moves": "手数"
+      },
+      "turnIndicator": {
+        "white": "白の手番",
+        "black": "黒の手番"
+      },
+      "loadingProblem": "問題を読み込み中...",
+      "messages": {
+        "notYourTurn": "あなたの手番ではありません。",
+        "wrongMove": "間違った手です。もう一度試してください！",
+        "invalidMove": "無効な手です。",
+        "success": "おめでとうございます！問題を解決しました。",
+        "correctMove": "正しい手です。続けてください！"
+      },
+      "difficulty": {
+        "easy": "簡単な問題。最良の手を見つけてください。",
+        "medium": "中級の問題。注意深く分析してください。",
+        "hard": "難しい問題。計算を正確に行ってください。"
+      }
+    }
+  }

@@ -6,6 +6,8 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import enUS from './lang/en-US.json';
 import frFR from './lang/fr-FR.json';
 import itIT from './lang/it-IT.json';
+import zhCN from './lang/zh-CN.json';
+import jpJP from './lang/jp-JP.json';
 
 i18n
   .use(LanguageDetector)
@@ -14,7 +16,9 @@ i18n
     resources: {
       en: { translation: enUS },
       fr: { translation: frFR },
-      it: { translation: itIT }
+      it: { translation: itIT },
+      zh: { translation: zhCN },
+      jp: { translation: jpJP }
     },
     fallbackLng: 'en',
     detection: {

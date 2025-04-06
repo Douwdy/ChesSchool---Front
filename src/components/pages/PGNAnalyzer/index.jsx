@@ -107,13 +107,6 @@ const CompactEvaluationChart = ({ gameAnalysis, moves, onSelectMove, t }) => {
           </div>
         );
       })}
-      
-      {/* Marques numériques */}
-      <div className="chart-markers">
-        <div className="marker positive">+1.0</div>
-        <div className="marker zero">0.0</div>
-        <div className="marker negative">-1.0</div>
-      </div>
     </div>
   );
 };
@@ -815,8 +808,8 @@ const PGNAnalyzer = () => {
                         <div className="board-with-eval">
                             <div className="evaluation-bar">
                                 <div className="eval-container">
-                                    <div className="white-eval" style={{ height: whiteHeight }}></div>
-                                    <div className="black-eval" style={{ height: blackHeight }}></div>
+                                    <div className="white-eval" style={{ height: blackHeight }}></div>
+                                    <div className="black-eval" style={{ height: whiteHeight }}></div>
                                     <div 
                                         className="eval-value" 
                                         style={{ top: `${evalPos}%` }}

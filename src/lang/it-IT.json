@@ -1,194 +1,194 @@
 {
-    "header": {
-      "home": "Home",
-      "playChess": "Gioca a scacchi",
-      "gameAnalysis": "Analisi partita",
-      "training": "Allenamento",
-      "openings": "Aperture"
+  "header": {
+    "home": "Home",
+    "playChess": "Gioca a scacchi",
+    "gameAnalysis": "Analisi partita",
+    "training": "Allenamento",
+    "openings": "Aperture"
+  },
+  "footer": {
+    "contact": "Contatti",
+    "copyright": "Tutti i diritti riservati."
+  },
+  "landing": {
+    "hero": {
+      "title": "ChesSchool",
+      "description": "Impara, gioca e padroneggia l'arte degli scacchi. Una piattaforma completa per migliorare le tue abilità, analizzare le tue partite e progredire al tuo ritmo."
     },
-    "footer": {
-      "contact": "Contatti",
-      "copyright": "Tutti i diritti riservati."
+    "cta": {
+      "train": "Allenati ora",
+      "explore": "Esplora le aperture"
     },
-    "landing": {
-      "hero": {
-        "title": "Chess School",
-        "description": "Impara, gioca e padroneggia l'arte degli scacchi. Una piattaforma completa per migliorare le tue abilità, analizzare le tue partite e progredire al tuo ritmo."
+    "features": {
+      "title": "Le nostre funzionalità",
+      "personalizedTraining": {
+        "title": "Allenamento personalizzato",
+        "description": "Migliora le tue abilità con esercizi tattici adattati al tuo livello. Problemi vari per progredire rapidamente ed efficacemente.",
+        "cta": "Inizia l'allenamento →"
       },
-      "cta": {
-        "train": "Allenati ora",
-        "explore": "Esplora le aperture"
+      "localGames": {
+        "title": "Partite locali",
+        "description": "Gioca contro un amico sullo stesso dispositivo. Perfetto per praticare, insegnare o semplicemente goderti una partita a scacchi in qualsiasi momento.",
+        "cta": "Gioca ora →"
       },
-      "features": {
-        "title": "Le nostre funzionalità",
-        "personalizedTraining": {
-          "title": "Allenamento personalizzato",
-          "description": "Migliora le tue abilità con esercizi tattici adattati al tuo livello. Problemi vari per progredire rapidamente ed efficacemente.",
-          "cta": "Inizia l'allenamento →"
-        },
-        "localGames": {
-          "title": "Partite locali",
-          "description": "Gioca contro un amico sullo stesso dispositivo. Perfetto per praticare, insegnare o semplicemente goderti una partita a scacchi in qualsiasi momento.",
-          "cta": "Gioca ora →"
-        },
-        "gameAnalysis": {
-          "title": "Analisi delle partite",
-          "description": "Importa le tue partite in formato PGN e analizzale in profondità. Identifica i tuoi errori e scopri le migliori alternative per ogni posizione.",
-          "cta": "Analizza una partita →"
-        },
-        "openings": {
-          "title": "Biblioteca delle aperture",
-          "description": "Esplora la nostra vasta collezione di aperture di scacchi. Impara i principi, le varianti e le strategie associate a ciascuna apertura.",
-          "cta": "Esplora le aperture →"
-        }
+      "gameAnalysis": {
+        "title": "Analisi delle partite",
+        "description": "Importa le tue partite in formato PGN e analizzale in profondità. Identifica i tuoi errori e scopri le migliori alternative per ogni posizione.",
+        "cta": "Analizza una partita →"
       },
-      "getStarted": {
-        "title": "Pronto a diventare un giocatore di scacchi migliore?",
-        "description": "Unisciti alla nostra comunità di giocatori appassionati e inizia il tuo percorso verso la padronanza degli scacchi. Tutti gli strumenti di cui hai bisogno sono a portata di mano.",
-        "cta": "Inizia ora"
+      "openings": {
+        "title": "Biblioteca di aperture",
+        "description": "Esplora la nostra vasta collezione di aperture di scacchi. Impara i principi, le varianti e le strategie associate a ogni apertura.",
+        "cta": "Esplora le aperture →"
       }
     },
-    "localGame": {
-      "title": "Partita locale",
-      "description": "Gioca a scacchi sullo stesso dispositivo. Il bianco inizia, poi i giocatori si alternano. Sposta i pezzi trascinandoli nella casella desiderata.",
-      "controls": {
-        "newGame": "Nuova partita",
-        "flipBoard": "Capovolgi la scacchiera"
-      },
-      "status": {
-        "header": "Stato della partita",
-        "turn": "Tocca al",
-        "white": "bianco",
-        "black": "nero",
-        "movesPlayed": "Mosse giocate",
-        "capturedPieces": "Pezzi catturati",
-        "whites": "bianchi",
-        "blacks": "neri"
-      },
-      "history": {
-        "title": "Cronologia delle mosse",
-        "noMoves": "Nessuna mossa giocata."
-      },
-      "messages": {
-        "invalidMove": "Mossa non valida: da {from} a {to}",
-        "checkmate": "Scacco matto! {winner} vincono.",
-        "stalemate": "Stallo! La partita è patta.",
-        "threefold": "Patta per tripla ripetizione.",
-        "insufficient": "Patta per materiale insufficiente.",
-        "draw": "Partita patta.",
-        "check": "Scacco al {king}!",
-        "whiteWins": "I bianchi",
-        "blackWins": "I neri",
-        "whiteKing": "re bianco",
-        "blackKing": "re nero",
-        "resetError": "Errore durante il reset:"
-      }
+    "getStarted": {
+      "title": "Pronto a diventare un giocatore di scacchi migliore?",
+      "description": "Unisciti alla nostra comunità di giocatori appassionati e inizia il tuo percorso verso la maestria degli scacchi. Tutti gli strumenti di cui hai bisogno sono a portata di mano.",
+      "cta": "Inizia ora"
+    }
+  },
+  "localGame": {
+    "title": "Partita locale",
+    "description": "Gioca a scacchi sullo stesso dispositivo. Il bianco inizia, poi i giocatori si alternano. Muovi i pezzi trascinandoli nella casella desiderata.",
+    "controls": {
+      "newGame": "Nuova partita",
+      "flipBoard": "Ruota scacchiera"
     },
-    "notFound": {
-      "title": "404",
-      "subtitle": "Scacco matto!",
-      "description": "Ops! Questa pagina è scomparsa come un pedone promosso a regina. Forse è stata catturata en passant?",
-      "backHome": "Torna alla home"
+    "status": {
+      "header": "Stato della partita",
+      "turn": "Tocca al",
+      "white": "bianco",
+      "black": "nero",
+      "movesPlayed": "Mosse giocate",
+      "capturedPieces": "Pezzi catturati",
+      "whites": "bianchi",
+      "blacks": "neri"
     },
-    "openings": {
-      "title": "Seleziona un'apertura",
-      "selectPlaceholder": "Scegli un'apertura",
-      "about": "Informazioni su questa apertura",
-      "aboutText": " è un'apertura di scacchi che inizia con le mosse ",
-      "instructions": "Naviga con i pulsanti sotto la scacchiera per vedere la sequenza dell'apertura.",
-      "welcome": {
-        "title": "Benvenuto nell'esploratore di aperture",
-        "description": "Seleziona un'apertura dall'elenco per vederne le mosse."
-      },
-      "moves": "Mosse:"
+    "history": {
+      "title": "Cronologia mosse",
+      "noMoves": "Nessuna mossa giocata."
     },
-    "pgnAnalyzer": {
-      "input": {
-        "title": "PGN",
-        "placeholder": "Incolla il tuo PGN qui...",
-        "analyze": "Analizza",
-        "loading": "Caricamento...",
-        "analyzing": "Analisi in corso..."
-      },
-      "alternatives": {
-        "title": "Alternative",
-        "noAlternatives": "Seleziona una mossa per vedere le sue alternative",
-        "notAvailable": "Nessuna alternativa disponibile per questa mossa",
-        "alternativeTo": "Alternative alla mossa"
-      },
-      "player": {
-        "turn": "Turno di",
-        "move": "Mossa"
-      },
-      "tabs": {
-        "moves": "Mosse",
-        "stats": "Statistiche",
-        "legend": "Legenda"
-      },
-      "navigation": {
-        "previous": "← Precedente",
-        "next": "Successivo →"
-      },
-      "stats": {
-        "noStats": "Nessuna statistica disponibile. Analizza prima una partita.",
-        "accuracy": "Precisione",
-        "moveQuality": {
-          "excellent": "Eccellenti (!)",
-          "good": "Buone mosse",
-          "inaccuracy": "Imprecisioni (⟳)",
-          "mistake": "Errori (?)",
-          "blunder": "Sviste (??)",
-          "total": "Totale mosse"
-        },
-        "analysis": {
-          "whiteSuperiority": "Il Bianco ha giocato con precisione nettamente superiore.",
-          "blackSuperiority": "Il Nero ha giocato con precisione nettamente superiore.",
-          "equal": "La partita è stata giocata con precisione simile da entrambe le parti.",
-          "whiteBlunders": "Il Bianco ha commesso più sviste critiche ({count}).",
-          "blackBlunders": "Il Nero ha commesso più sviste critiche ({count})."
-        }
-      },
-      "legend": {
-        "title": "Legenda delle mosse",
-        "excellent": "Mossa eccellente (!) - Differenza di 0-30 centipedoni",
-        "good": "Buona mossa - Differenza di 31-90 centipedoni",
-        "inaccuracy": "Imprecisione (⟳) - Differenza di 91-200 centipedoni",
-        "mistake": "Errore (?) - Differenza di 201-500 centipedoni",
-        "blunder": "Svista (??) - Differenza di più di 500 centipedoni"
-      },
-      "versus": "vs",
-      "result": "Risultato:"
+    "messages": {
+      "invalidMove": "Mossa non valida.",
+      "checkmate": "Scacco matto!",
+      "stalemate": "Stallo! La partita è patta.",
+      "threefold": "Patta per tripla ripetizione.",
+      "insufficient": "Patta per materiale insufficiente.",
+      "draw": "Partita patta.",
+      "check": "Scacco!",
+      "whiteWins": "Il Bianco",
+      "blackWins": "Il Nero",
+      "whiteKing": "re bianco",
+      "blackKing": "re nero",
+      "resetError": "Errore durante il reset:"
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "subtitle": "Scacco matto!",
+    "description": "Oops! Questa pagina è scomparsa come un pedone promosso a regina. Forse è stata catturata en passant?",
+    "backHome": "Ritorna alla casa di partenza"
+  },
+  "openings": {
+    "title": "Seleziona un'apertura",
+    "selectPlaceholder": "Scegli un'apertura",
+    "about": "Informazioni su questa apertura",
+    "aboutText": " è un'apertura di scacchi che inizia con le mosse ",
+    "instructions": "Naviga con i pulsanti sotto la scacchiera per vedere la sequenza dell'apertura.",
+    "welcome": {
+      "title": "Benvenuto nell'esploratore di aperture",
+      "description": "Seleziona un'apertura dalla lista per vederne le mosse."
     },
-    "training": {
-      "title": "Problema tattico",
-      "description": "Migliora le tue abilità con problemi di scacchi generati casualmente. Trova la migliore sequenza di mosse per risolvere ogni posizione.",
-      "newProblem": "Nuovo problema",
+    "moves": "Mosse:"
+  },
+  "pgnAnalyzer": {
+    "input": {
+      "title": "PGN",
+      "placeholder": "Incolla qui il tuo PGN...",
+      "analyze": "Analizza",
       "loading": "Caricamento...",
-      "status": {
-        "white": "Bianchi",
-        "black": "Neri"
+      "analyzing": "Analisi in corso..."
+    },
+    "alternatives": {
+      "title": "Alternative",
+      "noAlternatives": "Seleziona una mossa per vedere le alternative",
+      "notAvailable": "Nessuna alternativa disponibile per questa mossa",
+      "alternativeTo": "Alternative alla mossa"
+    },
+    "player": {
+      "turn": "Turno di",
+      "move": "Mossa"
+    },
+    "tabs": {
+      "moves": "Mosse",
+      "stats": "Statistiche",
+      "legend": "Legenda"
+    },
+    "navigation": {
+      "previous": "← Precedente",
+      "next": "Successivo →"
+    },
+    "stats": {
+      "noStats": "Nessuna statistica disponibile. Analizza prima una partita.",
+      "accuracy": "Precisione",
+      "moveQuality": {
+        "excellent": "Eccellenti (!)",
+        "good": "Buone mosse",
+        "inaccuracy": "Imprecisioni (⟳)",
+        "mistake": "Errori (?)",
+        "blunder": "Sviste (??)",
+        "total": "Totale mosse"
       },
-      "info": {
-        "level": "Livello",
-        "turn": "Turno",
-        "moves": "Mosse"
-      },
-      "turnIndicator": {
-        "white": "Tocca al Bianco",
-        "black": "Tocca al Nero"
-      },
-      "loadingProblem": "Caricamento del problema...",
-      "messages": {
-        "notYourTurn": "Non è il tuo turno.",
-        "wrongMove": "Mossa errata. Riprova!",
-        "invalidMove": "Mossa non valida: da {from} a {to}",
-        "success": "Congratulazioni! Hai risolto il problema.",
-        "correctMove": "Mossa corretta. Continua!"
-      },
-      "difficulty": {
-        "easy": "Problema facile. Trova la mossa migliore.",
-        "medium": "Problema intermedio. Analizza attentamente.",
-        "hard": "Problema difficile. Sii preciso nei tuoi calcoli."
+      "analysis": {
+        "whiteSuperiority": "Il Bianco ha giocato con precisione nettamente superiore.",
+        "blackSuperiority": "Il Nero ha giocato con precisione nettamente superiore.",
+        "equal": "La partita è stata giocata con precisione simile da entrambe le parti.",
+        "whiteBlunders": "Il Bianco ha commesso più sviste critiche.",
+        "blackBlunders": "Il Nero ha commesso più sviste critiche."
       }
+    },
+    "legend": {
+      "title": "Legenda delle mosse",
+      "excellent": "Mossa eccellente (!) - Differenza di 0-30 centipedoni",
+      "good": "Buona mossa - Differenza di 31-90 centipedoni",
+      "inaccuracy": "Imprecisione (⟳) - Differenza di 91-200 centipedoni",
+      "mistake": "Errore (?) - Differenza di 201-500 centipedoni",
+      "blunder": "Svista (??) - Differenza di oltre 500 centipedoni"
+    },
+    "versus": "vs",
+    "result": "Risultato:"
+  },
+  "training": {
+    "title": "Problema tattico",
+    "description": "Migliora le tue abilità con problemi di scacchi generati casualmente. Trova la migliore sequenza di mosse per risolvere ogni posizione.",
+    "newProblem": "Nuovo problema",
+    "loading": "Caricamento...",
+    "status": {
+      "white": "Bianco",
+      "black": "Nero"
+    },
+    "info": {
+      "level": "Livello",
+      "turn": "Turno",
+      "moves": "Mosse"
+    },
+    "turnIndicator": {
+      "white": "Tocca al Bianco",
+      "black": "Tocca al Nero"
+    },
+    "loadingProblem": "Caricamento del problema...",
+    "messages": {
+      "notYourTurn": "Non è il tuo turno di giocare.",
+      "wrongMove": "Mossa errata. Riprova!",
+      "invalidMove": "Mossa non valida.",
+      "success": "Complimenti! Hai risolto il problema.",
+      "correctMove": "Mossa corretta. Continua!"
+    },
+    "difficulty": {
+      "easy": "Problema facile. Trova la migliore mossa.",
+      "medium": "Problema intermedio. Analizza attentamente.",
+      "hard": "Problema difficile. Sii preciso nei tuoi calcoli."
     }
   }
+}

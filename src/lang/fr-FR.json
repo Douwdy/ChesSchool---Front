@@ -12,7 +12,7 @@
     },
     "landing": {
       "hero": {
-        "title": "Chess School",
+        "title": "ChesSchool",
         "description": "Apprenez, jouez et maîtrisez l'art des échecs. Une plateforme complète pour améliorer vos compétences, analyser vos parties et progresser à votre rythme."
       },
       "cta": {
@@ -70,13 +70,13 @@
         "noMoves": "Aucun coup joué."
       },
       "messages": {
-        "invalidMove": "Coup invalide : de {from} à {to}",
-        "checkmate": "Échec et mat ! {winner} gagnent.",
+        "invalidMove": "Coup invalide.",
+        "checkmate": "Échec et mat !",
         "stalemate": "Pat ! La partie est nulle.",
         "threefold": "Nulle par triple répétition.",
         "insufficient": "Nulle par insuffisance de matériel.",
         "draw": "Partie nulle.",
-        "check": "Échec au {king} !",
+        "check": "Échec !",
         "whiteWins": "Les blancs",
         "blackWins": "Les noirs",
         "whiteKing": "roi blanc",
@@ -144,8 +144,8 @@
           "whiteSuperiority": "Les Blancs ont joué avec une précision nettement supérieure.",
           "blackSuperiority": "Les Noirs ont joué avec une précision nettement supérieure.",
           "equal": "La partie a été jouée avec une précision similaire des deux côtés.",
-          "whiteBlunders": "Les Blancs ont commis plus de gaffes critiques ({count}).",
-          "blackBlunders": "Les Noirs ont commis plus de gaffes critiques ({count})."
+          "whiteBlunders": "Les Blancs ont commis plus de gaffes critiques.",
+          "blackBlunders": "Les Noirs ont commis plus de gaffes critiques."
         }
       },
       "legend": {
@@ -181,7 +181,7 @@
       "messages": {
         "notYourTurn": "Ce n'est pas à vous de jouer.",
         "wrongMove": "Coup incorrect. Essayez encore !",
-        "invalidMove": "Coup invalide : de {from} à {to}",
+        "invalidMove": "Coup invalide.",
         "success": "Bravo ! Vous avez résolu le problème.",
         "correctMove": "Coup correct. Continuez !"
       },

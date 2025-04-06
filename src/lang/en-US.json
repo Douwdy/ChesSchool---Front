@@ -1,194 +1,194 @@
 {
-    "header": {
-      "home": "Home",
-      "playChess": "Play Chess",
-      "gameAnalysis": "Game Analysis",
-      "training": "Training",
-      "openings": "Openings"
+  "header": {
+    "home": "Home",
+    "playChess": "Play Chess",
+    "gameAnalysis": "Game Analysis",
+    "training": "Training",
+    "openings": "Openings"
+  },
+  "footer": {
+    "contact": "Contact",
+    "copyright": "All rights reserved."
+  },
+  "landing": {
+    "hero": {
+      "title": "ChesSchool",
+      "description": "Learn, play and master the art of chess. A complete platform to improve your skills, analyze your games and progress at your own pace."
     },
-    "footer": {
-      "contact": "Contact",
-      "copyright": "All rights reserved."
+    "cta": {
+      "train": "Train now",
+      "explore": "Explore openings"
     },
-    "landing": {
-      "hero": {
-        "title": "Chess School",
-        "description": "Learn, play, and master the art of chess. A complete platform to improve your skills, analyze your games, and progress at your own pace."
+    "features": {
+      "title": "Our features",
+      "personalizedTraining": {
+        "title": "Personalized Training",
+        "description": "Improve your skills with tactical exercises adapted to your level. Various problems to progress quickly and efficiently.",
+        "cta": "Start training →"
       },
-      "cta": {
-        "train": "Train now",
-        "explore": "Explore openings"
+      "localGames": {
+        "title": "Local Games",
+        "description": "Play against a friend on the same device. Perfect for practicing, teaching or simply enjoying a chess game at any time.",
+        "cta": "Play now →"
       },
-      "features": {
-        "title": "Our features",
-        "personalizedTraining": {
-          "title": "Personalized training",
-          "description": "Improve your skills with tactical exercises adapted to your level. Various problems to progress quickly and effectively.",
-          "cta": "Start training →"
-        },
-        "localGames": {
-          "title": "Local games",
-          "description": "Play against a friend on the same device. Perfect for practice, teaching, or simply enjoying a game of chess anytime.",
-          "cta": "Play now →"
-        },
-        "gameAnalysis": {
-          "title": "Game analysis",
-          "description": "Import your games in PGN format and analyze them in depth. Identify your mistakes and discover the best alternatives for each position.",
-          "cta": "Analyze a game →"
-        },
-        "openings": {
-          "title": "Opening library",
-          "description": "Explore our large collection of chess openings. Learn the principles, variations, and strategies associated with each opening.",
-          "cta": "Explore openings →"
-        }
+      "gameAnalysis": {
+        "title": "Game Analysis",
+        "description": "Import your games in PGN format and analyze them in depth. Identify your mistakes and discover the best alternatives for each position.",
+        "cta": "Analyze a game →"
       },
-      "getStarted": {
-        "title": "Ready to become a better chess player?",
-        "description": "Join our community of passionate players and start your journey toward chess mastery. All the tools you need are at your fingertips.",
-        "cta": "Get started now"
+      "openings": {
+        "title": "Openings Library",
+        "description": "Explore our large collection of chess openings. Learn the principles, variations and strategies associated with each opening.",
+        "cta": "Explore openings →"
       }
     },
-    "localGame": {
-      "title": "Local game",
-      "description": "Play chess on the same device. White moves first, then players alternate. Move pieces by dragging them to the desired square.",
-      "controls": {
-        "newGame": "New game",
-        "flipBoard": "Flip board"
-      },
-      "status": {
-        "header": "Game status",
-        "turn": "Turn",
-        "white": "white",
-        "black": "black",
-        "movesPlayed": "Moves played",
-        "capturedPieces": "Captured pieces",
-        "whites": "white",
-        "blacks": "black"
-      },
-      "history": {
-        "title": "Move history",
-        "noMoves": "No moves played."
-      },
-      "messages": {
-        "invalidMove": "Invalid move: from {from} to {to}",
-        "checkmate": "Checkmate! {winner} wins.",
-        "stalemate": "Stalemate! The game is a draw.",
-        "threefold": "Draw by threefold repetition.",
-        "insufficient": "Draw by insufficient material.",
-        "draw": "Game drawn.",
-        "check": "Check to the {king}!",
-        "whiteWins": "White",
-        "blackWins": "Black",
-        "whiteKing": "white king",
-        "blackKing": "black king",
-        "resetError": "Error during reset:"
-      }
+    "getStarted": {
+      "title": "Ready to become a better chess player?",
+      "description": "Join our community of passionate players and begin your journey towards chess mastery. All the tools you need are at your fingertips.",
+      "cta": "Get started now"
+    }
+  },
+  "localGame": {
+    "title": "Local Game",
+    "description": "Play chess on the same device. White starts, then players alternate. Move pieces by dragging them to the desired square.",
+    "controls": {
+      "newGame": "New game",
+      "flipBoard": "Flip board"
     },
-    "notFound": {
-      "title": "404",
-      "subtitle": "Checkmate!",
-      "description": "Oops! This page has disappeared like a pawn promoted to queen. Perhaps it was captured en passant?",
-      "backHome": "Back to home"
+    "status": {
+      "header": "Game status",
+      "turn": "Turn",
+      "white": "white",
+      "black": "black",
+      "movesPlayed": "Moves played",
+      "capturedPieces": "Captured pieces",
+      "whites": "white",
+      "blacks": "black"
     },
-    "openings": {
-      "title": "Select an opening",
-      "selectPlaceholder": "Choose an opening",
-      "about": "About this opening",
-      "aboutText": " is a chess opening that begins with the moves ",
-      "instructions": "Navigate with the buttons below the chessboard to see the opening sequence.",
-      "welcome": {
-        "title": "Welcome to the opening explorer",
-        "description": "Select an opening from the list to see its moves."
-      },
-      "moves": "Moves:"
+    "history": {
+      "title": "Move history",
+      "noMoves": "No moves played."
     },
-    "pgnAnalyzer": {
-      "input": {
-        "title": "PGN",
-        "placeholder": "Paste your PGN here...",
-        "analyze": "Analyze",
-        "loading": "Loading...",
-        "analyzing": "Analyzing..."
-      },
-      "alternatives": {
-        "title": "Alternatives",
-        "noAlternatives": "Select a move to see its alternatives",
-        "notAvailable": "No alternatives available for this move",
-        "alternativeTo": "Alternatives to move"
-      },
-      "player": {
-        "turn": "Turn",
-        "move": "Move"
-      },
-      "tabs": {
-        "moves": "Moves",
-        "stats": "Statistics",
-        "legend": "Legend"
-      },
-      "navigation": {
-        "previous": "← Previous",
-        "next": "Next →"
-      },
-      "stats": {
-        "noStats": "No statistics available. Analyze a game first.",
-        "accuracy": "Accuracy",
-        "moveQuality": {
-          "excellent": "Excellent (!)",
-          "good": "Good moves",
-          "inaccuracy": "Inaccuracies (⟳)",
-          "mistake": "Mistakes (?)",
-          "blunder": "Blunders (??)",
-          "total": "Total moves"
-        },
-        "analysis": {
-          "whiteSuperiority": "White played with significantly higher accuracy.",
-          "blackSuperiority": "Black played with significantly higher accuracy.",
-          "equal": "The game was played with similar accuracy on both sides.",
-          "whiteBlunders": "White made more critical blunders ({count}).",
-          "blackBlunders": "Black made more critical blunders ({count})."
-        }
-      },
-      "legend": {
-        "title": "Move legend",
-        "excellent": "Excellent move (!) - Difference of 0-30 centipawns",
-        "good": "Good move - Difference of 31-90 centipawns",
-        "inaccuracy": "Inaccuracy (⟳) - Difference of 91-200 centipawns",
-        "mistake": "Mistake (?) - Difference of 201-500 centipawns",
-        "blunder": "Blunder (??) - Difference of more than 500 centipawns"
-      },
-      "versus": "vs",
-      "result": "Result:"
+    "messages": {
+      "invalidMove": "Invalid move.",
+      "checkmate": "Checkmate!",
+      "stalemate": "Stalemate! The game is a draw.",
+      "threefold": "Draw by threefold repetition.",
+      "insufficient": "Draw by insufficient material.",
+      "draw": "Game drawn.",
+      "check": "Check!",
+      "whiteWins": "White",
+      "blackWins": "Black",
+      "whiteKing": "white king",
+      "blackKing": "black king",
+      "resetError": "Error during reset:"
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "subtitle": "Checkmate!",
+    "description": "Oops! This page has disappeared like a pawn promoted to queen. Maybe it was captured en passant?",
+    "backHome": "Back to home square"
+  },
+  "openings": {
+    "title": "Select an opening",
+    "selectPlaceholder": "Choose an opening",
+    "about": "About this opening",
+    "aboutText": " is a chess opening that begins with the moves ",
+    "instructions": "Navigate with the buttons below the chessboard to see the opening sequence.",
+    "welcome": {
+      "title": "Welcome to the openings explorer",
+      "description": "Select an opening from the list to see its moves."
     },
-    "training": {
-      "title": "Tactical problem",
-      "description": "Improve your skills with randomly generated chess problems. Find the best sequence of moves to solve each position.",
-      "newProblem": "New problem",
+    "moves": "Moves:"
+  },
+  "pgnAnalyzer": {
+    "input": {
+      "title": "PGN",
+      "placeholder": "Paste your PGN here...",
+      "analyze": "Analyze",
       "loading": "Loading...",
-      "status": {
-        "white": "White",
-        "black": "Black"
+      "analyzing": "Analyzing..."
+    },
+    "alternatives": {
+      "title": "Alternatives",
+      "noAlternatives": "Select a move to see alternatives",
+      "notAvailable": "No alternatives available for this move",
+      "alternativeTo": "Alternatives to move"
+    },
+    "player": {
+      "turn": "Turn",
+      "move": "Move"
+    },
+    "tabs": {
+      "moves": "Moves",
+      "stats": "Statistics",
+      "legend": "Legend"
+    },
+    "navigation": {
+      "previous": "← Previous",
+      "next": "Next →"
+    },
+    "stats": {
+      "noStats": "No statistics available. Analyze a game first.",
+      "accuracy": "Accuracy",
+      "moveQuality": {
+        "excellent": "Excellent (!)",
+        "good": "Good moves",
+        "inaccuracy": "Inaccuracies (⟳)",
+        "mistake": "Mistakes (?)",
+        "blunder": "Blunders (??)",
+        "total": "Total moves"
       },
-      "info": {
-        "level": "Level",
-        "turn": "Turn",
-        "moves": "Moves"
-      },
-      "turnIndicator": {
-        "white": "White to move",
-        "black": "Black to move"
-      },
-      "loadingProblem": "Loading problem...",
-      "messages": {
-        "notYourTurn": "It's not your turn to move.",
-        "wrongMove": "Wrong move. Try again!",
-        "invalidMove": "Invalid move: from {from} to {to}",
-        "success": "Congratulations! You solved the problem.",
-        "correctMove": "Correct move. Keep going!"
-      },
-      "difficulty": {
-        "easy": "Easy problem. Find the best move.",
-        "medium": "Intermediate problem. Analyze carefully.",
-        "hard": "Difficult problem. Be precise in your calculations."
+      "analysis": {
+        "whiteSuperiority": "White played with significantly higher accuracy.",
+        "blackSuperiority": "Black played with significantly higher accuracy.",
+        "equal": "The game was played with similar accuracy on both sides.",
+        "whiteBlunders": "White made more critical blunders.",
+        "blackBlunders": "Black made more critical blunders."
       }
+    },
+    "legend": {
+      "title": "Move legend",
+      "excellent": "Excellent move (!) - Difference of 0-30 centipawns",
+      "good": "Good move - Difference of 31-90 centipawns",
+      "inaccuracy": "Inaccuracy (⟳) - Difference of 91-200 centipawns",
+      "mistake": "Mistake (?) - Difference of 201-500 centipawns",
+      "blunder": "Blunder (??) - Difference of over 500 centipawns"
+    },
+    "versus": "vs",
+    "result": "Result:"
+  },
+  "training": {
+    "title": "Tactical Problem",
+    "description": "Improve your skills with randomly generated chess problems. Find the best sequence of moves to solve each position.",
+    "newProblem": "New problem",
+    "loading": "Loading...",
+    "status": {
+      "white": "White",
+      "black": "Black"
+    },
+    "info": {
+      "level": "Level",
+      "turn": "Turn",
+      "moves": "Moves"
+    },
+    "turnIndicator": {
+      "white": "White to move",
+      "black": "Black to move"
+    },
+    "loadingProblem": "Loading problem...",
+    "messages": {
+      "notYourTurn": "It's not your turn to play.",
+      "wrongMove": "Wrong move. Try again!",
+      "invalidMove": "Invalid move.",
+      "success": "Congratulations! You solved the problem.",
+      "correctMove": "Correct move. Keep going!"
+    },
+    "difficulty": {
+      "easy": "Easy problem. Find the best move.",
+      "medium": "Intermediate problem. Analyze carefully.",
+      "hard": "Difficult problem. Be precise in your calculations."
     }
   }
+}

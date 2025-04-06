@@ -1,0 +1,194 @@
+{
+    "header": {
+      "home": "首页",
+      "playChess": "下棋",
+      "gameAnalysis": "对局分析",
+      "training": "训练",
+      "openings": "开局库"
+    },
+    "footer": {
+      "contact": "联系我们",
+      "copyright": "保留所有权利。"
+    },
+    "landing": {
+      "hero": {
+        "title": "ChesSchool",
+        "description": "学习、对弈和掌握国际象棋的艺术。一个完整的平台，帮助您提高技能，分析对局并按照自己的节奏进步。"
+      },
+      "cta": {
+        "train": "立即训练",
+        "explore": "探索开局"
+      },
+      "features": {
+        "title": "我们的功能",
+        "personalizedTraining": {
+          "title": "个性化训练",
+          "description": "通过适合您水平的战术练习提高技能。各种各样的问题帮助您快速有效地进步。",
+          "cta": "开始训练 →"
+        },
+        "localGames": {
+          "title": "本地对弈",
+          "description": "在同一设备上与朋友对弈。完美适合练习、教学或随时享受一盘棋局的乐趣。",
+          "cta": "立即下棋 →"
+        },
+        "gameAnalysis": {
+          "title": "对局分析",
+          "description": "导入PGN格式的对局并深入分析。识别您的错误并发现每个局面的最佳选择。",
+          "cta": "分析对局 →"
+        },
+        "openings": {
+          "title": "开局库",
+          "description": "探索我们丰富的国际象棋开局库。学习与每种开局相关的原则、变体和策略。",
+          "cta": "探索开局 →"
+        }
+      },
+      "getStarted": {
+        "title": "准备成为更好的棋手？",
+        "description": "加入我们热情棋手的社区，开始您的国际象棋精通之旅。您需要的所有工具都触手可及。",
+        "cta": "立即开始"
+      }
+    },
+    "localGame": {
+      "title": "本地对弈",
+      "description": "在同一设备上下棋。白方先行，然后玩家交替走子。通过拖动棋子到目标方格移动。",
+      "controls": {
+        "newGame": "新对局",
+        "flipBoard": "翻转棋盘"
+      },
+      "status": {
+        "header": "对局状态",
+        "turn": "轮到",
+        "white": "白方",
+        "black": "黑方",
+        "movesPlayed": "已走步数",
+        "capturedPieces": "已吃子",
+        "whites": "白方",
+        "blacks": "黑方"
+      },
+      "history": {
+        "title": "走子历史",
+        "noMoves": "尚未走子。"
+      },
+      "messages": {
+        "invalidMove": "无效走法。",
+        "checkmate": "将杀！",
+        "stalemate": "逼和！对局和棋。",
+        "threefold": "三次重复和棋。",
+        "insufficient": "子力不足和棋。",
+        "draw": "对局和棋。",
+        "check": "将军！",
+        "whiteWins": "白方",
+        "blackWins": "黑方",
+        "whiteKing": "白王",
+        "blackKing": "黑王",
+        "resetError": "重置时出错："
+      }
+    },
+    "notFound": {
+      "title": "404",
+      "subtitle": "将杀！",
+      "description": "哎呀！此页面像升变为后的兵一样消失了。也许它被吃过路兵了？",
+      "backHome": "返回首页"
+    },
+    "openings": {
+      "title": "选择一个开局",
+      "selectPlaceholder": "选择开局",
+      "about": "关于此开局",
+      "aboutText": " 是一个以走法 ",
+      "instructions": "使用棋盘下方的按钮浏览开局序列。",
+      "welcome": {
+        "title": "欢迎使用开局浏览器",
+        "description": "从列表中选择一个开局以查看其走法。"
+      },
+      "moves": "走法："
+    },
+    "pgnAnalyzer": {
+      "input": {
+        "title": "PGN",
+        "placeholder": "在此粘贴您的PGN...",
+        "analyze": "分析",
+        "loading": "加载中...",
+        "analyzing": "正在分析..."
+      },
+      "alternatives": {
+        "title": "替代走法",
+        "noAlternatives": "选择一个走法以查看替代选择",
+        "notAvailable": "此走法没有可用的替代选择",
+        "alternativeTo": "替代走法"
+      },
+      "player": {
+        "turn": "轮到",
+        "move": "走子"
+      },
+      "tabs": {
+        "moves": "走法",
+        "stats": "统计",
+        "legend": "图例"
+      },
+      "navigation": {
+        "previous": "← 上一步",
+        "next": "下一步 →"
+      },
+      "stats": {
+        "noStats": "暂无统计数据。请先分析一盘棋局。",
+        "accuracy": "准确度",
+        "moveQuality": {
+          "excellent": "优秀走法 (!)",
+          "good": "良好走法",
+          "inaccuracy": "不精确 (⟳)",
+          "mistake": "错误 (?)",
+          "blunder": "严重失误 (??)",
+          "total": "总步数"
+        },
+        "analysis": {
+          "whiteSuperiority": "白方走子准确度明显更高。",
+          "blackSuperiority": "黑方走子准确度明显更高。",
+          "equal": "双方走子准确度相似。",
+          "whiteBlunders": "白方犯了更多严重错误。",
+          "blackBlunders": "黑方犯了更多严重错误。"
+        }
+      },
+      "legend": {
+        "title": "走法图例",
+        "excellent": "优秀走法 (!) - 差距0-30厘兵",
+        "good": "良好走法 - 差距31-90厘兵",
+        "inaccuracy": "不精确 (⟳) - 差距91-200厘兵",
+        "mistake": "错误 (?) - 差距201-500厘兵",
+        "blunder": "严重失误 (??) - 差距超过500厘兵"
+      },
+      "versus": "对阵",
+      "result": "结果："
+    },
+    "training": {
+      "title": "战术问题",
+      "description": "通过随机生成的国际象棋问题提高您的技能。找出解决每个局面的最佳走子序列。",
+      "newProblem": "新问题",
+      "loading": "加载中...",
+      "status": {
+        "white": "白方",
+        "black": "黑方"
+      },
+      "info": {
+        "level": "级别",
+        "turn": "轮次",
+        "moves": "走法"
+      },
+      "turnIndicator": {
+        "white": "白方走子",
+        "black": "黑方走子"
+      },
+      "loadingProblem": "正在加载问题...",
+      "messages": {
+        "notYourTurn": "现在不是您的回合。",
+        "wrongMove": "错误走法。请再试一次！",
+        "invalidMove": "无效走法。",
+        "success": "恭喜！您解决了这个问题。",
+        "correctMove": "正确走法。继续！"
+      },
+      "difficulty": {
+        "easy": "简单问题。找出最佳走法。",
+        "medium": "中级问题。仔细分析。",
+        "hard": "困难问题。计算需要精确。"
+      }
+    }
+  }

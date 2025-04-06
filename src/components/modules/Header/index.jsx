@@ -45,9 +45,11 @@ const Header = () => {
     // Obtenir le texte à afficher pour la langue actuelle
     const getCurrentLanguageLabel = () => {
         switch(i18n.language) {
-            case 'fr': return 'FR';
+            case 'en': return 'EN';
             case 'it': return 'IT';
-            default: return 'EN';
+            case 'zh': return 'ZH';
+            case 'jp': return 'JP';
+            default: return 'FR';
         }
     };
 
@@ -124,22 +126,34 @@ const Header = () => {
                         {isLanguageMenuOpen && (
                             <div className="header__language-menu">
                                 <button 
-                                    className={`header__language-option ${i18n.language === 'en' ? 'active' : ''}`}
-                                    onClick={() => changeLanguage('en')}
-                                >
-                                    English
-                                </button>
-                                <button 
                                     className={`header__language-option ${i18n.language === 'fr' ? 'active' : ''}`}
                                     onClick={() => changeLanguage('fr')}
                                 >
                                     Français
                                 </button>
                                 <button 
+                                    className={`header__language-option ${i18n.language === 'en' ? 'active' : ''}`}
+                                    onClick={() => changeLanguage('en')}
+                                >
+                                    English (BETA)
+                                </button>
+                                <button 
                                     className={`header__language-option ${i18n.language === 'it' ? 'active' : ''}`}
                                     onClick={() => changeLanguage('it')}
                                 >
-                                    Italiano
+                                    Italiano (BETA)
+                                </button>
+                                <button 
+                                    className={`header__language-option ${i18n.language === 'it' ? 'active' : ''}`}
+                                    onClick={() => changeLanguage('zh')}
+                                >
+                                    普通话 (BETA)
+                                </button>
+                                <button 
+                                    className={`header__language-option ${i18n.language === 'it' ? 'active' : ''}`}
+                                    onClick={() => changeLanguage('jp')}
+                                >
+                                    日本語 (BETA)
                                 </button>
                             </div>
                         )}
