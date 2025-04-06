@@ -19,13 +19,18 @@ i18n
       fr: { translation: frFR },
       it: { translation: itIT },
       zh: { translation: zhCN },
-      jp: { translation: jpJP },
+      ja: { translation: jpJP },
       hi: { translation: hiIN }
     },
     fallbackLng: 'fr',
     detection: {
-      order: ['localStorage', 'navigator'],
-      caches: ['localStorage']
+      order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
+      lookupQuerystring: 'lang',
+      lookupCookie: 'i18next',
+      lookupLocalStorage: 'i18nextLng',
+      caches: ['localStorage', 'cookie'],
+      cookieExpirationDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365), // 1 year
+      cookieDomain: window.location.hostname
     },
     interpolation: {
       escapeValue: false

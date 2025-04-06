@@ -45,14 +45,14 @@ const Header = () => {
     // Obtenir le texte à afficher pour la langue actuelle
     const getCurrentLanguageLabel = () => {
         switch(i18n.language) {
-            case 'en': return 'EN';
-            case 'it': return 'IT';
-            case 'zh': return 'ZH';
-            case 'jp': return 'JP';
-            case 'hi': return 'HI';
-            default: return 'FR';
+          case 'en': return 'English';
+          case 'it': return 'Italiano';
+          case 'zh': return '中文';
+          case 'ja': return '日本語';
+          case 'hi': return 'हिन्दी';
+          default: return 'Français';
         }
-    };
+      };
 
     return (
         <header className="header">
