@@ -49,6 +49,7 @@ const Header = () => {
             case 'it': return 'IT';
             case 'zh': return 'ZH';
             case 'jp': return 'JP';
+            case 'hi': return 'HI';
             default: return 'FR';
         }
     };
@@ -154,6 +155,12 @@ const Header = () => {
                                     onClick={() => changeLanguage('jp')}
                                 >
                                     日本語 (BETA)
+                                </button>
+                                <button 
+                                    className={`header__language-option ${i18n.language === 'it' ? 'active' : ''}`}
+                                    onClick={() => changeLanguage('hi')}
+                                >
+                                    हिन्दी (BETA)
                                 </button>
                             </div>
                         )}
