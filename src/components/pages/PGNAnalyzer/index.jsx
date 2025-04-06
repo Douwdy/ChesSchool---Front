@@ -5,6 +5,11 @@ import { parse } from 'pgn-parser';
 import { useTranslation } from 'react-i18next';
 import './index.scss';
 
+const CONFIG = {
+  showEvaluationBar: false,    // Activer/désactiver la barre d'évaluation
+  showEvaluationChart: false,  // Activer/désactiver le graphique d'évaluation
+};
+
 // Déplacez ces fonctions utilitaires à l'extérieur du composant principal
 // pour qu'elles soient accessibles partout
 const convertToNumeric = (evaluation) => {
@@ -94,7 +99,7 @@ const CompactEvaluationChart = ({ gameAnalysis, moves, onSelectMove, t }) => {
             key={idx}
             className="chart-bar"
             onClick={() => onSelectMove && onSelectMove(data.moveIndex)}
-            title={`${data.isWhite ? t('pgnAnalyzer.status.white') : t('pgnAnalyzer.status.black')}: ${data.san} (${formatEvaluation(data.evalValue)})`}
+            title={`${data.isWhite ? t('training.status.white') : t('training.status.black')}: ${data.san} (${formatEvaluation(data.evalValue)})`}
           >
             <div 
               className="bar-fill"
@@ -133,12 +138,12 @@ const CompactGameStats = ({ stats, gameMetadata, t }) => {
       {/* En-tête avec les précisions */}
       <div className="stats-header">
         <div className="player-column white">
-          <div className="player-name">{gameMetadata.white || t('pgnAnalyzer.status.white')}</div>
+          <div className="player-name">{gameMetadata.white || t('training.status.white')}</div>
           <div className="player-accuracy">{whiteAccuracy}%</div>
         </div>
         <div className="stat-label">{t('pgnAnalyzer.stats.accuracy')}</div>
         <div className="player-column black">
-        <div className="player-name">{gameMetadata.black || t('pgnAnalyzer.status.black')}</div>
+        <div className="player-name">{gameMetadata.black || t('training.status.black')}</div>
           <div className="player-accuracy">{blackAccuracy}%</div>
         </div>
       </div>
@@ -299,7 +304,6 @@ const PGNAnalyzer = () => {
             }
             
             const parsedGame = parsedGames[0];
-            console.log("Partie analysée:", parsedGame);
             
             // Convertir le tableau d'en-têtes en objet pour un accès plus facile
             const headersObject = {};
@@ -309,9 +313,9 @@ const PGNAnalyzer = () => {
             
             // Extraire les métadonnées
             const metadata = {
-                white: headersObject.White || t('pgnAnalyzer.status.white'),
+                white: headersObject.White || t('training.status.white'),
                 whiteElo: headersObject.WhiteElo || '?',
-                black: headersObject.Black || t('pgnAnalyzer.status.black'),
+                black: headersObject.Black || t('training.status.black'),
                 blackElo: headersObject.BlackElo || '?',
                 date: headersObject.Date || '?',
                 event: headersObject.Event || t('pgnAnalyzer.input.title'),
@@ -369,17 +373,11 @@ const PGNAnalyzer = () => {
         setAnalysisProgress(0);
         
         try {
-            // Ajouter plus de logs pour le débogage
-            console.log("Envoi de la requête d'analyse avec le PGN:");
-            console.log("PGN envoyé:", pgn);
-            
             const response = await fetch(`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/api/analyze-game`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ pgn }),
             });
-
-            console.log("Status de la réponse:", response.status);
             
             if (!response.ok) {
                 const errorText = await response.text();
@@ -389,7 +387,6 @@ const PGNAnalyzer = () => {
 
             // Log de la réponse brute
             const responseText = await response.text();
-            console.log("Réponse brute:", responseText);
             
             // Tenter de parser la réponse JSON
             let data;
@@ -399,10 +396,7 @@ const PGNAnalyzer = () => {
                 throw new Error(`Réponse invalide du serveur: ${e.message}. Réponse: ${responseText}`);
             }
             
-            console.log("Réponse parsée:", data);
-            
             if (data.success && data.analysis) {
-                console.log("Analyse reçue avec succès, nombre d'entrées:", data.analysis.length);
                 setGameAnalysis(data.analysis);
             } else {
                 throw new Error('Format de réponse inattendu: ' + JSON.stringify(data));
@@ -432,7 +426,6 @@ const PGNAnalyzer = () => {
             }
 
             const data = await response.json();
-            console.log("Réponse d'analyse de position:", data);
             setEvaluation(data.evaluation);
         } catch (error) {
             console.error("Erreur lors de l'analyse:", error);
@@ -501,20 +494,36 @@ const PGNAnalyzer = () => {
         return movesWithQuality;
     };
 
-    // Fonction pour l'affichage de l'évaluation dans la barre d'évaluation
+    // Fonction corrigée pour l'affichage de l'évaluation dans la barre d'évaluation
     const getEvalPosition = (evaluation) => {
-        if (evaluation === null) return 50;
+        // Si pas d'évaluation, position neutre
+        if (evaluation === null || evaluation === undefined) return 50;
         
-        if (typeof evaluation === 'string' && evaluation.includes('#')) {
+        // Pour les mats, traitement spécial
+        if (typeof evaluation === 'string' && evaluation.startsWith('#')) {
+            // Mat en faveur des blancs
             if (!evaluation.includes('-')) {
-                return 10; // Mat en faveur des blancs
-            } else {
-                return 90; // Mat en faveur des noirs
+                return 10; // Position basse = avantage blanc (90% de la barre pour les blancs)
+            } 
+            // Mat en faveur des noirs
+            else {
+                return 90; // Position haute = avantage noir (90% de la barre pour les noirs)
             }
         }
         
-        const normalizedEval = 50 - (evaluation * 5);
-        return Math.min(Math.max(normalizedEval, 5), 95);
+        // Conversion pour s'assurer que l'évaluation est un nombre
+        const numericEval = typeof evaluation === 'string' ? parseFloat(evaluation) : evaluation;
+        
+        // Limiter pour éviter des valeurs extrêmes (-5 à +5 est une bonne plage)
+        const clampedEval = Math.min(Math.max(numericEval, -5), 5);
+        
+        // Convention correcte:
+        // - positif = avantage blancs (valeurs faibles sur la barre, donc blancs en bas)
+        // - négatif = avantage noirs (valeurs élevées sur la barre, donc noirs en haut)
+        const position = 50 - (clampedEval * 8); // 8 points de pourcentage par pion d'avantage
+        
+        // Assurer que la position reste dans les limites 5%-95%
+        return Math.min(Math.max(position, 5), 95);
     };
 
     // Modification de goToMove pour utiliser les données d'analyse correctement
@@ -529,30 +538,24 @@ const PGNAnalyzer = () => {
         setGame(newGame);
         setCurrentMoveIndex(index);
         
-        console.log("Aller au coup", index);
-        console.log("Analyse disponible:", gameAnalysis.length, "positions");
-        
         // Vérifier si nous avons une analyse pour ce coup
         if (gameAnalysis && gameAnalysis.length > 0) {
-            // Trouver l'analyse correspondante (index-1 car la première analyse est pour le premier coup)
-            const analysisIndex = index > 0 ? index - 1 : 0;
-            console.log("Recherche d'analyse à l'index:", analysisIndex);
+            // L'évaluation après un coup fait à l'index i se trouve dans l'analyse à l'index i
+            // Pour la position initiale (index=0), on utilise l'évaluation avant le premier coup
+            const analysisIndex = Math.min(index, gameAnalysis.length - 1);
             
-            if (analysisIndex < gameAnalysis.length) {
+            if (analysisIndex >= 0 && analysisIndex < gameAnalysis.length) {
                 const analysisData = gameAnalysis[analysisIndex];
-                console.log("Donnée d'analyse trouvée:", analysisData);
                 
                 if (analysisData.evaluation !== undefined) {
                     setEvaluation(analysisData.evaluation);
+                } else {
+                    await analyzePosition(newGame.fen());
                 }
             } else {
-                console.log("Pas d'analyse disponible pour cet index");
-                // Analyser la position à la volée
                 await analyzePosition(newGame.fen());
             }
         } else {
-            console.log("Aucune analyse disponible, analyse à la volée");
-            // Aucune analyse disponible, analyser à la volée
             await analyzePosition(newGame.fen());
         }
     };
@@ -596,7 +599,6 @@ const PGNAnalyzer = () => {
                     const data = JSON.parse(event.data);
                     
                     if (data.status === 'analyzing') {
-                        console.log('Mise à jour SSE reçue:', data);
                         // Mettre à jour la progression
                         setAnalysisProgress(data.progress);
                         // Optionnellement, mettre à jour d'autres états pour refléter l'avancement
@@ -666,7 +668,7 @@ const PGNAnalyzer = () => {
             
             // Ajouter à la moyenne d'évaluation
             if (typeof analysis.evaluation === 'number') {
-                evalSum += Math.abs(analysis.evaluation);
+                evalSum += analysis.evaluation; // Pas de Math.abs
                 validEvalCount++;
             }
         }
@@ -806,18 +808,20 @@ const PGNAnalyzer = () => {
                             </div>
                         </div>
                         <div className="board-with-eval">
-                            <div className="evaluation-bar">
-                                <div className="eval-container">
-                                    <div className="white-eval" style={{ height: blackHeight }}></div>
-                                    <div className="black-eval" style={{ height: whiteHeight }}></div>
-                                    <div 
-                                        className="eval-value" 
-                                        style={{ top: `${evalPos}%` }}
-                                    >
-                                        {formatEvaluation(evaluation)}
+                            {CONFIG.showEvaluationBar && (
+                                <div className="evaluation-bar">
+                                    <div className="eval-container">
+                                        <div className="white-eval" style={{ height: blackHeight }}></div>
+                                        <div className="black-eval" style={{ height: whiteHeight }}></div>
+                                        <div 
+                                            className="eval-value" 
+                                            style={{ top: `${evalPos}%` }}
+                                        >
+                                            {formatEvaluation(evaluation)}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            )}
                             <div className="board-container">
                                 <Chessboard position={game.fen()} />
                             </div>
@@ -965,12 +969,14 @@ const PGNAnalyzer = () => {
                                     <div className="tab-pane">
                                         {gameStats ? (
                                             <div className="stats-container">
-                                                <CompactEvaluationChart 
-                                                    gameAnalysis={gameAnalysis} 
-                                                    moves={moves} 
-                                                    onSelectMove={goToMove}
-                                                    t={t}
-                                                />
+                                                {CONFIG.showEvaluationChart && (
+                                                    <CompactEvaluationChart 
+                                                        gameAnalysis={gameAnalysis} 
+                                                        moves={moves} 
+                                                        onSelectMove={goToMove}
+                                                        t={t}
+                                                    />
+                                                )}
                                                 <CompactGameStats stats={gameStats} gameMetadata={gameMetadata} t={t} />
                                             </div>
                                         ) : (

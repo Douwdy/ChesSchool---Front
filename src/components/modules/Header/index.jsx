@@ -86,7 +86,7 @@ const Header = () => {
                                 {t('header.playChess')}
                             </Link>
                         </li>
-                        <li className="header__nav__menu__item">
+                        <li className="header__nav__menu__item disable">
                             <Link 
                                 to="/analyze" 
                                 className={`header__nav__menu__item__link ${location.pathname === '/analyze' ? 'active' : ''}`} 
