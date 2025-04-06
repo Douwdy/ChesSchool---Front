@@ -145,19 +145,19 @@ const Header = () => {
                                     Italiano (BETA)
                                 </button>
                                 <button 
-                                    className={`header__language-option ${i18n.language === 'it' ? 'active' : ''}`}
+                                    className={`header__language-option ${i18n.language === 'zh' ? 'active' : ''}`}
                                     onClick={() => changeLanguage('zh')}
                                 >
                                     普通话 (BETA)
                                 </button>
                                 <button 
-                                    className={`header__language-option ${i18n.language === 'it' ? 'active' : ''}`}
-                                    onClick={() => changeLanguage('jp')}
+                                    className={`header__language-option ${i18n.language === 'ja' ? 'active' : ''}`}
+                                    onClick={() => changeLanguage('ja')}
                                 >
                                     日本語 (BETA)
                                 </button>
                                 <button 
-                                    className={`header__language-option ${i18n.language === 'it' ? 'active' : ''}`}
+                                    className={`header__language-option ${i18n.language === 'hi' ? 'active' : ''}`}
                                     onClick={() => changeLanguage('hi')}
                                 >
                                     हिन्दी (BETA)

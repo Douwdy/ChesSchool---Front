@@ -7,7 +7,7 @@ import enUS from './lang/en-US.json';
 import frFR from './lang/fr-FR.json';
 import itIT from './lang/it-IT.json';
 import zhCN from './lang/zh-CN.json';
-import jpJP from './lang/jp-JP.json';
+import jaJP from './lang/ja-JP.json';
 import hiIN from './lang/hi-IN.json';
 
 i18n
@@ -19,7 +19,7 @@ i18n
       fr: { translation: frFR },
       it: { translation: itIT },
       zh: { translation: zhCN },
-      ja: { translation: jpJP },
+      ja: { translation: jaJP },
       hi: { translation: hiIN }
     },
     fallbackLng: 'fr',
