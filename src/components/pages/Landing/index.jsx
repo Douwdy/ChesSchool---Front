@@ -54,7 +54,7 @@ const Landing = () => {
                         <Link to="/local" className="feature-link">{t('landing.features.localGames.cta')}</Link>
                     </div>
 
-                    <div className="feature-card">
+                    <div className="feature-card disable">
                         <div className="feature-icon">
                             <FontAwesomeIcon icon={faSearch} size='xl'/>
                         </div>
