@@ -16,6 +16,23 @@ export const getMoveDisplayQuality = (moveQuality) => {
     }
 };
 
+// Améliorer l'évaluation de la qualité des coups
+export const evaluateMoveQuality = (evalDifference, isMatePosition) => {
+  // Cas spécial: dans les positions de mat
+  if (isMatePosition) {
+    // Si la différence est très petite, c'est qu'on reste sur le chemin du mat
+    if (evalDifference < 50) return "excellent";
+    return "blunder"; // Rater un mat est toujours une bévue
+  }
+  
+  // Échelle normale
+  if (evalDifference <= 30) return "excellent";
+  if (evalDifference <= 90) return "good";
+  if (evalDifference <= 200) return "inaccuracy";
+  if (evalDifference <= 500) return "mistake";
+  return "blunder";
+};
+
 // Mettre à jour la fonction getMovesWithQuality pour utiliser directement la qualité du serveur
 export const getMovesWithQuality = (moves, gameAnalysis) => {
     const movesWithQuality = [];

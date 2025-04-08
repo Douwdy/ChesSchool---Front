@@ -36,6 +36,9 @@ const AlternativesCard = ({ currentMoveIndex, movesWithQuality, gameAnalysis, t 
         <h3>
           {t('pgnAnalyzer.alternatives.alternativeTo')} {moveNumber}{!isWhite ? '...' : '.'} 
           <span className="played-move">{moveWithQuality?.san || ''}</span>
+          <span className={`move-quality ${moveWithQuality?.quality?.class || ''}`}>
+            {moveWithQuality?.quality?.label}
+          </span>
         </h3>
         
         <div className="alternatives-grid">
@@ -52,4 +55,4 @@ const AlternativesCard = ({ currentMoveIndex, movesWithQuality, gameAnalysis, t 
     );
   };
 
-export default AlternativesCard; 
+export default AlternativesCard;

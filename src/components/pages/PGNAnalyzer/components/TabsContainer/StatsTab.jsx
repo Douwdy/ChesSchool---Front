@@ -1,6 +1,7 @@
 import React from 'react';
 import CompactEvaluationChart from '../../utils/CompactEvaluationChart';
 import CompactGameStats from '../../utils/CompactGameStats';
+import AnalysisExport from '../../utils/AnalysisExport';
 
 const StatsTab = ({ 
     gameStats, 
@@ -15,6 +16,7 @@ const StatsTab = ({
         <div className="tab-pane">
             {gameStats ? (
                 <div className="stats-container">
+                    
                     {showEvaluationChart && (
                         <CompactEvaluationChart 
                             gameAnalysis={gameAnalysis} 
@@ -24,6 +26,15 @@ const StatsTab = ({
                         />
                     )}
                     <CompactGameStats stats={gameStats} gameMetadata={gameMetadata} t={t} />
+                    <div className="stats-header">
+                        <AnalysisExport 
+                            gameAnalysis={gameAnalysis}
+                            moves={moves}
+                            gameMetadata={gameMetadata}
+                            gameStats={gameStats}
+                            t={t}
+                        />
+                    </div>
                 </div>
             ) : (
                 <div className="no-stats">

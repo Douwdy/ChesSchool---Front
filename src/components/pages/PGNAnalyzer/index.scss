@@ -1658,3 +1658,68 @@ $transition-standard: all 0.25s ease;
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.export-button {
+  background-color: #4c566a;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.export-button:before {
+  content: "📊";
+  margin-right: 8px;
+}
+
+.export-button:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.export-button:hover:not(:disabled) {
+  background-color: #3b4252;
+}
+
+/* Ajouter à la section existante de StatsTab */
+.stats-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin button-base {
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+  text-align: center;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+  
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($xanthous, 0.3);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+}

@@ -103,6 +103,11 @@
       "moves": "Coups :"
     },
     "pgnAnalyzer": {
+      "export": {
+        "pdf": "Exporter en PDF",
+        "generating": "Génération...",
+        "error": "Erreur d'export"
+      },
       "input": {
         "title": "PGN",
         "placeholder": "Collez votre PGN ici...",
